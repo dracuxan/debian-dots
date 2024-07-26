@@ -1,1 +1,1 @@
-## My Custom Config for Neovim and zsh
+## My Custom Config for Neovim[NvChad\] and zsh
