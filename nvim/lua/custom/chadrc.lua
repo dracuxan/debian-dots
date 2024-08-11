@@ -2,8 +2,8 @@
 local M = {}
 
 M.ui = {
-  theme = 'tomorrow_night',
-  theme_toggle = {'tomorrow_night', "tomorrow_night"},
+  theme = 'ashes',
+  theme_toggle = {'ashes', "ashes"},
   transparency = true
 }
 

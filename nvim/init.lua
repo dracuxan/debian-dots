@@ -20,9 +20,23 @@ dofile(vim.g.base46_cache .. "defaults")
 vim.opt.rtp:prepend(lazypath)
 require "plugins"
 
-require'lspconfig'.gopls.setup{}
-require'lspconfig'.tsserver.setup{}
-require'lspconfig'.clangd.setup{}
+local lspconfig = require("lspconfig")
+
+lspconfig.gopls.setup({
+  settings = {
+    gopls = {
+      analyses = {
+        unusedparams = true,
+      },
+      staticcheck = true,
+      gofumpt = true,
+    },
+  },
+})
+lspconfig.tsserver.setup{}
+lspconfig.clangd.setup{}
+lspconfig.pyright.setup{}
+
 vim.opt.mouse = ""
 
 require'nvim-tree'.setup{
