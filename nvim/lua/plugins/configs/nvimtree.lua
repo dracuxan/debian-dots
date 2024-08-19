@@ -1,4 +1,5 @@
 local options = {
+
   filters = {
     dotfiles = false,
     exclude = { vim.fn.stdpath "config" .. "/lua/custom" },
@@ -36,7 +37,7 @@ local options = {
     highlight_opened_files = "none",
 
     indent_markers = {
-      enable = false,
+      enable = true,
     },
 
     icons = {

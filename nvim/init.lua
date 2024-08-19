@@ -44,3 +44,15 @@ require'nvim-tree'.setup{
     side = 'right',
   }
 }
+
+vim.wo.relativenumber = true
+vim.wo.number = true
+
+-- Disable line numbers in Nvim Tree
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "nvim-tree",
+  callback = function()
+    vim.wo.relativenumber = false
+    vim.wo.number = false
+  end
+})
