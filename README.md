@@ -19,22 +19,23 @@ dotfiles/
 
 ## Installation
 To set up these dotfiles on a new machine, follow these steps:
+
+Clone The Repo and move to dotfiles directory:
 ```
-git clone https://github.com/Nisarg2061/Dot-Files.git ~/dotfiles
+git clone https://github.com/Nisarg2061/Dot-Files.git ~/dotfiles && cd ~/dotfiles
 ```
 
+Install Stow:
 ```
-sudo apt-get install stow
-```
-
-```
-cd ~/dotfiles
+sudo apt-get install stow 
 ```
 
+For NeoVim:
 ```
 stow -d ~/dotfiles -t ~ nvim
 ```
 
+For Zsh:
 ```
 stow -d ~/dotfiles -t ~ zsh
 ```
