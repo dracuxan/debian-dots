@@ -2,9 +2,9 @@
 local M = {}
 
 M.ui = {
-  theme = 'ashes',
-  theme_toggle = {'ashes', "ashes"},
-  transparency = true
+  theme = 'aquarium',
+  theme_toggle = {'aquarium', "aquarium"},
+  transparency = false
 }
 
 

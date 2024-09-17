@@ -19,6 +19,7 @@ end
 dofile(vim.g.base46_cache .. "defaults")
 vim.opt.rtp:prepend(lazypath)
 require "plugins"
+require("autocommands.autosave")
 
 local lspconfig = require("lspconfig")
 
@@ -33,9 +34,38 @@ lspconfig.gopls.setup({
     },
   },
 })
-lspconfig.tsserver.setup{}
+
+lspconfig.tsserver.setup{
+  on_attach = on_attach,
+  flags = lsp_flags,
+  settings = {
+    completions = {
+      completeFunctionCalls = true
+    }
+  }
+}
 lspconfig.clangd.setup{}
 lspconfig.pyright.setup{}
+
+
+local sqls_config = require("autocommands.sqls")
+
+require'lspconfig'.sqls.setup{
+  cmd = {"sqls", "-config", "/home/beru/sqls/config.yml"};
+  on_attach = function(client, bufnr)
+    sqls_config.on_attach(client, bufnr) -- require sqls.nvim
+  end,
+  settings = {
+    sqls = {
+      connections = {
+        {
+          driver = 'postgresql',
+          dataSourceName = 'host=127.0.0.1 port=5432 user=postgres password=prod dbname=stocksdb sslmode=disable',
+        },
+      },
+    },
+  },
+}
 
 vim.opt.mouse = ""
 
@@ -56,3 +86,5 @@ vim.api.nvim_create_autocmd("FileType", {
     vim.wo.number = false
   end
 })
+
+vim.lsp.set_log_level("debug")
