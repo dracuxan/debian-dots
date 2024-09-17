@@ -38,8 +38,13 @@ stow -d ~/dotfiles -t ~ nvim
 ```
 stow -d ~/dotfiles -t ~ zsh
 ```
+
 ```
-touch ~/.zsh_history // Only if the file does not exists
+touch ~/.zsh_history # Only if the file does not exists
+```
+
+```
+source ~/.zshrc
 ```
 
 ## Usage
