@@ -20,7 +20,7 @@ dotfiles/
 ## Installation
 To set up these dotfiles on a new machine, follow these steps:
 ```
-git clone https://github.com/yourusername/dotfiles.git ~/dotfiles
+git clone git@github.com:Nisarg2061/Dot-Files.git ~/dotfiles
 ```
 
 ```
