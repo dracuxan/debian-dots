@@ -1,4 +1,4 @@
-# Contributing to Thrift Store
+# Contributing to Dotfiles
 
 Thank you for your interest in contributing to the Thrift Store! We are excited to have you aboard and look forward to your contributions. Here are some guidelines that we would like you to follow:
 
