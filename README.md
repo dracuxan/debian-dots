@@ -48,9 +48,9 @@ touch ~/.zsh_history # Only if the file does not exists
 source ~/.zshrc
 ```
 
-For Neofetch:
+For Neofetch (sudo to copy ascii file to /usr):
 ```
-sudo stow -d ~/dotfiles -t / neofetch # sudo to copy ascii file to /usr
+sudo stow -d ~/dotfiles -t / neofetch 
 ```
 
 ## Usage
