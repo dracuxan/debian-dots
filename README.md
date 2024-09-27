@@ -60,4 +60,4 @@ Note: Not my own configurations for neofetch - ![Actual Configs](https://github.
 
 
 ## Sneak Peek
-![Sneak Peek](https://github.com/user-attachments/assets/70b7227c-b475-4ef6-a82a-9c19b6a0d00a)
+![Sneak Peek](https://github.com/user-attachments/assets/f475c089-86a0-4b1e-b662-7928597d476d)
