@@ -52,6 +52,7 @@ For Neofetch (sudo to copy ascii file to /usr):
 ```
 sudo stow -d ~/dotfiles -t / neofetch 
 ```
+Note: Not my own configurations for neofetch - ![Actual Configs](https://github.com/1999AZZAR/neofetch_ascii)
 
 ## Usage
 - **Neovim**: Configuration files are located in ~/.config/nvim/. Adjust init.nvim and other files as needed.
