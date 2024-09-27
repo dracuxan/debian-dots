@@ -48,11 +48,11 @@ touch ~/.zsh_history # Only if the file does not exists
 source ~/.zshrc
 ```
 
-For Neofetch (sudo to copy ascii file to /usr):
+For Neofetch:
 ```
-sudo stow -d ~/dotfiles -t / neofetch 
+stow -d ~/dotfiles -t ~ neofetch
 ```
-Note: Not my own configurations for neofetch - ![Actual Configs](https://github.com/1999AZZAR/neofetch_ascii)
+Note: Not my own configurations for neofetch - ![Actual Configs](https://github.com/neuromask/catppuccin-linux-theme)
 
 ## Usage
 - **Neovim**: Configuration files are located in ~/.config/nvim/. Adjust init.nvim and other files as needed.
