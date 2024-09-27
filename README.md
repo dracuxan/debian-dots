@@ -48,6 +48,11 @@ touch ~/.zsh_history # Only if the file does not exists
 source ~/.zshrc
 ```
 
+For Neofetch:
+```
+sudo stow -d ~/dotfiles -t / neofetch # sudo to copy ascii file to /usr
+```
+
 ## Usage
 - **Neovim**: Configuration files are located in ~/.config/nvim/. Adjust init.nvim and other files as needed.
 - **Zsh**: Configuration files are located in ~/.zshrc and ~/.zsh_history. The .zsh/ directory contains Zsh plugins.
