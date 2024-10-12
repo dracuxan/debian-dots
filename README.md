@@ -31,48 +31,48 @@ git clone https://github.com/Nisarg2061/Dot-Files.git ~/dotfiles && cd ~/dotfile
 
 ### Install Stow:
 
-Ubuntu/Debian (APT-based distributions):
-```
-sudo apt-get install stow
-```
+- Ubuntu/Debian (APT-based distributions):
+  ```
+  sudo apt-get install stow
+  ```
 
-Fedora (DNF-based distributions):
-```
-sudo dnf install stow
-```
+- Fedora (DNF-based distributions):
+  ```
+  sudo dnf install stow
+  ```
 
-Arch Linux (Pacman-based distributions):
-```
-sudo pacman -S stow
-```
+- Arch Linux (Pacman-based distributions):
+  ```
+  sudo pacman -S stow
+  ```
 
-macOS (Using Homebrew):
-```
-brew install stow
-```
+- macOS (Using Homebrew):
+  ```
+  brew install stow
+  ```
 
 ### For NeoVim:
-```
-stow -d ~/dotfiles -t ~ nvim
-```
+  ```
+  stow -d ~/dotfiles -t ~ nvim
+  ```
 
 ### For Zsh:
-```
-stow -d ~/dotfiles -t ~ zsh
-```
-
-```
-touch ~/.zsh_history # Only if the file does not exists
-```
-
-```
-source ~/.zshrc
-```
+  ```
+  stow -d ~/dotfiles -t ~ zsh
+  ```
+  
+  ```
+  touch ~/.zsh_history # Only if the file does not exists
+  ```
+  
+  ```
+  source ~/.zshrc
+  ```
 
 ### For Neofetch:
-```
-stow -d ~/dotfiles -t ~ neofetch
-```
+  ```
+  stow -d ~/dotfiles -t ~ neofetch
+  ```
 Note: Not my own configurations for neofetch - ![Actual Configs](https://github.com/neuromask/catppuccin-linux-theme)
 
 ## Usage
