@@ -5,6 +5,10 @@ This repository contains my personal dotfiles for configuring various tools and 
 
 ```
 dotfiles/
+├── neofetch/
+│   └── .config/
+│       └── neofetch/ 
+│           └── config.conf (Neofetch configuration files)
 ├── nvim/
 │   └── .config/
 │       └── nvim/ 
