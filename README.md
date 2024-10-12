@@ -31,22 +31,22 @@ git clone https://github.com/Nisarg2061/Dot-Files.git ~/dotfiles && cd ~/dotfile
 
 ### Install Stow:
 
-- Ubuntu/Debian (APT-based distributions):
+- Ubuntu/Debian:
   ```
   sudo apt-get install stow
   ```
 
-- Fedora (DNF-based distributions):
+- Fedora:
   ```
   sudo dnf install stow
   ```
 
-- Arch Linux (Pacman-based distributions):
+- Arch Linux:
   ```
   sudo pacman -S stow
   ```
 
-- macOS (Using Homebrew):
+- macOS:
   ```
   brew install stow
   ```
