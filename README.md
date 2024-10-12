@@ -29,17 +29,34 @@ Clone The Repo and move to dotfiles directory:
 git clone https://github.com/Nisarg2061/Dot-Files.git ~/dotfiles && cd ~/dotfiles
 ```
 
-Install Stow:
+### Install Stow:
+
+Ubuntu/Debian (APT-based distributions):
 ```
-sudo apt-get install stow 
+sudo apt-get install stow
 ```
 
-For NeoVim:
+Fedora (DNF-based distributions):
+```
+sudo dnf install stow
+```
+
+Arch Linux (Pacman-based distributions):
+```
+sudo pacman -S stow
+```
+
+macOS (Using Homebrew):
+```
+brew install stow
+```
+
+### For NeoVim:
 ```
 stow -d ~/dotfiles -t ~ nvim
 ```
 
-For Zsh:
+### For Zsh:
 ```
 stow -d ~/dotfiles -t ~ zsh
 ```
@@ -52,7 +69,7 @@ touch ~/.zsh_history # Only if the file does not exists
 source ~/.zshrc
 ```
 
-For Neofetch:
+### For Neofetch:
 ```
 stow -d ~/dotfiles -t ~ neofetch
 ```
