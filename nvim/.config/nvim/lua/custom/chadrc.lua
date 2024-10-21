@@ -2,8 +2,8 @@
 local M = {}
 
 M.ui = {
-  theme = 'ashes',
-  theme_toggle = {'ashes', "ashes"},
+  theme = 'dark_horizon',
+  theme_toggle = {'dark_horizon', "dark_horizon"},
   transparency = true
 }
 
