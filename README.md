@@ -5,6 +5,10 @@ This repository contains my personal dotfiles for configuring various tools and 
 
 ```
 dotfiles/
+├── neofetch/
+│   └── .config/
+│       └── neofetch/ 
+│           └── config.conf (Neofetch configuration files)
 ├── nvim/
 │   └── .config/
 │       └── nvim/ 
@@ -25,33 +29,50 @@ Clone The Repo and move to dotfiles directory:
 git clone https://github.com/Nisarg2061/Dot-Files.git ~/dotfiles && cd ~/dotfiles
 ```
 
-Install Stow:
-```
-sudo apt-get install stow 
-```
+### Install Stow:
 
-For NeoVim:
-```
-stow -d ~/dotfiles -t ~ nvim
-```
+- Ubuntu/Debian:
+  ```
+  sudo apt-get install stow
+  ```
 
-For Zsh:
-```
-stow -d ~/dotfiles -t ~ zsh
-```
+- Fedora:
+  ```
+  sudo dnf install stow
+  ```
 
-```
-touch ~/.zsh_history # Only if the file does not exists
-```
+- Arch Linux:
+  ```
+  sudo pacman -S stow
+  ```
 
-```
-source ~/.zshrc
-```
+- macOS:
+  ```
+  brew install stow
+  ```
 
-For Neofetch:
-```
-stow -d ~/dotfiles -t ~ neofetch
-```
+### For NeoVim:
+  ```
+  stow -d ~/dotfiles -t ~ nvim
+  ```
+
+### For Zsh:
+  ```
+  stow -d ~/dotfiles -t ~ zsh
+  ```
+  
+  ```
+  touch ~/.zsh_history # Only if the file does not exists
+  ```
+  
+  ```
+  source ~/.zshrc
+  ```
+
+### For Neofetch:
+  ```
+  stow -d ~/dotfiles -t ~ neofetch
+  ```
 Note: Not my own configurations for neofetch - ![Actual Configs](https://github.com/neuromask/catppuccin-linux-theme)
 
 ## Usage
