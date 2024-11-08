@@ -73,7 +73,10 @@ source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
-alias m='make'
+alias nv='nvim'
+alias adb='/mnt/c/Users/Nisarg/AppData/Local/Android/Sdk/platform-tools/adb.exe'
+export ANDROID_HOME=/mnt/c/Users/Nisarg/AppData/Local/Android/Sdk
+export PATH=${PATH}:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools
 export PATH=$PATH:/usr/local/go/bin
 export PATH=$PATH:$(go env GOPATH)/bin
 export JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64

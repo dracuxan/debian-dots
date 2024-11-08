@@ -5,6 +5,10 @@ local default_plugins = {
   "nvim-lua/plenary.nvim",
 
   {
+    "nvim-neotest/nvim-nio"
+  },
+
+  {
     "NvChad/base46",
     branch = "v2.0",
     build = function()
