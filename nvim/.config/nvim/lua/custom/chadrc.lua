@@ -3,10 +3,11 @@ local M = {}
 
 M.ui = {
   theme = 'tokyodark',
-  theme_toggle = {'tokyodark', "tokyodark"},
+  theme_toggle = { 'tokyodark', "tokyodark" },
   transparency = true,
   statusline = {
-    theme = "vscode_colored",
+    theme = "minimal",
+    separator_style = "round",
   },
 }
 
