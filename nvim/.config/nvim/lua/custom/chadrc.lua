@@ -2,9 +2,12 @@
 local M = {}
 
 M.ui = {
-  theme = 'dark_horizon',
-  theme_toggle = {'dark_horizon', "dark_horizon"},
-  transparency = true
+  theme = 'tokyodark',
+  theme_toggle = {'tokyodark', "tokyodark"},
+  transparency = true,
+  statusline = {
+    theme = "vscode_colored",
+  },
 }
 
 M.plugins = "custom.plugins"
