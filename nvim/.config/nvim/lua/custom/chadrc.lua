@@ -6,7 +6,7 @@ M.ui = {
   theme_toggle = { 'tokyodark', "tokyodark" },
   transparency = true,
   statusline = {
-    theme = "minimal",
+    theme = "vscode_colored",
     separator_style = "round",
   },
 }
