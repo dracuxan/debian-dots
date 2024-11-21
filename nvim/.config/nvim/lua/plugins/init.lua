@@ -5,6 +5,10 @@ local default_plugins = {
   "nvim-lua/plenary.nvim",
 
   {
+    'wakatime/vim-wakatime', lazy = false
+  },
+
+  {
     "nvim-neotest/nvim-nio"
   },
 
@@ -232,9 +236,6 @@ local default_plugins = {
     end,
   },
 
-  {
-    'wakatime/vim-wakatime', lazy = false
-  },
 
   -- Only load whichkey after all the gui
   {
