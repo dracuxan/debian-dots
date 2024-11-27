@@ -7,7 +7,6 @@ M.ui = {
   transparency = true,
   statusline = {
     theme = "vscode_colored",
-    separator_style = "round",
   },
 }
 
