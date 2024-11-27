@@ -4,6 +4,8 @@ local default_plugins = {
 
   "nvim-lua/plenary.nvim",
 
+  "rebelot/kanagawa.nvim",
+
   {
     'wakatime/vim-wakatime', lazy = false
   },
