@@ -10,7 +10,15 @@ M.dap = {
     ["<leader>dr"] = {
       "<cmd> DapContinue <CR>",
       "Run or continue the debugger"
-    }
+    },
+    ["<leader>dus"] = {
+      function()
+        local widgets = require('dap.ui.widgets');
+        local sidebar = widgets.sidebar(widgets.scopes);
+        sidebar.open();
+      end,
+      "Open debugging sidebar"
+    },
   },
 }
 
@@ -24,6 +32,7 @@ M.dap_python = {
     }
   }
 }
+
 M.dap_go = {
   plugin = true,
   n = {
