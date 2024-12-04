@@ -2,11 +2,14 @@
 local M = {}
 
 M.ui = {
-  theme = 'aquarium',
-  theme_toggle = { 'aquarium', "aquarium" },
+  theme = 'chadracula',
+  theme_toggle = { 'chadracula', "chadracula" },
   transparency = false,
   statusline = {
     theme = "vscode_colored",
+  },
+  tabufline = {
+    enabled = true,
   },
 }
 

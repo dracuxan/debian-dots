@@ -20,7 +20,7 @@ dofile(vim.g.base46_cache .. "defaults")
 vim.opt.rtp:prepend(lazypath)
 require "plugins"
 
--- vim.opt.mouse = ""
+vim.opt.mouse = ""
 
 -- Reset the cursor style on exit
 vim.cmd([[

@@ -51,3 +51,10 @@ lspconfig.gopls.setup {
     },
   },
 }
+
+lspconfig.elixirls.setup{
+  filetypes = {"ex", "exs"},
+  cmd = { "elixir-ls" },
+  on_attach = on_attach,
+  capabilities = capabilities,
+}
