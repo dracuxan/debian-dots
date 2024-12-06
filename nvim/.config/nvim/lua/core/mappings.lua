@@ -27,6 +27,9 @@ M.general = {
     -- save
     ["<C-s>"] = { "<cmd> w <CR>", "Save file" },
 
+    --set modifiable
+    ["<C-m>"] = {"<cmd> set modifiable <CR>", "Set Modifiable"},
+
     -- Copy all
     ["<C-c>"] = { "<cmd> %y+ <CR>", "Copy whole file" },
 
