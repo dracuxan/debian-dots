@@ -56,4 +56,7 @@ lspconfig.elixirls.setup{
   on_attach = on_attach,
   capabilities = capabilities,
   cmd = {"elixir-ls"},
+  settings ={
+
+  },
 }

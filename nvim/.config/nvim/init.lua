@@ -31,7 +31,7 @@ vim.cmd([[
 ]])
 
 
-require'nvim-tree'.setup{
+require 'nvim-tree'.setup {
   view = {
     side = 'right',
   }
@@ -48,5 +48,18 @@ vim.api.nvim_create_autocmd("FileType", {
     vim.wo.number = false
   end
 })
-
+vim.api.nvim_create_autocmd("LspAttach", {
+  group = vim.api.nvim_create_augroup("lsp", { clear = true }),
+  callback = function(args)
+    -- 2
+    vim.api.nvim_create_autocmd("BufWritePre", {
+      -- 3
+      buffer = args.buf,
+      callback = function()
+        -- 4 + 5
+        vim.lsp.buf.format { async = false, id = args.data.client_id }
+      end,
+    })
+  end
+})
 vim.lsp.set_log_level("debug")
