@@ -87,6 +87,8 @@ local plugins = {
         "goimports-reviser",
         "gopls",
         "delve",
+        "elixir-ls",
+        "bash-language-server",
       }
     }
   },

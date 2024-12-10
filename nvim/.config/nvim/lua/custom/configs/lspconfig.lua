@@ -13,6 +13,32 @@ local function organize_imports()
   vim.lsp.buf.execute_command(params)
 end
 
+-- Common on_attach function for all LSP servers
+local on_attach_elx = function(client, bufnr)
+  if client.server_capabilities.documentFormattingProvider then
+    vim.api.nvim_create_autocmd("BufWritePre", {
+      group = vim.api.nvim_create_augroup("LspFormatting", { clear = true }),
+      buffer = bufnr,
+      callback = function()
+        vim.lsp.buf.format({ async = false })
+      end,
+    })
+  end
+end
+
+lspconfig.elixirls.setup {
+  on_attach = on_attach_elx,
+  capabilities = capabilities,
+  cmd = { "elixir-ls" },
+  root_dir = lspconfig.util.root_pattern('mix.exs', '.git'),
+  settings = {
+    elixirLS = {
+      dialyzerEnabled = true,
+      fetchDeps = false,
+    },
+  },
+}
+
 lspconfig.ts_ls.setup {
   on_attach = on_attach,
   capabilities = capabilities,
@@ -52,11 +78,11 @@ lspconfig.gopls.setup {
   },
 }
 
-lspconfig.elixirls.setup {
+lspconfig.bashls.setup {
   on_attach = on_attach,
   capabilities = capabilities,
-  cmd = { "elixir-ls" },
-  settings = {
-
-  },
+  cmd = { "bash-language-server", "start" },
+  filetypes = { "sh", "bash", "zsh" },
+  root_dir = lspconfig.util.root_pattern(".git", ".bashrc", ".bash_profile", ".zshrc"),
+  settings = {},
 }
