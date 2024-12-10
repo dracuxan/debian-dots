@@ -1,5 +1,6 @@
 # Dotfiles
 This repository contains my personal dotfiles for configuring various tools and environments. This includes configurations for Neovim, Zsh, and potentially other applications.
+
 **Caution: Currently the ZSH config is not working properly for OS other than Kali so use only if you can debug that!**
 
 ## Directory Structure
