@@ -8,7 +8,7 @@ local lspconfig = require("lspconfig")
 local function organize_imports()
   local params = {
     command = "_typescript.organizeImports",
-    arguments = {vim.api.nvim_buf_get_name(0)},
+    arguments = { vim.api.nvim_buf_get_name(0) },
   }
   vim.lsp.buf.execute_command(params)
 end
@@ -32,13 +32,13 @@ lspconfig.ts_ls.setup {
 lspconfig.pyright.setup({
   on_attach = on_attach,
   capabilities = capabilities,
-  filetypes = {"python"},
+  filetypes = { "python" },
 })
 
 lspconfig.gopls.setup {
   on_attach = on_attach,
   capabilities = capabilities,
-  cmd = {"gopls"},
+  cmd = { "gopls" },
   filetypes = { "go", "gomod", "gowork", "gotmpl" },
   root_dir = util.root_pattern("go.work", "go.mod", ".git"),
   settings = {
@@ -52,11 +52,11 @@ lspconfig.gopls.setup {
   },
 }
 
-lspconfig.elixirls.setup{
+lspconfig.elixirls.setup {
   on_attach = on_attach,
   capabilities = capabilities,
-  cmd = {"elixir-ls"},
-  settings ={
+  cmd = { "elixir-ls" },
+  settings = {
 
   },
 }
