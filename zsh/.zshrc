@@ -286,5 +286,4 @@ export NVM_DIR="$HOME/.nvm"
 
 #Startup Commands
 clear
-neofetch
 eval "$(starship init zsh)"
