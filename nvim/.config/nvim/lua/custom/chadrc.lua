@@ -2,8 +2,8 @@
 local M = {}
 
 M.ui = {
-  theme = 'chadracula',
-  theme_toggle = { 'chadracula', "chadracula" },
+  theme = 'ashes',
+  theme_toggle = { 'ashes', "ashes" },
   transparency = false,
   statusline = {
     theme = "vscode_colored",

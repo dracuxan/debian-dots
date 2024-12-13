@@ -254,6 +254,7 @@ alias ll='ls -la'
 alias la='ls -A'
 alias l='ls -CF'
 alias nv='nvim'
+alias neo="neofetch"
 
 #go variables
 export GOPATH=$HOME/go-workspace
@@ -286,5 +287,5 @@ export NVM_DIR="$HOME/.nvm"
 
 #Startup Commands
 clear
-neofetch
+neo
 eval "$(starship init zsh)"
