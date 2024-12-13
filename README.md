@@ -47,5 +47,5 @@ git clone https://github.com/Nisarg2061/Dot-Files.git ~/dotfiles && cd ~/dotfile
   ./install.sh
   ```
 
-## Sneak Peek
-![Sneak Peek](https://github.com/user-attachments/assets/f475c089-86a0-4b1e-b662-7928597d476d)
+## Preview
+![Preview](https://github.com/user-attachments/assets/9d7a8281-d5b7-42e5-bd56-5a63797093cc)
