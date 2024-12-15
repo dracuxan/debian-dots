@@ -254,7 +254,7 @@ alias ll='ls -la'
 alias la='ls -A'
 alias l='ls -CF'
 alias nv='nvim'
-alias neo="neofetch"
+alias neo="clear; neofetch"
 
 #go variables
 export GOPATH=$HOME/go-workspace
@@ -286,6 +286,5 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 #Startup Commands
-clear
 neo
 eval "$(starship init zsh)"
