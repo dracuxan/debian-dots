@@ -29,7 +29,7 @@ dotfiles/
 ├── starship
 │   └── .config
 │       └── ... (Starship Config)
-└── zsh
+├── zsh
 │   └── .zshrc
 └── README.md
 ```
