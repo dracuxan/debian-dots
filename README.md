@@ -4,7 +4,8 @@ Dotfiles for my WSL setup.
 ## Tools and Dependencies:
 
 - [Neovim (v0.8 or higher)](https://neovim.io/)
-- [Zsh](https://www.zsh.org/) 
+- [Zsh](https://www.zsh.org/)
+- [neofetch](https://github.com/dylanaraps/neofetch)
 - [Starship](https://starship.rs/)
 - [Node.js](https://nodejs.org/)
 - [Python](https://www.python.org/)
@@ -57,6 +58,12 @@ or
 
   ```
   stow -d ~/dotfiles -t ~ [any config eg. nvim]
+  ```
+
+Dependency for neofetch 
+
+  ```
+  sudo cp -r ascii /usr
   ```
 
 ## Preview
