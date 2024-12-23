@@ -16,8 +16,6 @@ Dotfiles for my WSL setup.
 
 ```
 dotfiles/
-├── install.sh
-├── LICENSE
 ├── neofetch
 │   └── .config
 │       └── neofetch
@@ -31,6 +29,9 @@ dotfiles/
 │       └── ... (Starship Config)
 ├── zsh
 │   └── .zshrc
+│
+├── install.sh
+├── LICENSE
 └── README.md
 ```
 
