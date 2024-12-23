@@ -15,13 +15,19 @@ Dotfiles for my WSL setup.
 
 ```
 dotfiles/
+├── install.sh
+├── LICENSE
+├── neofetch
+│   └── .config
+│       └── neofetch
+│           └── ... (Neofetch Config)
 ├── nvim
 │   └── .config
 │       └── nvim
 │           └── ... (Neovim Config files)
 ├── starship
 │   └── .config
-│       └── starship.toml
+│       └── ... (Starship Config)
 └── zsh
 │   └── .zshrc
 └── README.md
@@ -45,6 +51,12 @@ git clone https://github.com/Nisarg2061/Dot-Files.git ~/dotfiles && cd ~/dotfile
 
   ```
   ./install.sh
+  ```
+
+or
+
+  ```
+  stow -d ~/dotfiles -t ~ [any config eg. nvim]
   ```
 
 ## Preview
