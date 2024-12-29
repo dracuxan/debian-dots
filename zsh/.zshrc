@@ -254,7 +254,8 @@ alias ll='ls -la'
 alias la='ls -A'
 alias l='ls -CF'
 alias nv='nvim'
-alias neo="clear; neofetch"
+alias neo='clear; neofetch'
+alias tr='tree -Ld 1'
 
 #go variables
 export GOPATH=$HOME/go-workspace
@@ -268,6 +269,15 @@ export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
 
 #Elixir variables
 # export PATH="$PATH:/usr/local/bin/elixir"
+
+# Bash Scripts
+export BASHROOT=/usr/local/bash/bin
+export PATH=$PATH:$BASHROOT
+
+# Imp alias ##########
+alias rustscan='docker run --network=host -it --rm --name rustscan rustscan/rustscan'
+alias gitjacker=$HOME'/tools/gitjacker'
+######################
 
 # enable auto-suggestions based on the history
 if [ -f /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh ]; then
