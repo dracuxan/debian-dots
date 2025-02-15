@@ -15,6 +15,23 @@ local default_plugins = {
   },
 
   {
+    "goolord/alpha-nvim",
+    lazy = false,
+    config = function()
+      require 'alpha'.setup(require("plugins.configs.alpha"))
+    end
+  },
+
+
+  -- {
+  --   "goolord/alpha-nvim",
+  --   lazy = false,
+  --   config = function()
+  --     require 'alpha'.setup(require("alpha.themes.dashboard").config)
+  --   end
+  -- },
+
+  {
     "NvChad/base46",
     branch = "v2.0",
     build = function()
