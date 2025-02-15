@@ -49,23 +49,10 @@ git clone https://github.com/Nisarg2061/Dot-Files.git ~/dotfiles && cd ~/dotfile
   sudo apt-get install stow
   ```
 
-## Run this script to configure all the files(under construction):
+## Run this script to configure all the files(compatable package managers: apt and pacman):
 
   ```
   ./install.sh
   ```
-
-or
-
-  ```
-  stow -d ~/dotfiles -t ~ [any config eg. nvim]
-  ```
-
-Dependency for neofetch 
-
-  ```
-  sudo cp -r ascii /usr
-  ```
-
 ## Preview
 ![Preview](https://github.com/user-attachments/assets/9d7a8281-d5b7-42e5-bd56-5a63797093cc)
