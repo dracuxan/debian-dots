@@ -21,7 +21,7 @@ vim.opt.rtp:prepend(lazypath)
 require "plugins"
 
 vim.opt.mouse = ""
-vim.opt.scrolloff = 30
+vim.opt.scrolloff = 10
 
 vim.wo.relativenumber = true
 vim.wo.number = true
