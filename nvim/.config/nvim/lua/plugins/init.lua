@@ -2,17 +2,9 @@
 -- List of all default plugins & their definitions
 local default_plugins = {
 
-  "nvim-lua/plenary.nvim",
+  { 'wakatime/vim-wakatime', lazy = false },
 
-  "rebelot/kanagawa.nvim",
-
-  {
-    'wakatime/vim-wakatime', lazy = false
-  },
-
-  {
-    "nvim-neotest/nvim-nio"
-  },
+  { "nvim-neotest/nvim-nio" },
 
   {
     "goolord/alpha-nvim",
@@ -21,15 +13,6 @@ local default_plugins = {
       require 'alpha'.setup(require("plugins.configs.alpha"))
     end
   },
-
-
-  -- {
-  --   "goolord/alpha-nvim",
-  --   lazy = false,
-  --   config = function()
-  --     require 'alpha'.setup(require("alpha.themes.dashboard").config)
-  --   end
-  -- },
 
   {
     "NvChad/base46",
@@ -45,16 +28,6 @@ local default_plugins = {
     lazy = false,
   },
 
-  {
-    "zbirenbaum/nvterm",
-    init = function()
-      require("core.utils").load_mappings "nvterm"
-    end,
-    config = function(_, opts)
-      require "base46.term"
-      require("nvterm").setup(opts)
-    end,
-  },
 
   {
     "NvChad/nvim-colorizer.lua",

@@ -21,6 +21,10 @@ vim.opt.rtp:prepend(lazypath)
 require "plugins"
 
 vim.opt.mouse = ""
+vim.opt.scrolloff = 30
+
+vim.wo.relativenumber = true
+vim.wo.number = true
 
 -- Reset the cursor style on exit
 vim.cmd([[
@@ -37,8 +41,6 @@ require 'nvim-tree'.setup {
   }
 }
 
-vim.wo.relativenumber = true
-vim.wo.number = true
 
 -- Disable line numbers in Nvim Tree
 vim.api.nvim_create_autocmd("FileType", {
@@ -48,17 +50,5 @@ vim.api.nvim_create_autocmd("FileType", {
     vim.wo.number = false
   end
 })
-
--- vim.api.nvim_create_autocmd("LspAttach", {
---   group = vim.api.nvim_create_augroup("lsp", { clear = true }),
---   callback = function(args)
---     vim.api.nvim_create_autocmd("BufWritePre", {
---       buffer = args.buf,
---       callback = function()
---         vim.lsp.buf.format { async = false, id = args.data.client_id }
---       end,
---     })
---   end
--- })
 
 vim.lsp.set_log_level("debug")
