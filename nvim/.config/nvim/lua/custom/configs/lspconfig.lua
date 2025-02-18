@@ -40,7 +40,7 @@ lspconfig.elixirls.setup {
 }
 
 lspconfig.ts_ls.setup {
-  on_attach = on_attach,
+  on_attach = on_attach_elx,
   capabilities = capabilities,
   init_options = {
     preferences = {
