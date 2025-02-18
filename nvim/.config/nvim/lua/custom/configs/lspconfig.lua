@@ -44,7 +44,7 @@ lspconfig.ts_ls.setup {
   capabilities = capabilities,
   init_options = {
     preferences = {
-      disableSuggestions = true,
+      disableSuggestions = false,
     }
   },
   commands = {
