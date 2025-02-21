@@ -2,8 +2,8 @@
 local M = {}
 
 M.ui = {
-  theme = 'aquarium',
-  theme_toggle = { 'aquarium', "aquarium" },
+  theme = 'kanagawa',
+  theme_toggle = { 'kanagawa', "kanagawa" },
   transparency = true,
   statusline = {
     theme = "vscode_colored",

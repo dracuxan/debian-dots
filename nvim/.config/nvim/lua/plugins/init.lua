@@ -6,6 +6,8 @@ local default_plugins = {
 
   { "nvim-neotest/nvim-nio" },
 
+  { "rebelot/kanagawa.nvim" },
+
   {
     "goolord/alpha-nvim",
     lazy = false,
