@@ -1,3 +1,5 @@
+[![wakatime](https://wakatime.com/badge/github/dracuxan/Dot-Files.svg)](https://wakatime.com/badge/github/dracuxan/Dot-Files)
+
 # Dotfiles
 Dotfiles for my WSL setup.
 
