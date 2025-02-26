@@ -19,7 +19,7 @@ PACKAGES=("stow" "neovim" "fastfetch")
 echo "Checking for required packages..."
 for pkg in "${PACKAGES[@]}"; do
     if [ "$PKG_MANAGER" = "apt" ]; then
-        sudo apt-get install -y "$pkg"
+        sudo apt install -y "$pkg"
     elif [ "$PKG_MANAGER" = "pacman" ]; then
         sudo pacman -S --noconfirm "$pkg"
     fi
