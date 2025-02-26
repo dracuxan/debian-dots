@@ -18,38 +18,34 @@ Dotfiles for my WSL setup.
 
 ```
 dotfiles/
-├── neofetch
-│   └── .config
-│       └── neofetch
-│           └── ... (Neofetch Config)
+├── fastfetch
+│   ├── config.jsonc .......... (fastfetch Config)
+│   └── logos ................. (logos)
+│       ├── custom.txt
+│       ├── kali.txt
+│       └── legend.txt
 ├── nvim
-│   └── .config
-│       └── nvim
-│           └── ... (Neovim Config files)
-├── starship
-│   └── .config
-│       └── ... (Starship Config)
-├── zsh
-│   └── .zshrc
-│
-├── install.sh
+│   └── lua
+│       ├── core .............. (Core NVChad Config)
+│       ├── custom
+│       │   └── configs ....... (Custom Config)
+│       └── plugins
+│           └── configs ....... (Plugin Config)
+├── install.sh ................ (Installation Config)
 ├── LICENSE
-└── README.md
+├── README.md ................. (Docs)
+└── starship
+    └── starship.toml ......... (Starship Config)
 ```
 
 ## Installation
 To set up these dotfiles on a new machine, follow these steps:
 
 Clone The Repo and move to dotfiles directory:
+
 ```
 git clone https://github.com/Nisarg2061/Dot-Files.git ~/dotfiles && cd ~/dotfiles
 ```
-
-## Install Stow:
-
-  ```
-  sudo apt-get install stow
-  ```
 
 ## Run this script to configure all the files(compatable package managers: apt and pacman):
 
