@@ -13,7 +13,7 @@ else
 fi
 
 # Define required packages
-PACKAGES=("stow" "neovim" "neofetch" "starship")
+PACKAGES=("stow" "neovim" "fastfetch")
 
 # Install missing packages
 echo "Checking for required packages..."
@@ -27,16 +27,18 @@ done
 
 echo "Installation complete using $PKG_MANAGER!"
 
-# Use Stow to symlink dotfiles
-echo "Stowing dotfiles..."
-stow -d ~/dotfiles -t ~ nvim
-stow -d ~/dotfiles -t ~ neofetch
-stow -d ~/dotfiles -t ~ starship
+# Get the directory of the script
+DOTFILES_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
-# Ensure Neofetch ASCII art is copied
-if [ -d "$HOME/dotfiles/ascii" ]; then
-    echo "Copying Neofetch ASCII art...[Copy pasted from somewhere]"
-    sudo cp -r ~/dotfiles/ascii /usr/share/neofetch
-fi
+# Ensure ~/.config exists
+mkdir -p "$HOME/.config"
+mkdir -p "$HOME/.config/nvim"
+mkdir -p "$HOME/.config/fastfetch"
+
+# Use Stow to symlink dotfiles to ~/.config
+echo "Stowing dotfiles..."
+stow -d "$DOTFILES_DIR" -t "$HOME/.config/nvim" nvim
+stow -d "$DOTFILES_DIR" -t "$HOME/.config" starship
+stow -d "$DOTFILES_DIR" -t "$HOME/.config/fastfetch" fastfetch
 
 echo "Done. Enjoy."
