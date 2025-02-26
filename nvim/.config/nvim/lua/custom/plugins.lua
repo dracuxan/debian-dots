@@ -1,3 +1,4 @@
+local cmp = require "cmp"
 local plugins = {
   {
     "rcarriga/nvim-dap-ui",
@@ -89,6 +90,7 @@ local plugins = {
         "delve",
         "elixir-ls",
         "bash-language-server",
+        "rust-analyzer",
       }
     }
   },
@@ -109,5 +111,48 @@ local plugins = {
       require "custom.configs.lspconfig"
     end,
   },
+  {
+    "rust-lang/rust.vim",
+    ft = "rust",
+    init = function()
+      vim.g.rustfmt_autosave = 1
+    end
+  },
+  {
+    "simrat39/rust-tools.nvim",
+    ft = "rust",
+    opts = function ()
+      return require "custom.configs.rust-tools"
+    end,
+    config = function ()
+      require('rust-tools').setup(opts)
+    end
+  },
+  {
+    'saecki/crates.nvim',
+    ft = {"toml"},
+    config = function(_, opts)
+      local crates  = require('crates')
+      crates.setup(opts)
+      require('cmp').setup.buffer({
+        sources = { { name = "crates" }}
+      })
+      crates.show()
+      require("core.utils").load_mappings("crates")
+    end,
+  },
+  {
+    "hrsh7th/nvim-cmp",
+    opts = function()
+      local M = require "plugins.configs.cmp"
+      M.completion.completeopt = "menu,menuone,noselect"
+      M.mapping["<CR>"] = cmp.mapping.confirm {
+        behavior = cmp.ConfirmBehavior.Insert,
+        select = false,
+      }
+      table.insert(M.sources, {name = "crates"})
+      return M
+    end,
+  }
 }
 return plugins
