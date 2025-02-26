@@ -33,7 +33,7 @@ dotfiles/
 │       │   └── configs ....... (Custom Config)
 │       └── plugins
 │           └── configs ....... (Plugin Config)
-├── install.sh ................ (Installation Config)
+├── install.sh ................ (Installation Script)
 ├── LICENSE
 ├── README.md ................. (Docs)
 └── starship
