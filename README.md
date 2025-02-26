@@ -4,17 +4,19 @@
 Dotfiles for my WSL setup. Supports automatic installation of dependencies and configuration of Neovim, Fastfetch and Starship!
 
 ## ✅ Pre-requisites
-
+You can install these manually, but if you're using Ubuntu or Arch, they will be installed through the script (except Starship).
 - [Neovim (v0.8 or higher)](https://neovim.io/)
 - [Fastfetch](https://github.com/fastfetch-cli/fastfetch)
 - [Starship](https://starship.rs/)
+
+If you want Language Server Protocol (LSP) support, install the necessary runtimes:
 - [Node.js](https://nodejs.org/)
 - [Python](https://www.python.org/)
 - [Go](https://go.dev/)
 - [Elixir](https://elixir-lang.org/)
 - [Rust](https://www.rust-lang.org/)
 
-## Directory Structure
+## 📁 Directory Structure
 
 ```
 dotfiles/
