@@ -49,7 +49,7 @@ dotfiles/
 1. Clone the repository to your preferred location: 
 
 ```
-git clone https://github.com/Nisarg2061/Dot-Files.git ~/dotfiles && cd ~/dotfiles
+git clone https://github.com/dracuxan/Dot-Files.git ~/dotfiles && cd ~/dotfiles
 ```
 
 2. Run the script on your terminal:
