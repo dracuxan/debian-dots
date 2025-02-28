@@ -91,6 +91,7 @@ local plugins = {
         "elixir-ls",
         "bash-language-server",
         "rust-analyzer",
+        "lua-language-server",
       }
     }
   },
@@ -121,21 +122,21 @@ local plugins = {
   {
     "simrat39/rust-tools.nvim",
     ft = "rust",
-    opts = function ()
+    opts = function()
       return require "custom.configs.rust-tools"
     end,
-    config = function ()
+    config = function()
       require('rust-tools').setup(opts)
     end
   },
   {
     'saecki/crates.nvim',
-    ft = {"toml"},
+    ft = { "toml" },
     config = function(_, opts)
-      local crates  = require('crates')
+      local crates = require('crates')
       crates.setup(opts)
       require('cmp').setup.buffer({
-        sources = { { name = "crates" }}
+        sources = { { name = "crates" } }
       })
       crates.show()
       require("core.utils").load_mappings("crates")
@@ -150,7 +151,7 @@ local plugins = {
         behavior = cmp.ConfirmBehavior.Insert,
         select = false,
       }
-      table.insert(M.sources, {name = "crates"})
+      table.insert(M.sources, { name = "crates" })
       return M
     end,
   }
