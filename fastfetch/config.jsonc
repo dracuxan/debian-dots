@@ -31,6 +31,10 @@
             "type": "title"
         },
         {
+            "key": "│           │\u001b[11D{#38}󰣇 os",
+            "type": "os"
+        },
+        {
             "key": "│           │\u001b[11D{#31}󰅐 uptime",
             "type": "uptime"
         },
@@ -67,3 +71,4 @@
         }
     ]
 }
+

@@ -40,14 +40,12 @@ DOTFILES_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 # Ensure ~/.config exists
 mkdir -p "$HOME/.config"
-#
-#mkdir -p "$HOME/.config/nvim"
+mkdir -p "$HOME/.config/nvim"
 mkdir -p "$HOME/.config/fastfetch"
 
 # Use Stow to symlink dotfiles to ~/.config
 echo "Stowing dotfiles..."
-#stow -d "$DOTFILES_DIR" -t "$HOME/.config/nvim" nvim
-stow -d "$DOTFILES_DIR" -t "$HOME/.config" starship
+stow -d "$DOTFILES_DIR" -t "$HOME/.config/nvim" nvim
 stow -d "$DOTFILES_DIR" -t "$HOME/.config/fastfetch" fastfetch
 
 echo "Done. Enjoy."
