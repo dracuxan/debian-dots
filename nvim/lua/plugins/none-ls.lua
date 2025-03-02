@@ -11,6 +11,8 @@ require("mason-null-ls").setup({
 		"shfmt", -- Shell formatter
 		"checkmake", -- linter for Makefiles
 		"ruff", -- Python linter and formatter
+		"rustfmt",
+		"gofumpt",
 	},
 	automatic_installation = true,
 })
@@ -23,6 +25,7 @@ local sources = {
 	formatting.terraform_fmt,
 	require("none-ls.formatting.ruff").with({ extra_args = { "--extend-select", "I" } }),
 	require("none-ls.formatting.ruff_format"),
+	formatting.gofumpt,
 }
 
 local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
