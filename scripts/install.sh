@@ -19,7 +19,7 @@ sudo pacman -Syu --noconfirm
 
 # Install dependencies if not already installed
 echo "Checking and installing dependencies..."
-deps=("curl" "git" "unzip" "tar" "base-devel" "nvim" "fastfetch")
+deps=("curl" "git" "unzip" "tar" "base-devel" "neovim" "fastfetch")
 
 for dep in "${deps[@]}"; do
     if ! pacman -Qi $dep &>/dev/null; then
