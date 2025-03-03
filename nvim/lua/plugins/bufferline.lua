@@ -22,7 +22,7 @@ require("bufferline").setup({
 		persist_buffer_sort = true, -- whether or not custom sorted buffers should persist
 		separator_style = { "│", "│" }, -- "thick" | "thin" | { 'any', 'any' },
 		enforce_regular_tabs = true,
-		always_show_bufferline = true,
+		always_show_bufferline = false,
 		show_tab_indicators = false,
 		indicator = {
 			-- icon = '▎', -- this should be omitted if indicator style is not 'icon'
