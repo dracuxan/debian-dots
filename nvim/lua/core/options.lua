@@ -47,3 +47,4 @@ vim.cmd([[
   endif
   autocmd VimLeave * set guicursor=a:ver25-blinkon350
 ]])
+vim.opt.fillchars = { eob = " " }
