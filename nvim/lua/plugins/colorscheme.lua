@@ -18,7 +18,7 @@ require("kanagawa").setup({
 	end,
 	theme = "dragon",
 	background = {
-		dark = "dragon",
+		dark = "wave",
 		light = "lotus",
 	},
 })
