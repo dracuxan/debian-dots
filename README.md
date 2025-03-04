@@ -28,17 +28,17 @@ dotfiles/
 │   ├── config.jsonc .......... (Fastfetch Config)
 │   └── logos/ ................ (Custom Logos)
 ├── nvim
-│   └── lua
-│       ├── core .............. (Core Config)
-│       ├── custom ............ (Custom Configs)
-│       └── plugins ........... (Plugin Configs)
+│   ├── lua
+│   │   ├── core .............. (Core Config)
+│   │   └── plugins ........... (Custom Plugin Configs)
+│   └── init.lua .............. (Main Init File)
 ├── starship
 │   └── starship.toml ......... (Starship Config)
 ├── scripts/
 │   ├── config.sh ............. (Dependency Installer)
 │   └── install.sh ............ (Configuration Setup)
 ├── LICENSE
-├── README.md ................. (Documentation)
+└── README.md ................. (Documentation)
 ```
 
 ## 🚀 Installation
