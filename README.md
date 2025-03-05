@@ -66,6 +66,6 @@ git clone https://github.com/dracuxan/Dot-Files.git ~/dotfiles && cd ~/dotfiles
 
 ## 📸 Screenshots
 
-![image](https://github.com/user-attachments/assets/1c9a5238-a0a9-4cfa-8851-e65f15c93f2e)
-![Screenshot 2025-03-03 004452](https://github.com/user-attachments/assets/cb92ce16-dd48-48de-aea7-0d83d5bd2709)
-![Screenshot 2025-03-04 011857](https://github.com/user-attachments/assets/ab2f30a2-6305-4d98-af52-cd81d4dc5b1f)
+![Fastfetch](https://github.com/user-attachments/assets/31804d54-ff43-45c6-8f1b-79e3ae28cd0d)
+![Neovim](https://github.com/user-attachments/assets/cb92ce16-dd48-48de-aea7-0d83d5bd2709)
+![Neovim](https://github.com/user-attachments/assets/ab2f30a2-6305-4d98-af52-cd81d4dc5b1f)
