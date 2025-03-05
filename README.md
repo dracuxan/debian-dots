@@ -55,13 +55,13 @@ git clone https://github.com/dracuxan/Dot-Files.git ~/dotfiles && cd ~/dotfiles
 2. Install dependencies (only if needed!):
 
 ```
-./scripts/install.sh
+./install.sh
 ```
 
 3. Configure the tools:
 
 ```
-./scripts/config.sh
+./config.sh
 ```
 
 ## 📸 Screenshots
