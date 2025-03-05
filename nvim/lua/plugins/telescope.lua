@@ -2,6 +2,8 @@ local telescope = require("telescope")
 local actions = require("telescope.actions")
 local builtin = require("telescope.builtin")
 
+local hidden_patterns = { "node_modules", ".git", ".venv", "target", "bin" }
+
 telescope.setup({
 	defaults = {
 		mappings = {
@@ -14,12 +16,12 @@ telescope.setup({
 	},
 	pickers = {
 		find_files = {
-			file_ignore_patterns = { "node_modules", ".git", ".venv" },
+			file_ignore_patterns = hidden_patterns,
 			hidden = true,
 		},
 	},
 	live_grep = {
-		file_ignore_patterns = { "node_modules", ".git", ".venv" },
+		file_ignore_patterns = hidden_patterns,
 		additional_args = function(_)
 			return { "--hidden" }
 		end,
