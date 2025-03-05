@@ -14,6 +14,7 @@ mkdir -p "$HOME/.config/fastfetch"
 echo "Stowing dotfiles..."
 stow -d "$DOTFILES_DIR" -t "$HOME/.config/nvim" nvim
 stow -d "$DOTFILES_DIR" -t "$HOME/.config/fastfetch" fastfetch
+echo "export LOGO_DIR="$HOME/.config/fastfetch/logos"" >>~/.zshrc
 stow -d "$DOTFILES_DIR" -t "$HOME/.config" starship
 
 echo "Done. Enjoy."

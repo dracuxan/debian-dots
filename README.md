@@ -23,10 +23,10 @@ If you want Language Server Protocol (LSP) support, install the necessary runtim
 ## 📁 Directory Structure
 
 ```
-dotfiles/
+dotfiles
 ├── fastfetch
 │   ├── config.jsonc .......... (Fastfetch Config)
-│   └── logos/ ................ (Custom Logos)
+│   └── logos ................. (Custom Logos)
 ├── nvim
 │   ├── lua
 │   │   ├── core .............. (Core Config)
@@ -34,9 +34,8 @@ dotfiles/
 │   └── init.lua .............. (Main Init File)
 ├── starship
 │   └── starship.toml ......... (Starship Config)
-├── scripts/
-│   ├── config.sh ............. (Dependency Installer)
-│   └── install.sh ............ (Configuration Setup)
+├── config.sh ................. (Dependency Installer)
+├── install.sh ................ (Configuration Setup)
 ├── LICENSE
 └── README.md ................. (Documentation)
 ```
@@ -66,6 +65,7 @@ git clone https://github.com/dracuxan/Dot-Files.git ~/dotfiles && cd ~/dotfiles
 ```
 
 ## 📸 Screenshots
+
 ![image](https://github.com/user-attachments/assets/1c9a5238-a0a9-4cfa-8851-e65f15c93f2e)
 ![Screenshot 2025-03-03 004452](https://github.com/user-attachments/assets/cb92ce16-dd48-48de-aea7-0d83d5bd2709)
 ![Screenshot 2025-03-04 011857](https://github.com/user-attachments/assets/ab2f30a2-6305-4d98-af52-cd81d4dc5b1f)
