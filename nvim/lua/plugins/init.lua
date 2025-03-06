@@ -216,6 +216,16 @@ local custom_plugins = {
 			require("nvim-dap-virtual-text").setup()
 		end,
 	},
+	{
+		"olexsmir/gopher.nvim",
+		ft = "go",
+		config = function(_, opts)
+			require("gopher").setup(opts)
+		end,
+		build = function()
+			vim.cmd([[silent! GoInstallDeps]])
+		end,
+	},
 }
 
 require("lazy").setup(custom_plugins)
