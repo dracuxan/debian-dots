@@ -34,7 +34,8 @@
         },
         {
             "key": "│           │\u001b[11D{#38}󰣇 os",
-            "type": "os"
+            "type": "os",
+            "format": "{2}"
         },
         {
             "key": "│           │\u001b[11D{#31}󰅐 uptime",
