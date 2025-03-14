@@ -168,7 +168,18 @@ return {
 		--  - settings (table): Override the default settings passed when initializing the server.
 		--        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
 		local servers = {
-			clangd = {},
+			clangd = {
+				on_attach = on_attach,
+				capabilities = capabilities,
+				cmd = {
+					"clangd",
+					"--background-index",
+					"--clang-tidy",
+					"--completion-style=detailed",
+					"--cross-file-rename",
+				},
+				filetypes = { "c", "cpp", "objc", "objcpp" },
+			},
 			gopls = {
 				on_attach = on_attach,
 				capabilities = capabilities,
