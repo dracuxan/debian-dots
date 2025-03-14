@@ -24,14 +24,37 @@ local custom_plugins = {
 
 	{ "wakatime/vim-wakatime", lazy = false },
 
+	-- colorschemes
+
 	{
 		"rebelot/kanagawa.nvim",
 		lazy = false,
 		priority = 1000,
 		config = function()
-			require("plugins.colorscheme")
+			require("plugins.kanagawa")
 		end,
 	},
+
+	{
+		"Mofiqul/vscode.nvim",
+		version = false,
+		lazy = false,
+		priority = 1000, -- make sure to load this before all the other start plugins
+		-- Optional; default configuration will be used if setup isn't called.
+		config = function()
+			require("plugins.vscode")
+		end,
+	},
+
+	{
+		"rose-pine/neovim",
+		name = "rose-pine",
+		config = function()
+			require("plugins.rose")
+		end,
+	},
+
+	--
 
 	{
 		"nvim-lualine/lualine.nvim",

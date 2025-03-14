@@ -16,11 +16,10 @@ require("kanagawa").setup({
 	overrides = function(colors)
 		return {}
 	end,
-	theme = "dragon",
+	theme = "lotus",
 	background = {
 		dark = "wave",
 		light = "lotus",
 	},
 })
-
-vim.cmd("colorscheme kanagawa")
+-- vim.cmd.colorscheme("kanagawa")

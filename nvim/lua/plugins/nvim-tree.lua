@@ -8,6 +8,7 @@ require("nvim-tree").setup({
 	},
 	renderer = {
 		group_empty = true,
+		root_folder_label = false,
 	},
 	filters = {
 		dotfiles = true,
