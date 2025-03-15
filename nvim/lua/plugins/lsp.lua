@@ -158,6 +158,27 @@ return {
 			end
 		end
 
+		local on_attach_clang = function(client, bufnr)
+			if client.supports_method("textDocument/formatting") then
+				vim.api.nvim_clear_autocmds({
+					group = augroup,
+					buffer = bufnr,
+				})
+				vim.api.nvim_create_autocmd("BufWritePre", {
+					group = augroup,
+					buffer = bufnr,
+					callback = function()
+						vim.lsp.buf.format({ bufnr = bufnr })
+					end,
+				})
+			end
+			vim.diagnostic.config({
+				virtual_text = false,
+				signs = false,
+				underline = false,
+			})
+		end
+
 		-- Enable the following language servers
 		--  Feel free to add/remove any LSPs that you want here. They will automatically be installed.
 		--
@@ -169,7 +190,7 @@ return {
 		--        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
 		local servers = {
 			clangd = {
-				on_attach = on_attach,
+				on_attach = on_attach_clang,
 				capabilities = capabilities,
 				cmd = {
 					"clangd",
