@@ -155,29 +155,35 @@ return {
 						vim.lsp.buf.format({ bufnr = bufnr })
 					end,
 				})
+				vim.diagnostic.config({
+					update_in_insert = true, -- Show errors while typing
+					virtual_text = true, -- Show inline errors
+					signs = true, -- Show signs in the gutter
+					underline = true, -- Underline errors
+				})
 			end
 		end
 
-		local on_attach_clang = function(client, bufnr)
-			if client.supports_method("textDocument/formatting") then
-				vim.api.nvim_clear_autocmds({
-					group = augroup,
-					buffer = bufnr,
-				})
-				vim.api.nvim_create_autocmd("BufWritePre", {
-					group = augroup,
-					buffer = bufnr,
-					callback = function()
-						vim.lsp.buf.format({ bufnr = bufnr })
-					end,
-				})
-			end
-			vim.diagnostic.config({
-				virtual_text = false,
-				signs = false,
-				underline = false,
-			})
-		end
+		-- local on_attach_clang = function(client, bufnr)
+		-- 	if client.supports_method("textDocument/formatting") then
+		-- 		vim.api.nvim_clear_autocmds({
+		-- 			group = augroup,
+		-- 			buffer = bufnr,
+		-- 		})
+		-- 		vim.api.nvim_create_autocmd("BufWritePre", {
+		-- 			group = augroup,
+		-- 			buffer = bufnr,
+		-- 			callback = function()
+		-- 				vim.lsp.buf.format({ bufnr = bufnr })
+		-- 			end,
+		-- 		})
+		-- 	end
+		-- 	vim.diagnostic.config({
+		-- 		virtual_text = false,
+		-- 		signs = false,
+		-- 		underline = false,
+		-- 	})
+		-- end
 
 		-- Enable the following language servers
 		--  Feel free to add/remove any LSPs that you want here. They will automatically be installed.
@@ -189,8 +195,9 @@ return {
 		--  - settings (table): Override the default settings passed when initializing the server.
 		--        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
 		local servers = {
+
 			clangd = {
-				on_attach = on_attach_clang,
+				on_attach = on_attach,
 				capabilities = capabilities,
 				cmd = {
 					"clangd",
@@ -198,9 +205,13 @@ return {
 					"--clang-tidy",
 					"--completion-style=detailed",
 					"--cross-file-rename",
+					"--compile-commands-dir=/home/dracuxan/OSDev/xv6-labs-2024",
+					"--query-driver=/usr/bin/gcc",
+					"--header-insertion=never",
 				},
 				filetypes = { "c", "cpp", "objc", "objcpp" },
 			},
+
 			gopls = {
 				on_attach = on_attach,
 				capabilities = capabilities,
