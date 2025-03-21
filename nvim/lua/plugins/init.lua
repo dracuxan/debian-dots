@@ -10,6 +10,21 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 local custom_plugins = {
+	"nvzone/volt",
+
+	"nvzone/menu",
+
+	{
+		"nvzone/minty",
+		cmd = { "Huefy", "Shades" },
+	},
+
+	{
+		"nvzone/typr",
+		cmd = { "Typr", "TyprStats" },
+		dependencies = "nvzone/volt",
+		opts = {},
+	},
 	{
 		"nvim-tree/nvim-tree.lua",
 		version = "*",
