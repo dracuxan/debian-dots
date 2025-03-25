@@ -16,7 +16,7 @@ If you want Language Server Protocol (LSP) support, install the necessary runtim
 
 - [Go](https://go.dev/)
 - [Rust](https://www.rust-lang.org/)
-- [Clangd](https://clang.llvm.org/)
+- [Clang](https://clang.llvm.org/)
 - [Node.js](https://nodejs.org/)
 - [Python](https://www.python.org/)
 
