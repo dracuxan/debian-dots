@@ -69,14 +69,6 @@ local custom_plugins = {
 		end,
 	},
 
-	{
-		"rose-pine/neovim",
-		name = "rose-pine",
-		config = function()
-			require("plugins.rose")
-		end,
-	},
-
 	--
 
 	{
@@ -91,9 +83,6 @@ local custom_plugins = {
 	{
 		"folke/which-key.nvim",
 		lazy = true,
-		config = function()
-			require("plugins.whichkey")
-		end,
 	},
 
 	{
@@ -235,7 +224,9 @@ local custom_plugins = {
 			require("alpha").setup(require("plugins.alpha"))
 		end,
 	},
+
 	require("plugins.misic"),
+
 	{
 		"mfussenegger/nvim-dap",
 	},
@@ -262,7 +253,7 @@ local custom_plugins = {
 		"theHamsta/nvim-dap-virtual-text",
 		lazy = false,
 		config = function(_, opts)
-			require("nvim-dap-virtual-text").setup()
+			require("nvim-dap-virtual-text").setup(opts)
 		end,
 	},
 	{
