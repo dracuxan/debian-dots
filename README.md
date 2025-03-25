@@ -17,7 +17,6 @@ If you want Language Server Protocol (LSP) support, install the necessary runtim
 - [Node.js](https://nodejs.org/)
 - [Python](https://www.python.org/)
 - [Go](https://go.dev/)
-- [Elixir](https://elixir-lang.org/)
 - [Rust](https://www.rust-lang.org/)
 
 ## 📁 Directory Structure
