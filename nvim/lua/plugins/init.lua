@@ -15,6 +15,14 @@ local custom_plugins = {
 	"nvzone/menu",
 
 	{
+		"akinsho/toggleterm.nvim",
+		version = "*",
+		config = function()
+			require("plugins.toggleterm")
+		end,
+	},
+
+	{
 		"nvzone/minty",
 		cmd = { "Huefy", "Shades" },
 	},
@@ -83,6 +91,9 @@ local custom_plugins = {
 	{
 		"folke/which-key.nvim",
 		lazy = true,
+		config = function()
+			require("plugins.whichkey")
+		end,
 	},
 
 	{
