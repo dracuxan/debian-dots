@@ -92,6 +92,20 @@ else
     rustc --version
     cargo --version
 fi
+
+# Check if Clangd is installed
+if command -v clang -v &>/dev/null; then
+    echo "Clang is already installed:"
+    clang -v
+else
+    # Install clang
+    echo "Installing Clang..."
+    sudo pacman -S clang
+
+    # Verify installation
+    echo "Clangd installed successfully!"
+    clang -v
+fi
 echo "All languages installed successfully!"
 
 if ! command -v starship >/dev/null; then
@@ -104,3 +118,7 @@ else
     echo "Starship is already installed"
     starship -V
 fi
+
+echo "All dependencies installed successfully."
+echo ""
+echo "run ./config.sh to complete setup."

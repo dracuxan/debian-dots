@@ -14,10 +14,11 @@ You can install these manually, but if you're using Arch, they can be installed 
 
 If you want Language Server Protocol (LSP) support, install the necessary runtimes (Installation included in the script):
 
-- [Node.js](https://nodejs.org/)
-- [Python](https://www.python.org/)
 - [Go](https://go.dev/)
 - [Rust](https://www.rust-lang.org/)
+- [Clangd](https://clang.llvm.org/)
+- [Node.js](https://nodejs.org/)
+- [Python](https://www.python.org/)
 
 ## 📁 Directory Structure
 
