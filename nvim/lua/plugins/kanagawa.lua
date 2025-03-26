@@ -6,7 +6,7 @@ require("kanagawa").setup({
 	keywordStyle = { italic = true },
 	statementStyle = { bold = true },
 	typeStyle = {},
-	transparent = true,
+	transparent = false,
 	dimInactive = false,
 	terminalColors = true,
 	colors = {
@@ -16,10 +16,10 @@ require("kanagawa").setup({
 	overrides = function(colors)
 		return {}
 	end,
-	theme = "lotus",
+	theme = "dragon",
 	background = {
 		dark = "wave",
 		light = "lotus",
 	},
 })
--- vim.cmd.colorscheme("kanagawa")
+vim.cmd.colorscheme("kanagawa")

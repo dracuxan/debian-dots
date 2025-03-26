@@ -7,7 +7,7 @@ require("vscode").setup({
 	-- style = 'light'
 
 	-- Enable transparent background
-	transparent = true,
+	transparent = false,
 
 	-- Enable italic comment
 	italic_comments = true,
@@ -33,7 +33,7 @@ require("vscode").setup({
 		Cursor = { fg = c.vscDarkBlue, bg = c.vscLightGreen, bold = true },
 	},
 })
-require("vscode").load()
+-- require("vscode").load()
 
 -- load the theme without affecting devicon colors.
 -- vim.cmd.colorscheme("vscode")
