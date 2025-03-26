@@ -10,21 +10,13 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 local custom_plugins = {
-	"nvzone/volt",
-
-	"nvzone/menu",
-
 	{
 		"akinsho/toggleterm.nvim",
 		version = "*",
 		config = function()
 			require("plugins.toggleterm")
 		end,
-	},
-
-	{
-		"nvzone/minty",
-		cmd = { "Huefy", "Shades" },
+		lazy = false,
 	},
 
 	{

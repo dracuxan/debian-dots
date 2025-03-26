@@ -6,17 +6,17 @@ local lualine = require("lualine")
 -- Color table for highlights
 -- stylua: ignore
 local colors = {
-  bg       = '#202328',
-  fg       = '#bbc2cf',
-  yellow   = '#ECBE7B',
-  cyan     = '#008080',
-  darkblue = '#081633',
-  green    = '#98be65',
-  orange   = '#FF8800',
-  violet   = '#a9a1e1',
-  magenta  = '#c678dd',
-  blue     = '#51afef',
-  red      = '#ec5f67',
+  bg       = '#1F1F28',
+  fg       = '#DCD7BA',
+  yellow   = '#E6C384',
+  cyan     = '#7AA89F',
+  darkblue = '#223249',
+  green    = '#98BB6C',
+  orange   = '#C0A36E',
+  violet   = '#938AA9',
+  magenta  = '#957FB8',
+  blue     = '#7E9CD8',
+  red      = '#C34043',
 }
 
 local conditions = {
@@ -36,9 +36,9 @@ local conditions = {
 -- Config
 local config = {
 	options = {
-		-- Disable sections and component separators
 		globalstatus = true,
-		disabled_filetypes = { "alpha", "neo-tree", "TelescopePrompt" },
+		disabled_filetypes = { "alpha", "TelescopePrompt" },
+		-- Disable sections and component separators
 		component_separators = "",
 		section_separators = "",
 		theme = {
@@ -85,7 +85,7 @@ ins_left({
 		return "▊"
 	end,
 	color = { fg = colors.blue }, -- Sets highlighting of component
-	padding = { left = 0, right = 0 }, -- We don't need space before this
+	padding = { left = 0, right = 1 }, -- We don't need space before this
 })
 
 ins_left({
@@ -134,7 +134,7 @@ ins_left({
 	color = { fg = colors.magenta, gui = "bold" },
 })
 
-ins_left({ "location" })
+-- ins_left({ "location" })
 
 ins_left({ "progress", color = { fg = colors.fg, gui = "bold" } })
 
@@ -175,23 +175,23 @@ ins_left({
 		return msg
 	end,
 	icon = " LSP:",
-	color = { fg = "#ffffff", gui = "bold" },
+	color = { fg = colors.violet, gui = "bold" },
 })
 
 -- Add components to right sections
-ins_right({
-	"o:encoding", -- option component same as &encoding in viml
-	fmt = string.upper, -- I'm not sure why it's upper case either ;)
-	cond = conditions.hide_in_width,
-	color = { fg = colors.green, gui = "bold" },
-})
-
-ins_right({
-	"fileformat",
-	fmt = string.upper,
-	icons_enabled = false, -- I think icons are cool but Eviline doesn't have them. sigh
-	color = { fg = colors.green, gui = "bold" },
-})
+-- ins_right({
+-- 	"o:encoding", -- option component same as &encoding in viml
+-- 	fmt = string.upper, -- I'm not sure why it's upper case either ;)
+-- 	cond = conditions.hide_in_width,
+-- 	color = { fg = colors.green, gui = "bold" },
+-- })
+--
+-- ins_right({
+-- 	"fileformat",
+-- 	fmt = string.upper,
+-- 	icons_enabled = false, -- I think icons are cool but Eviline doesn't have them. sigh
+-- 	color = { fg = colors.green, gui = "bold" },
+-- })
 
 ins_right({
 	"branch",

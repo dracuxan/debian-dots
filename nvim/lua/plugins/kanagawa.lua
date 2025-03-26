@@ -6,19 +6,19 @@ require("kanagawa").setup({
 	keywordStyle = { italic = true },
 	statementStyle = { bold = true },
 	typeStyle = {},
-	transparent = false,
+	transparent = true,
 	dimInactive = false,
 	terminalColors = true,
 	colors = {
 		palette = {},
 		theme = { wave = {}, lotus = {}, dragon = {}, all = {} },
 	},
-	overrides = function(colors)
-		return {}
-	end,
+	-- overrides = function(colors)
+	-- 	return {}
+	-- end,
 	theme = "dragon",
 	background = {
-		dark = "wave",
+		dark = "dragon",
 		light = "lotus",
 	},
 })

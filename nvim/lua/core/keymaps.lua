@@ -89,11 +89,6 @@ vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { desc = "Go to next diagnos
 vim.keymap.set("n", "<leader>d", vim.diagnostic.open_float, { desc = "Open floating diagnostic message" })
 vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostics list" })
 
--- Menu keymaps
-vim.keymap.set("n", "<C-x>", function()
-	require("menu").open("default")
-end, {})
-
 -- Typing Test
 vim.keymap.set("n", "<C-t>", ":Typr<CR>", opts)
-vim.keymap.set("n", "<C-g>t", ":TyprStat<CR>", opts)
+vim.keymap.set("n", "<M-t>", ":TyprStat<CR>", opts)
