@@ -30,29 +30,56 @@ function _G.set_terminal_keymaps()
 	local opts = { noremap = true }
 	vim.api.nvim_buf_set_keymap(0, "t", "<esc>", [[<C-\><C-n>]], opts)
 	vim.api.nvim_buf_set_keymap(0, "t", "jk", [[<C-\><C-n>]], opts)
-	vim.api.nvim_buf_set_keymap(0, "t", "<C-h>", [[<C-\><C-n><C-W>h]], opts)
-	vim.api.nvim_buf_set_keymap(0, "t", "<C-j>", [[<C-\><C-n><C-W>j]], opts)
-	vim.api.nvim_buf_set_keymap(0, "t", "<C-k>", [[<C-\><C-n><C-W>k]], opts)
-	vim.api.nvim_buf_set_keymap(0, "t", "<C-l>", [[<C-\><C-n><C-W>l]], opts)
+	vim.api.nvim_buf_set_keymap(0, "t", "<M-h>", [[<C-\><C-n><C-W>h]], opts)
+	vim.api.nvim_buf_set_keymap(0, "t", "<M-j>", [[<C-\><C-n><C-W>j]], opts)
+	vim.api.nvim_buf_set_keymap(0, "t", "<M-k>", [[<C-\><C-n><C-W>k]], opts)
+	vim.api.nvim_buf_set_keymap(0, "t", "<M-l>", [[<C-\><C-n><C-W>l]], opts)
 end
 
 vim.cmd("autocmd! TermOpen term://* lua set_terminal_keymaps()")
-
 local Terminal = require("toggleterm.terminal").Terminal
-local lazygit = Terminal:new({ cmd = "lazygit", hidden = true })
 
+-- Define terminals
+local lazygit = Terminal:new({ cmd = "lazygit", hidden = true })
+local python = Terminal:new({ cmd = "python3", hidden = true })
+local make = Terminal:new({ cmd = "make run", hidden = true, close_on_exit = false })
+
+-- Define toggle functions
 function _LAZYGIT_TOGGLE()
 	lazygit:toggle()
 end
 
-local node = Terminal:new({ cmd = "node", hidden = true })
-
-function _NODE_TOGGLE()
-	node:toggle()
-end
-
-local python = Terminal:new({ cmd = "python3", hidden = true })
-
 function _PYTHON_TOGGLE()
 	python:toggle()
 end
+
+function _MAKE_RUN()
+	make:toggle()
+end
+
+function _RUN_SCRIPT()
+	-- Get the current buffer name (full path)
+	local bufname = vim.api.nvim_buf_get_name(0)
+
+	if bufname == "" then
+		print("No file detected!")
+		return
+	end
+
+	-- Extract the filename without extension
+	local filename = vim.fn.fnamemodify(bufname, ":t:r") -- ":t" = tail (filename), ":r" = remove extension
+
+	-- Create a terminal instance with the dynamic command
+	local script_term = Terminal:new({
+		cmd = "./run.sh " .. filename,
+		hidden = true,
+		close_on_exit = false,
+	})
+
+	script_term:toggle()
+end
+
+-- Set keymaps
+vim.keymap.set("n", "<M-p>", _PYTHON_TOGGLE, { noremap = true, silent = true })
+vim.keymap.set("n", "<M-s>", _RUN_SCRIPT, { noremap = true, silent = true })
+vim.keymap.set("n", "<M-m>", _MAKE_RUN, { noremap = true, silent = true })
