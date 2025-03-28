@@ -1,12 +1,24 @@
 require("bufferline").setup({
 	options = {
-		mode = "buffers", -- set to "tabs" to only show tabpages instead
+		mode = "buffers",
+		name_formatter = function(buf)
+			local relative_path = vim.fn.fnamemodify(buf.path, ":.") -- Convert to relative path
+
+			if relative_path:match("/") then
+				-- If file is in a subdirectory, show "subdir/filename"
+				return vim.fn.fnamemodify(relative_path, ":h:t") .. "/" .. vim.fn.fnamemodify(relative_path, ":t")
+			end
+
+			-- Otherwise, show only the filename
+			return vim.fn.fnamemodify(relative_path, ":t")
+		end,
+		-- set to "tabs" to only show tabpages instead
 		themable = true, -- allows highlight groups to be overridden
 		numbers = "none", -- "ordinal" | "buffer_id" | "both" | function({ ordinal, id, lower, raise }): string,
 		close_command = "bd! %d", -- Use 'bd! %d' instead if 'Bdelete' is unavailable
 		buffer_close_icon = "✗",
 		close_icon = "✗",
-		path_components = 1, -- Show only the file name without the directory
+		path_components = 2, -- Show only the file name without the directory
 		modified_icon = "●",
 		left_trunc_marker = "",
 		right_trunc_marker = "",
@@ -43,4 +55,4 @@ require("bufferline").setup({
 			italic = false,
 		},
 	},
-}) -- Added this missing closing bracket
+})
