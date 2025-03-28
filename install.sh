@@ -13,18 +13,16 @@ set -e # Exit immediately if a command fails
 
 # Update system
 echo "Updating system..."
-sudo pacman -Syu --noconfirm
-
-#!/bin/bash
+sudo apt update && sudo apt upgrade -y
 
 # Install dependencies if not already installed
 echo "Checking and installing dependencies..."
-deps=("curl" "git" "unzip" "tar" "base-devel" "neovim" "fastfetch")
+deps=("curl" "git" "unzip" "tar" "build-essential" "neovim" "fastfetch")
 
 for dep in "${deps[@]}"; do
-    if ! pacman -Qi $dep &>/dev/null; then
+    if ! dpkg -s $dep &>/dev/null; then
         echo "Installing $dep..."
-        sudo pacman -S --noconfirm $dep
+        sudo apt install -y $dep
     else
         echo "$dep is already installed."
     fi
@@ -36,10 +34,9 @@ if command -v node &>/dev/null && command -v npm &>/dev/null; then
     node -v
     npm -v
 else
-    # Install npm (which includes Node.js)
-    echo "Installing npm (which installs Node.js)..."
-    sudo pacman -S --noconfirm npm
-    npm install node
+    echo "Installing Node.js and npm..."
+    curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash -
+    sudo apt install -y nodejs
 
     # Verify installation
     echo "Node.js & npm installed successfully!"
@@ -76,14 +73,12 @@ if command -v rustc &>/dev/null && command -v cargo &>/dev/null; then
     rustc --version
     cargo --version
 else
-    # Install Rust via rustup
     echo "Installing Rust..."
     curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
 
     # Load Rust environment (without needing to restart shell)
     source "$HOME/.cargo/env"
 
-    # Install & set stable version as default
     rustup install stable
     rustup default stable
 
@@ -93,26 +88,27 @@ else
     cargo --version
 fi
 
-# Check if Clangd is installed
-if command -v clang -v &>/dev/null; then
+# Check if Clang is installed
+if command -v clang &>/dev/null; then
     echo "Clang is already installed:"
-    clang -v
+    clang --version
 else
-    # Install clang
     echo "Installing Clang..."
-    sudo pacman -S clang
+    sudo apt install -y clang
 
     # Verify installation
-    echo "Clangd installed successfully!"
-    clang -v
+    echo "Clang installed successfully!"
+    clang --version
 fi
+
 echo "All languages installed successfully!"
 
-if ! command -v starship >/dev/null; then
+# Check if Starship is installed
+if ! command -v starship &>/dev/null; then
     echo "Installing Starship..."
     curl -sS https://starship.rs/install.sh | sh
     echo "Starship installed successfully."
-    echo "eval "$(starship init zsh)"" >>~/.zshrc
+    echo 'eval "$(starship init zsh)"' >>~/.zshrc
     starship -V
 else
     echo "Starship is already installed"
@@ -121,4 +117,4 @@ fi
 
 echo "All dependencies installed successfully."
 echo ""
-echo "run ./config.sh to complete setup."
+echo "Run ./config.sh to complete setup."
