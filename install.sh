@@ -19,7 +19,7 @@ sudo apt install -y curl git unzip tar stow
 
 echo "[*] Running essential setup scripts..."
 
-chmod +x scripts/*.sh
+chmod +x setup/*.sh
 
 ./setup/00-essentials.sh
 ./setup/01-nvidia.sh
