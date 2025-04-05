@@ -11,7 +11,6 @@ require("mason-null-ls").setup({
 		"shfmt", -- Shell formatter
 		"checkmake", -- linter for Makefiles
 		"ruff", -- Python linter and formatter
-		"rustfmt",
 		"golines",
 		"gofumpt",
 		"goimports-reviser",
