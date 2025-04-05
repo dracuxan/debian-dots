@@ -11,7 +11,7 @@ vim.o.shiftwidth = 2 -- The number of spaces inserted for each indentation (defa
 vim.o.tabstop = 2 -- Insert n spaces for a tab (default: 8)
 vim.o.softtabstop = 2 -- Number of spaces that a tab counts for while performing editing operations (default: 0)
 vim.o.expandtab = true -- Convert tabs to spaces (default: false)
-vim.o.scrolloff = 5 -- Minimal number of screen lines to keep above and below the cursor (default: 0)
+vim.o.scrolloff = 0 -- Minimal number of screen lines to keep above and below the cursor (default: 0)
 vim.o.sidescrolloff = 8 -- Minimal number of screen columns either side of cursor if wrap is `false` (default: 0)
 vim.o.cursorline = false -- Highlight the current line (default: false)
 vim.o.splitbelow = true -- Force all horizontal splits to go below current window (default: false)
@@ -41,10 +41,10 @@ vim.opt.shortmess:append("c") -- Don't give |ins-completion-menu| messages (defa
 vim.opt.iskeyword:append("-") -- Hyphenated words recognized by searches (default: does not include '-')
 vim.opt.formatoptions:remove({ "c", "r", "o" }) -- Don't insert the current comment leader automatically for auto-wrapping comments using 'textwidth', hitting <Enter> in insert mode, or hitting 'o' or 'O' in normal mode. (default: 'croql')
 -- Reset the cursor style on exit
-vim.cmd([[
-  if exists('$NVIM_TUI_ENABLE_CURSOR_SHAPE')
-    let $NVIM_TUI_ENABLE_CURSOR_SHAPE = 0
-  endif
-  autocmd VimLeave * set guicursor=a:ver25-blinkon350
-]])
+-- vim.cmd([[
+--   if exists('$NVIM_TUI_ENABLE_CURSOR_SHAPE')
+--     let $NVIM_TUI_ENABLE_CURSOR_SHAPE = 0
+--   endif
+--   autocmd VimLeave * set guicursor=a:ver25-blinkon350
+-- ]])
 vim.opt.fillchars = { eob = " " }

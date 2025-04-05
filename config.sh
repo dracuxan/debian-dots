@@ -1,20 +1,25 @@
 #!/bin/bash
+set -e
 
-set -e # Exit if any command fails
-
-# Get the directory of the script
 DOTFILES_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
-# Ensure ~/.config exists
-mkdir -p "$HOME/.config"
-mkdir -p "$HOME/.config/nvim"
-mkdir -p "$HOME/.config/fastfetch"
+echo "[+] Ensuring GNU Stow is installed..."
+sudo apt install -y stow
 
-# Use Stow to symlink dotfiles to ~/.config
-echo "Stowing dotfiles..."
+echo "[+] Preparing ~/.config layout..."
+for dir in nvim fastfetch alacritty; do
+    mkdir -p "$HOME/.config/$dir"
+done
+
+echo "[+] Stowing configs into ~/.config..."
 stow -d "$DOTFILES_DIR" -t "$HOME/.config/nvim" nvim
+stow -d "$DOTFILES_DIR" -t "$HOME/.config/alacritty" alacritty
 stow -d "$DOTFILES_DIR" -t "$HOME/.config/fastfetch" fastfetch
-echo "export LOGO_DIR="$HOME/.config/fastfetch/logos"" >>~/.zshrc
 stow -d "$DOTFILES_DIR" -t "$HOME/.config" starship
 
-echo "Done. Enjoy."
+echo "[+] Stowing legacy dotfiles into ~..."
+stow -d "$DOTFILES_DIR" -t "$HOME" tmux
+stow -d "$DOTFILES_DIR" -t "$HOME" zsh
+
+echo "[+] Done. Launching zsh..."
+exec zsh

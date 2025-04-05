@@ -1,68 +1,68 @@
 [![wakatime](https://wakatime.com/badge/user/0d75cfc5-da70-41b7-b8c8-661ef9d8338b/project/9358976a-67c2-4357-8140-bd4a4c743b96.svg)](https://wakatime.com/badge/user/0d75cfc5-da70-41b7-b8c8-661ef9d8338b/project/9358976a-67c2-4357-8140-bd4a4c743b96)
 
-# Dotfiles
+# [#] Dotfiles
 
-Dotfiles for my WSL setup. Supports automatic installation of dependencies and configuration of Neovim, Fastfetch and Starship!
+Personal dotfiles setup for managing Neovim, Fastfetch, Starship, zsh, tmux and more — using `stow` for clean symlinks and `make` for convenience.
 
-## ✅ Pre-requisites
+## [+] Pre-requisites
 
-You can install these manually, but if you're using Arch, they can be installed through the script.
+Make sure your system has:
 
-- [Neovim (v0.8 or higher)](https://neovim.io/)
-- [Fastfetch](https://github.com/fastfetch-cli/fastfetch)
-- [Starship](https://starship.rs/)
+- git
+- stow
+- zsh
 
-If you want Language Server Protocol (LSP) support, install the necessary runtimes (Installation included in the script):
+Optional but recommended (auto-installed if missing via install.sh):
 
-- [Go](https://go.dev/)
-- [Rust](https://www.rust-lang.org/)
-- [Clang](https://clang.llvm.org/)
-- [Node.js](https://nodejs.org/)
-- [Python](https://www.python.org/)
+- Neovim (v0.8 or higher)
+- Fastfetch
+- Starship
 
-## 📁 Directory Structure
+Additional tools for LSP / Development:
+
+- Go
+- Clang
+- Python
+- Node.js
+
+## [//] Directory Structure
 
 ```
-dotfiles
-├── fastfetch
-│   ├── config.jsonc .......... (Fastfetch Config)
-│   └── logos ................. (Custom Logos)
-├── nvim
-│   ├── lua
-│   │   ├── core .............. (Core Config)
-│   │   └── plugins ........... (Custom Plugin Configs)
-│   └── init.lua .............. (Main Init File)
-├── starship
-│   └── starship.toml ......... (Starship Config)
-├── config.sh ................. (Dependency Installer)
-├── install.sh ................ (Configuration Setup)
-├── LICENSE
-└── README.md ................. (Documentation)
+dotfiles/
+│
+├── alacritty/          → Alacritty config
+├── fastfetch/          → Fastfetch config
+├── nvim/               → Neovim config
+├── starship/           → Starship prompt config
+├── tmux/               → tmux config
+├── zsh/                → zsh config
+│
+├── setup/              → setup scripts
+├── config.sh           → config linking using stow
+├── install.sh          → dependency installer
+│
+├── Makefile            → task runner
+└── README.md
 ```
 
-## 🚀 Installation
+## [>>] Installation
 
 > [!WARNING]\
-> Under _**active development**_, expect changes. Existing configuration files will be overwritten. Please make a backup of any files you wish to keep before proceeding.
-> Compatable Package Managers: pacman
-
-1. Clone the repository to your preferred location:
+> Under _**active development**_ — Existing config files will be overwritten!
 
 ```
 git clone https://github.com/dracuxan/Dot-Files.git ~/dotfiles && cd ~/dotfiles
 ```
 
-2. Install dependencies (only if needed!):
+### [::] Make Commands to Complete the installation
 
-```
-./install.sh
-```
-
-3. Configure the tools:
-
-```
-./config.sh
-```
+| Command      | Description                                              |
+| ------------ | -------------------------------------------------------- |
+| make install | Runs install.sh — installs dependencies & basic setup    |
+| make config  | Runs config.sh — symlinks all config files using stow    |
+| make clean   | Removes all symlinks (basically unstow everything)       |
+| make update  | Pull latest changes from dotfiles repo & re-stow configs |
+| make help    | List available make commands with description            |
 
 ## 📸 Screenshots
 
@@ -70,3 +70,4 @@ git clone https://github.com/dracuxan/Dot-Files.git ~/dotfiles && cd ~/dotfiles
 ![Neovim](https://github.com/user-attachments/assets/cb92ce16-dd48-48de-aea7-0d83d5bd2709)
 ![Neovim](https://github.com/user-attachments/assets/ab2f30a2-6305-4d98-af52-cd81d4dc5b1f)
 ![toggleterm](https://github.com/user-attachments/assets/e465ac94-6129-469a-94f4-8658a2dbc416)
+![tmux](https://github.com/user-attachments/assets/e72e1d81-1c6a-4da1-b68c-6859778b783d)
