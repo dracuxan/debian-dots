@@ -1,10 +1,10 @@
 [![wakatime](https://wakatime.com/badge/user/0d75cfc5-da70-41b7-b8c8-661ef9d8338b/project/9358976a-67c2-4357-8140-bd4a4c743b96.svg)](https://wakatime.com/badge/user/0d75cfc5-da70-41b7-b8c8-661ef9d8338b/project/9358976a-67c2-4357-8140-bd4a4c743b96)
 
-# Dotfiles
+# [#] Dotfiles
 
 Personal dotfiles setup for managing Neovim, Fastfetch, Starship, zsh, tmux and more — using `stow` for clean symlinks and `make` for convenience.
 
-## ✅ Pre-requisites
+## [+] Pre-requisites
 
 Make sure your system has:
 
@@ -25,7 +25,7 @@ Additional tools for LSP / Development:
 - Python
 - Node.js
 
-## 📁 Directory Structure
+## [//] Directory Structure
 
 ```
 dotfiles/
@@ -45,19 +45,16 @@ dotfiles/
 └── README.md
 ```
 
-## 🚀 Installation
+## [>>] Installation
 
 > [!WARNING]\
-> Under _**active development**_, expect changes. Existing configuration files will be overwritten. Please make a backup of any files you wish to keep before proceeding.
-> Compatable Package Managers: apt
-
-### Clone the repository:
+> Under _**active development**_ — Existing config files will be overwritten!
 
 ```
 git clone https://github.com/dracuxan/Dot-Files.git ~/dotfiles && cd ~/dotfiles
 ```
 
-### 🛠️ Make Commands to Complete the installation
+### [::] Make Commands to Complete the installation
 
 | Command      | Description                                              |
 | ------------ | -------------------------------------------------------- |
