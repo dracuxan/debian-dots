@@ -3,21 +3,24 @@ set -e
 
 DOTFILES_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
+echo "[+] Installing stow if missing..."
 sudo apt install -y stow
 
+echo "[+] Creating .config if missing..."
 mkdir -p "$HOME/.config"
 
-echo "Stowing dotfiles..."
+echo "[+] Syncing .config files..."
+rsync -av --progress "$DOTFILES_DIR/.config/" "$HOME/.config/"
 
-stow -d "$DOTFILES_DIR" -t "$HOME/.config" nvim
-stow -d "$DOTFILES_DIR" -t "$HOME/.config" fastfetch
-stow -d "$DOTFILES_DIR" -t "$HOME/.config" starship
-stow -d "$DOTFILES_DIR" -t "$HOME/.config" alacritty
+echo "[+] Stowing legacy dotfiles..."
 stow -d "$DOTFILES_DIR" -t "$HOME" tmux
+stow -d "$DOTFILES_DIR" -t "$HOME" zsh
 
 if ! grep -q 'LOGO_DIR' ~/.zshrc; then
-    echo 'export LOGO_DIR="$HOME/.config/fastfetch/logos"' >>~/.zshrc
+    echo '[+] Adding LOGO_DIR to .zshrc'
+    echo 'export LOGO_DIR="$HOME/.config/fastfetch/logos"' >> ~/.zshrc
 fi
 
-echo "Done. Reloading zsh..."
+echo "[+] Done. Reloading zsh..."
 exec zsh
+

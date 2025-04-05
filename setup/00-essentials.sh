@@ -8,7 +8,7 @@ sudo apt update && sudo apt upgrade -y
 echo "[*] Installing Base Tools..."
 sudo apt install -y \
     curl wget git build-essential unzip tar \
-    stow zsh tmux neovim alacritty \
+    stow zsh tmux alacritty \
     xorg xserver-xorg xinit libx11-dev libxft-dev libxinerama-dev \
     picom rofi feh lxappearance thunar pulseaudio pavucontrol network-manager blueman
 
