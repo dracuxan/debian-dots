@@ -41,10 +41,10 @@ vim.opt.shortmess:append("c") -- Don't give |ins-completion-menu| messages (defa
 vim.opt.iskeyword:append("-") -- Hyphenated words recognized by searches (default: does not include '-')
 vim.opt.formatoptions:remove({ "c", "r", "o" }) -- Don't insert the current comment leader automatically for auto-wrapping comments using 'textwidth', hitting <Enter> in insert mode, or hitting 'o' or 'O' in normal mode. (default: 'croql')
 -- Reset the cursor style on exit
-vim.cmd([[
-  if exists('$NVIM_TUI_ENABLE_CURSOR_SHAPE')
-    let $NVIM_TUI_ENABLE_CURSOR_SHAPE = 0
-  endif
-  autocmd VimLeave * set guicursor=a:ver25-blinkon350
-]])
+-- vim.cmd([[
+--   if exists('$NVIM_TUI_ENABLE_CURSOR_SHAPE')
+--     let $NVIM_TUI_ENABLE_CURSOR_SHAPE = 0
+--   endif
+--   autocmd VimLeave * set guicursor=a:ver25-blinkon350
+-- ]])
 vim.opt.fillchars = { eob = " " }
