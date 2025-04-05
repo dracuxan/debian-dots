@@ -70,3 +70,4 @@ git clone https://github.com/dracuxan/Dot-Files.git ~/dotfiles && cd ~/dotfiles
 ![Neovim](https://github.com/user-attachments/assets/cb92ce16-dd48-48de-aea7-0d83d5bd2709)
 ![Neovim](https://github.com/user-attachments/assets/ab2f30a2-6305-4d98-af52-cd81d4dc5b1f)
 ![toggleterm](https://github.com/user-attachments/assets/e465ac94-6129-469a-94f4-8658a2dbc416)
+![tmux](https://github.com/user-attachments/assets/e72e1d81-1c6a-4da1-b68c-6859778b783d)
