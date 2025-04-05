@@ -25,7 +25,7 @@ Additional tools for LSP / Development:
 - Python
 - Node.js
 
-## [//] Directory Structure
+## Directory Structure
 
 ```
 dotfiles/
@@ -56,15 +56,15 @@ git clone https://github.com/dracuxan/Dot-Files.git ~/dotfiles && cd ~/dotfiles
 
 ### [::] Make Commands to Complete the installation
 
-| Command      | Description                                              |
-| ------------ | -------------------------------------------------------- |
-| make install | Runs install.sh — installs dependencies & basic setup    |
-| make config  | Runs config.sh — symlinks all config files using stow    |
-| make clean   | Removes all symlinks (basically unstow everything)       |
-| make update  | Pull latest changes from dotfiles repo & re-stow configs |
-| make help    | List available make commands with description            |
+| Command      | Description                                  |
+| ------------ | -------------------------------------------- |
+| make install | Runs install.sh — Installs dependencies      |
+| make config  | Runs config.sh — Symlinks configs using stow |
+| make dwm     | Runs DWM setup script (if you use DWM)       |
+| make all     | Runs install, config & dwm (in that order)   |
+| make clean   | Unstows (removes) all symlinked configs      |
 
-## 📸 Screenshots
+## Screenshots
 
 ![Fastfetch](https://github.com/user-attachments/assets/31804d54-ff43-45c6-8f1b-79e3ae28cd0d)
 ![Neovim](https://github.com/user-attachments/assets/cb92ce16-dd48-48de-aea7-0d83d5bd2709)
