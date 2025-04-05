@@ -20,7 +20,6 @@ require("mason-null-ls").setup({
 })
 
 local sources = {
-	diagnostics.checkmake,
 	formatting.prettier.with({ filetypes = { "html", "json", "yaml", "markdown", "graphql" } }),
 	formatting.stylua,
 	formatting.shfmt.with({ args = { "-i", "4" } }),
