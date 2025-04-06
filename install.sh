@@ -3,7 +3,7 @@
 set -e # Exit on error
 
 echo "-----------------------------------------"
-echo "       dracuxan's Dotfiles Installer       "
+echo "       dracuxan's Dotfiles Installer     "
 echo "-----------------------------------------"
 
 echo "[+] Updating system..."
