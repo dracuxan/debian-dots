@@ -3,9 +3,6 @@ set -e
 
 DOTFILES_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
-echo "[+] Ensuring GNU Stow is installed..."
-sudo apt install -y stow
-
 echo "[+] Preparing ~/.config layout..."
 for dir in nvim fastfetch alacritty; do
     mkdir -p "$HOME/.config/$dir"
