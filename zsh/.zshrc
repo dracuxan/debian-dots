@@ -69,7 +69,6 @@ export PATH="$PATH:/opt/nvim-linux-x86_64/bin"
 # Bash Scripts
 export BASHROOT=/usr/local/bash/bin
 export PATH=$PATH:$BASHROOT
-export WAKATIME_API_KEY="zwaka_cb87ef77-0a6a-4fba-832e-bdb52f0ffae2"
 
 # Fastfetch Variables
 export LOGO_DIR="$HOME/.config/fastfetch/logos/"
@@ -88,13 +87,11 @@ alias gp="git push"
 # Python alias
 alias py='python3'
 
+# Nuclei alias
+alias nuke='nuclei'
+alias ff='firefox'
+
 # Startup Commands
 alias neo='clear; fastfetch'
 eval "$(starship init zsh)"
 neo
-
-if command -v tmux &> /dev/null; then
-  if [ -z "$TMUX" ]; then
-    tmux attach-session -t main || tmux new-session -s main
-  fi
-fi
