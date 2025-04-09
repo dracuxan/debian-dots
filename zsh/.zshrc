@@ -90,6 +90,7 @@ alias py='python3'
 # Nuclei alias
 alias nuke='nuclei'
 alias ff='firefox'
+alias tm='tmux attach -t tmux || tmux new -s tmux'
 
 # Startup Commands
 alias neo='clear; fastfetch'

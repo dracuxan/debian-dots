@@ -1,6 +1,6 @@
 local null_ls = require("null-ls")
 local formatting = null_ls.builtins.formatting -- to setup formatters
-local diagnostics = null_ls.builtins.diagnostics -- to setup linters
+-- local diagnostics = null_ls.builtins.diagnostics -- to setup linters
 
 -- Formatters & linters for mason to install
 require("mason-null-ls").setup({

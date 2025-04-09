@@ -157,7 +157,7 @@ ins_left({
 	end,
 })
 
-ins_left({
+ins_right({
 	-- Lsp server name .
 	function()
 		local msg = "No Active Lsp"
@@ -193,31 +193,31 @@ ins_left({
 -- 	color = { fg = colors.green, gui = "bold" },
 -- })
 
-ins_right({
-	"branch",
-	icon = "",
-	color = { fg = colors.violet, gui = "bold" },
-})
-
-ins_right({
-	"diff",
-	-- Is it me or the symbol for modified us really weird
-	symbols = { added = " ", modified = "󰝤 ", removed = " " },
-	diff_color = {
-		added = { fg = colors.green },
-		modified = { fg = colors.orange },
-		removed = { fg = colors.red },
-	},
-	cond = conditions.hide_in_width,
-})
-
-ins_right({
-	function()
-		return "▊"
-	end,
-	color = { fg = colors.blue },
-	padding = { left = 1 },
-})
+-- ins_right({
+-- 	"branch",
+-- 	icon = "",
+-- 	color = { fg = colors.violet, gui = "bold" },
+-- })
+--
+-- ins_right({
+-- 	"diff",
+-- 	-- Is it me or the symbol for modified us really weird
+-- 	symbols = { added = " ", modified = "󰝤 ", removed = " " },
+-- 	diff_color = {
+-- 		added = { fg = colors.green },
+-- 		modified = { fg = colors.orange },
+-- 		removed = { fg = colors.red },
+-- 	},
+-- 	cond = conditions.hide_in_width,
+-- })
+--
+-- ins_right({
+-- 	function()
+-- 		return "▊"
+-- 	end,
+-- 	color = { fg = colors.blue },
+-- 	padding = { left = 1 },
+-- })
 
 -- Now don't forget to initialize lualine
 lualine.setup(config)
