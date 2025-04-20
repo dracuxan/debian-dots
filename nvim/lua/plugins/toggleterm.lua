@@ -81,3 +81,4 @@ end
 vim.keymap.set("n", "<M-p>", _PYTHON_TOGGLE, { noremap = true, silent = true })
 vim.keymap.set("n", "<M-s>", _RUN_SCRIPT, { noremap = true, silent = true })
 vim.keymap.set("n", "<M-m>", _MAKE_RUN, { noremap = true, silent = true })
+vim.keymap.set("n", "<M-g>", _LAZYGIT_TOGGLE, { noremap = true, silent = true })
