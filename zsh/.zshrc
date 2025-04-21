@@ -69,6 +69,7 @@ export PATH="$PATH:/opt/nvim-linux-x86_64/bin"
 # Bash Scripts
 export BASHROOT=/usr/local/bash/bin
 export PATH=$PATH:$BASHROOT
+export PATH="$HOME/.local/bin:$PATH"
 
 # Fastfetch Variables
 export LOGO_DIR="$HOME/.config/fastfetch/logos/"

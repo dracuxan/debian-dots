@@ -69,7 +69,7 @@ function _RUN_SCRIPT()
 
 	-- Create a terminal instance with the dynamic command
 	local script_term = Terminal:new({
-		cmd = "./run.sh " .. filename,
+		cmd = "run.sh " .. filename,
 		hidden = true,
 		close_on_exit = false,
 	})
