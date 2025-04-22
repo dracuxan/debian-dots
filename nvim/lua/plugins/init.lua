@@ -85,7 +85,21 @@ local custom_plugins = {
 
 	{
 		"folke/which-key.nvim",
-		lazy = true,
+		lazy = false,
+		config = function()
+			require("which-key").setup({
+				plugins = {
+					spelling = {
+						enabled = true,
+					},
+				},
+				win = {
+					border = "single",
+				},
+				timeout = true,
+				timeoutlen = 1000,
+			})
+		end,
 	},
 
 	{
