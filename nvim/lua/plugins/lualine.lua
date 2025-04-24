@@ -160,19 +160,21 @@ ins_left({
 ins_right({
 	-- Lsp server name .
 	function()
-		local msg = "No Active Lsp"
-		local buf_ft = vim.api.nvim_get_option_value("filetype", { buf = 0 })
-		local clients = vim.lsp.get_clients()
+		local bufnr = vim.api.nvim_get_current_buf()
+		local clients = vim.lsp.get_clients({ bufnr = bufnr })
+
 		if next(clients) == nil then
-			return msg
+			return "No LSP"
 		end
-		for _, client in ipairs(clients) do
-			local filetypes = client.config.filetypes
-			if filetypes and vim.fn.index(filetypes, buf_ft) ~= -1 then
-				return client.name
+
+		local client_names = {}
+		for _, client in pairs(clients) do
+			if client.name ~= "null-ls" then
+				table.insert(client_names, client.name)
 			end
 		end
-		return msg
+
+		return table.concat(client_names, ", ")
 	end,
 	icon = " LSP:",
 	color = { fg = "#ffffff", gui = "bold" },
@@ -211,13 +213,13 @@ ins_right({
 -- 	cond = conditions.hide_in_width,
 -- })
 --
--- ins_right({
--- 	function()
--- 		return "▊"
--- 	end,
--- 	color = { fg = colors.blue },
--- 	padding = { left = 1 },
--- })
+ins_right({
+	function()
+		return "▊"
+	end,
+	color = { fg = colors.blue },
+	padding = { left = 1 },
+})
 
 -- Now don't forget to initialize lualine
 lualine.setup(config)

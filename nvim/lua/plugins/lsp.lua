@@ -198,6 +198,7 @@ return {
 					gopls = {
 						analyses = {
 							unusedparams = true,
+							unusedimport = true,
 						},
 						staticcheck = true,
 						gofumpt = true,

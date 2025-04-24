@@ -39,6 +39,8 @@ end
 vim.cmd("autocmd! TermOpen term://* lua set_terminal_keymaps()")
 local Terminal = require("toggleterm.terminal").Terminal
 
+-- Define toggle functions
+
 function _RUN_SCRIPT()
 	-- Get the current buffer name (full path)
 	local bufname = vim.api.nvim_buf_get_name(0)
@@ -71,14 +73,20 @@ function _MAKE_TEST()
 	make:toggle()
 end
 
--- Define toggle functions
+function _MAKE_BENCH()
+	local make = Terminal:new({ cmd = "make bench", hidden = true, close_on_exit = false })
+	make:toggle()
+end
+
 function _LAZYGIT_TOGGLE()
 	local lazygit = Terminal:new({ cmd = "lazygit", hidden = true })
+
 	lazygit:toggle()
 end
 
 -- Set keymaps
-vim.keymap.set("n", "<M-m>s", _RUN_SCRIPT, { noremap = true, silent = true, desc = "use run script" })
+vim.keymap.set("n", "<M-m>sr", _RUN_SCRIPT, { noremap = true, silent = true, desc = "use run script" })
 vim.keymap.set("n", "<M-m>mr", _MAKE_RUN, { noremap = true, silent = true, desc = "make run" })
 vim.keymap.set("n", "<M-m>mt", _MAKE_TEST, { noremap = true, silent = true, desc = "make test" })
-vim.keymap.set("n", "<M-m>t", _LAZYGIT_TOGGLE, { noremap = true, silent = true, desc = "lazygit" })
+vim.keymap.set("n", "<M-m>mb", _MAKE_BENCH, { noremap = true, silent = true, desc = "make bench" })
+vim.keymap.set("n", "<M-m>l", _LAZYGIT_TOGGLE, { noremap = true, silent = true, desc = "lazygit" })
