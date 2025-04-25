@@ -40,6 +40,7 @@ alias history="history 0"
 alias ll='ls -la'
 alias la='ls -A'
 alias l='ls -CF'
+alias ld='du -h -d 1'
 alias nv='nvim'
 alias neo='clear; fastfetch'
 alias noe='neo'
