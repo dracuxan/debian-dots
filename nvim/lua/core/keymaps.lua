@@ -25,6 +25,7 @@ vim.keymap.set({ "n", "v" }, "<Space>", "<Nop>", { silent = true })
 -- save file
 vim.keymap.set("n", "<C-s>", "<cmd> w <CR>", opts)
 vim.keymap.set("i", "<C-s>", "<Esc><cmd> w <CR>", opts)
+vim.keymap.set("n", "<C-a>s", "<cmd>noautocmd w <CR>", opts)
 
 -- quit file
 vim.keymap.set("n", "<C-q>", "<cmd> q <CR>", opts)
@@ -90,3 +91,8 @@ vim.keymap.set("v", "p", '"_dP', opts)
 -- Typing Test
 vim.keymap.set("n", "<C-t>", ":Typr<CR>", opts)
 vim.keymap.set("n", "<M-t>", ":TyprStat<CR>", opts)
+
+-- Reload Config
+local new_opts = { desc = "Reload current Lua file", noremap = true, silent = true }
+
+vim.keymap.set("n", "<leader>rr", ":luafile %<CR>", new_opts)
