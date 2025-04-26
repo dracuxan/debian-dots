@@ -7,8 +7,8 @@ local opts = { noremap = true, silent = true }
 
 -- Custom
 -- Toogle NeoTree
-vim.keymap.set("n", "<C-n>", "<cmd>NvimTreeToggle<CR>", opts)
-vim.keymap.set("i", "<C-n>", "<Esc><cmd>NvimTreeToggle<CR>", opts)
+vim.keymap.set("n", "<C-n>", "<cmd>Neotree toggle<CR>", opts)
+vim.keymap.set("i", "<C-n>", "<Esc><cmd>Neotree toggle<CR>", opts)
 
 -- Navigation in insert mode
 vim.keymap.set("i", "<C-h>", "<Left>", opts)
