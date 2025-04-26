@@ -11,9 +11,9 @@ dashboard.section.header.val = {
 }
 
 dashboard.section.buttons.val = {
+	dashboard.button("r", "  Recent files", "<cmd>Telescope oldfiles<cr>"),
 	dashboard.button("f", "  Find file", "<cmd>Telescope find_files<cr>"),
 	dashboard.button("n", "  New file", "<cmd>ene | startinsert<cr>"),
-	dashboard.button("r", "  Recent files", "<cmd>Telescope oldfiles<cr>"),
 	dashboard.button("c", "  Config", "<cmd>e $MYVIMRC<cr>"),
 	dashboard.button("l", "  Lazygit", "<cmd>lua _LAZYGIT_TOGGLE()<cr>"),
 	-- dashboard.button("s", "  Restore Session", "<cmd>lua require('persistence').load()<cr>"),
