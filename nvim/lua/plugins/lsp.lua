@@ -249,6 +249,11 @@ return {
 			jsonls = {},
 			yamlls = {},
 
+			zls = {
+				on_attach = on_attach,
+				capabilities = capabilities,
+			},
+
 			lua_ls = {
 				-- cmd = {...},
 				-- filetypes = { ...},
