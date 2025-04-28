@@ -27,7 +27,7 @@ blinking = "Always"
 shape = "Block"
 
 [font]
-size = 11.5
+size = 11
 
 [font.bold]
 family = "FiraCode Nerd Font"
@@ -62,11 +62,8 @@ opacity = 0.9  # Left as is, though not functional
 startup_mode = "Maximized"
 
 [window.padding]
-x = 1
-y = 1
+x = 0
+y = 0
 
 [general]
 live_config_reload = true
-
-[terminal]
-
