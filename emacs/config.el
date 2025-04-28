@@ -77,3 +77,10 @@
 
 (after! treemacs
   (setq treemacs-position 'right))
+
+(use-package! global-wakatime-mode
+  :config
+  (setq wakatime-cli-path "/home/dracuxan/.local/bin/wakatime")
+  )
+
+(map! :i "M-h" #'backward-char)
