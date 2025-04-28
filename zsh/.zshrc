@@ -75,6 +75,9 @@ export PATH="$HOME/.local/bin:$PATH"
 # Fastfetch Variables
 export LOGO_DIR="$HOME/.config/fastfetch/logos/"
 
+# Emacs path
+export PATH="$HOME/.emacs.d/bin:$PATH" 
+
 # Git aliases
 alias gitupd='git add .; git commit -m "upd"; git push'
 alias gitnew='git add .; git commit -m "new"; git push'
