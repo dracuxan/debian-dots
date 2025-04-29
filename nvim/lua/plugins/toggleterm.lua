@@ -83,6 +83,11 @@ function _MAKE_BUILD()
 	make:toggle()
 end
 
+function _MAKE_CLEAN()
+	local make = Terminal:new({ cmd = "make clean", hidden = true, close_on_exit = false })
+	make:toggle()
+end
+
 function _LAZYGIT_TOGGLE()
 	local lazygit = Terminal:new({ cmd = "lazygit", hidden = true })
 
@@ -95,4 +100,5 @@ vim.keymap.set("n", "<M-m>mr", _MAKE_RUN, { noremap = true, silent = true, desc 
 vim.keymap.set("n", "<M-m>mt", _MAKE_TEST, { noremap = true, silent = true, desc = "make test" })
 vim.keymap.set("n", "<M-m>mb", _MAKE_BUILD, { noremap = true, silent = true, desc = "make build" })
 vim.keymap.set("n", "<M-m>mB", _MAKE_BENCH, { noremap = true, silent = true, desc = "make bench" })
+vim.keymap.set("n", "<M-m>mc", _MAKE_CLEAN, { noremap = true, silent = true, desc = "make clean" })
 vim.keymap.set("n", "<M-m>l", _LAZYGIT_TOGGLE, { noremap = true, silent = true, desc = "lazygit" })
