@@ -83,4 +83,8 @@
   (setq wakatime-cli-path "/home/dracuxan/.local/bin/wakatime")
   )
 
-(map! :i "M-h" #'backward-char)
+(setq display-line-numbers-type t)
+
+(map! :leader
+      :desc "Open eshell"
+      "o t" #'eshell)
