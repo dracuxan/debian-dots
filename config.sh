@@ -12,12 +12,11 @@ echo "[+] Stowing configs into ~/.config..."
 stow --adopt -d "$DOTFILES_DIR" -t "$HOME/.config/nvim" nvim
 stow --adopt -d "$DOTFILES_DIR" -t "$HOME/.config/alacritty" alacritty
 stow --adopt -d "$DOTFILES_DIR" -t "$HOME/.config/fastfetch" fastfetch
-stow --adopt -d "$DOTFILES_DIR" -t "$HOME/.config" starship
 stow --adopt -d "$DOTFILES_DIR" -t "$HOME/.doom.d" emacs
 
 echo "[+] Stowing legacy dotfiles into ~..."
-stow -d "$DOTFILES_DIR" -t "$HOME" tmux
-stow -d "$DOTFILES_DIR" -t "$HOME" zsh
+stow --adopt -d "$DOTFILES_DIR" -t "$HOME" tmux
+stow --adopt -d "$DOTFILES_DIR" -t "$HOME" zsh
 
 echo "[+] Done. Launching zsh..."
 exec zsh
