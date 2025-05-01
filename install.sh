@@ -6,11 +6,13 @@ echo "-----------------------------------------"
 echo "       dracuxan's Dotfiles Installer     "
 echo "-----------------------------------------"
 
-echo "[+] Updating system..."
-sudo apt update && sudo apt upgrade -y
-
-echo "[+] Installing stow..."
-sudo apt install -y stow
+echo "[+] Checking stow..."
+if command -v stow >/dev/null 2>&1; then
+    echo "[+] exists"
+else
+    echo "[-] stow does not exist! Please install manually"
+    exit 1
+fi
 
 echo "[+] Stowing dotfiles..."
 
