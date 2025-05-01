@@ -30,15 +30,15 @@ shape = "Block"
 size = 11
 
 [font.bold]
-family = "FiraCode Nerd Font"
+family = "Hack Nerd Font"
 style = "Bold"
 
 [font.italic]
-family = "JetBrainsMono Nerd Font"
+family = "Hack Nerd Font"
 style = "Italic"
 
 [font.normal]
-family = "JetBrainsMono Nerd Font"
+family = "Hack Nerd Font"
 style = "Regular"
 
 [font.offset]
@@ -51,10 +51,6 @@ multiplier = 3
 
 [selection]
 save_to_clipboard = true
-
-[terminal.shell]
-program = "wsl.exe"
-args = ["~"] 
 
 [window]
 decorations = "none"
