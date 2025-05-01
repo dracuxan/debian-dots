@@ -11,19 +11,19 @@ Make sure your system has:
 - git
 - stow
 - zsh
-
-Optional but recommended (auto-installed if missing via install.sh):
-
-- Neovim (v0.8 or higher)
+- Neovim (v0.9 or higher)
 - Fastfetch
 - Starship
+- tmux
 
 Additional tools for LSP / Development:
 
 - Go
 - Clang
+- gcc
 - Python
 - Node.js
+- Rust
 
 ## Directory Structure
 
@@ -53,10 +53,10 @@ git clone https://github.com/dracuxan/Dot-Files.git ~/dotfiles && cd ~/dotfiles
 
 ### [::] Make Commands to Complete the installation
 
-| Command      | Description                             |
-| ------------ | --------------------------------------- |
-| make install | Runs install.sh — Installs dependencies |
-| make clean   | Unstows (removes) all symlinked configs |
+| Command      | Description                              |
+| ------------ | ---------------------------------------- |
+| make install | Runs install.sh — Installs by using stow |
+| make clean   | Unstows (removes) all symlinked configs  |
 
 ## Screenshots
 
