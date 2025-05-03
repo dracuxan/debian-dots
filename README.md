@@ -36,7 +36,9 @@ dotfiles/
 ├── tmux/               → tmux config
 ├── zsh/                → zsh config
 │
-├── install.sh          → dependency installer
+├── scripts/
+│   ├── install.sh      → setup installer
+│   └── start_tmux.sh   → tmux script
 │
 ├── Makefile            → run scripts using make
 └── README.md
@@ -53,10 +55,11 @@ git clone https://github.com/dracuxan/Dot-Files.git ~/dotfiles && cd ~/dotfiles
 
 ### [::] Make Commands to Complete the installation
 
-| Command      | Description                              |
-| ------------ | ---------------------------------------- |
-| make install | Runs install.sh — Installs by using stow |
-| make clean   | Unstows (removes) all symlinked configs  |
+| Command      | Description                                         |
+| ------------ | --------------------------------------------------- |
+| make install | runs `install.sh` — Installs by using stow          |
+| make setup   | copies the script `start_tmux.sh` to /usr/local/bin |
+| make clean   | unstows (removes) all symlinked configs             |
 
 ## Screenshots
 

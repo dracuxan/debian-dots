@@ -1,8 +1,12 @@
-.PHONY: config install dwm all clean
+.PHONY: config install clean
 
 install:
 	@echo "[+] Running install.sh..."
-	@bash install.sh
+	@bash scripts/install.sh
+
+setup:
+	@echo "[+] Copying start_tmux.sh..."
+	@sudo cp scripts/start_tmux.sh /usr/local/bin/tm
 
 clean:
 	@echo "[+] Unstowing everything..."
