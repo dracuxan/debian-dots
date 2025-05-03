@@ -45,6 +45,7 @@ alias nv='nvim'
 alias neo='clear; fastfetch'
 alias noe='neo'
 alias tr='tree -Ld 1'
+alias trf='tree -I '.git' -I 'out' -L 2'
 alias x='exit'
 
 # Zig environment variables
@@ -98,7 +99,6 @@ alias py='python3'
 # Nuclei alias
 alias nuke='nuclei'
 alias ff='firefox'
-alias tm='tmux attach -t tmux || tmux new -s tmux'
 
 # Startup Commands
 alias neo='clear; fastfetch'
