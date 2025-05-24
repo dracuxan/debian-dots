@@ -1,3 +1,4 @@
+local vim = vim
 local status_ok, toggleterm = pcall(require, "toggleterm")
 if not status_ok then
 	return
@@ -44,18 +45,8 @@ local Terminal = require("toggleterm.terminal").Terminal
 -- Define toggle functions
 
 function _RUN_SCRIPT()
-	-- Get the current buffer name (full path)
-	local bufname = vim.api.nvim_buf_get_name(0)
-
-	if bufname == "" then
-		print("No file detected!")
-		return
-	end
-
-	-- Extract the filename without extension
 	local buffname = vim.api.nvim_buf_get_name(0)
 	local filepath = vim.fn.fnamemodify(buffname, ":p")
-	-- Create a terminal instance with the dynamic command
 	local script_term = Terminal:new({
 		cmd = "run.sh " .. filepath,
 		hidden = true,
