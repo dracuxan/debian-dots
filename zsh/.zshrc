@@ -42,8 +42,9 @@ alias la='ls -A'
 alias l='ls -CF'
 alias ld='du -h -d 1'
 alias nv='nvim'
-alias neo='clear; fastfetch'
+alias neo='clear'
 alias noe='neo'
+alias cls='clear; fastfetch'
 alias tr='tree -Ld 1'
 alias trf='tree -I '.git' -I 'out' -L 2'
 alias x='exit'
@@ -71,10 +72,12 @@ export NVM_DIR="$HOME/.nvm"
 # Neovim Variables
 export PATH="$PATH:/opt/nvim-linux-x86_64/bin"
 
-# Bash Scripts
-export BASHROOT=/usr/local/bash/bin
-export PATH=$PATH:$BASHROOT
+# Path for custom scripts
+export PATH="$HOME/bin:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
+alias tm='start_tmux.sh'
+alias tm='start_tmux.sh'
+alias coderunner='run.sh'
 
 # Fastfetch Variables
 export LOGO_DIR="$HOME/.config/fastfetch/logos/"
@@ -101,6 +104,4 @@ alias nuke='nuclei'
 alias ff='firefox'
 
 # Startup Commands
-alias neo='clear; fastfetch'
 eval "$(starship init zsh)"
-neo

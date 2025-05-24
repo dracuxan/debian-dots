@@ -48,3 +48,9 @@ vim.opt.formatoptions:remove({ "c", "r", "o" }) -- Don't insert the current comm
 --   autocmd VimLeave * set guicursor=a:ver25-blinkon350
 -- ]])
 vim.opt.fillchars = { eob = " " }
+
+-- Treesitter folding
+vim.wo.foldmethod = "expr"
+vim.wo.foldexpr = "nvim_treesitter#foldexpr()"
+
+vim.wo.foldlevel = 99

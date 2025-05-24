@@ -1,3 +1,13 @@
+local vim = vim
+local function organize_imports()
+	local params = {
+		command = "_typescript.organizeImports",
+		arguments = { vim.api.nvim_buf_get_name(0) },
+	}
+	vim.lsp.buf.execute_command(params)
+	-- Client:exec_cmd(params)
+end
+
 return {
 	-- Main LSP Configuration
 	"neovim/nvim-lspconfig",
@@ -123,15 +133,54 @@ return {
 					})
 				end
 
+				if client.supports_method("textDocument/formatting") then
+					vim.api.nvim_clear_autocmds({
+						group = augroup,
+						buffer = bufnr,
+					})
+
+					vim.api.nvim_create_autocmd("BufWritePre", {
+						group = augroup,
+						buffer = bufnr,
+						callback = function()
+							vim.lsp.buf.format({ bufnr = bufnr })
+						end,
+					})
+
+					vim.diagnostic.config({
+						update_in_insert = true, -- Show errors while typing
+						virtual_text = true, -- Show inline errors
+						signs = true, -- Show signs in the gutter
+						underline = true, -- Underline errors
+					})
+				end
+
 				-- The following code creates a keymap to toggle inlay hints in your
 				-- code, if the language server you are using supports them
 				--
 				-- This may be unwanted, since they displace some of your code
-				if client and client.supports_method(vim.lsp.protocol.Methods.textDocument_inlayHint) then
-					map("<leader>th", function()
-						vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr = event.buf }))
-					end, "[T]oggle Inlay [H]ints")
-				end
+				-- if client and client.supports_method(vim.lsp.protocol.Methods.textDocument_inlayHint) then
+				-- 	map("<leader>th", function()
+				-- 		vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr = event.buf }))
+				-- 	end, "[T]oggle Inlay [H]ints")
+				-- end
+				vim.api.nvim_create_autocmd("BufWritePre", {
+					pattern = "*.go",
+					callback = function()
+						local params = vim.lsp.util.make_range_params(0, "utf-16")
+						params.context = { only = { "source.organizeImports" } }
+						local result = vim.lsp.buf_request_sync(0, "textDocument/codeAction", params)
+						for cid, res in pairs(result or {}) do
+							for _, r in pairs(res.result or {}) do
+								if r.edit then
+									local enc = (vim.lsp.get_client_by_id(cid) or {}).offset_encoding or "utf-16"
+									vim.lsp.util.apply_workspace_edit(r.edit, enc)
+								end
+							end
+						end
+						vim.lsp.buf.format({ async = false })
+					end,
+				})
 			end,
 		})
 
@@ -141,64 +190,23 @@ return {
 		--  So, we create new capabilities with nvim cmp, and then broadcast that to the servers.
 		local capabilities = vim.lsp.protocol.make_client_capabilities()
 		capabilities = vim.tbl_deep_extend("force", capabilities, require("cmp_nvim_lsp").default_capabilities())
-		local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
-		local on_attach = function(client, bufnr)
-			if client.supports_method("textDocument/formatting") then
-				vim.api.nvim_clear_autocmds({
-					group = augroup,
-					buffer = bufnr,
-				})
-				vim.api.nvim_create_autocmd("BufWritePre", {
-					group = augroup,
-					buffer = bufnr,
-					callback = function()
-						vim.lsp.buf.format({ bufnr = bufnr })
-					end,
-				})
-				vim.diagnostic.config({
-					update_in_insert = true, -- Show errors while typing
-					virtual_text = true, -- Show inline errors
-					signs = true, -- Show signs in the gutter
-					underline = true, -- Underline errors
-				})
-			end
-		end
 
-		-- Enable the following language servers
-		--  Feel free to add/remove any LSPs that you want here. They will automatically be installed.
-		--
-		--  Add any additional override configuration in the following tables. Available keys are:
-		--  - cmd (table): Override the default command used to start the server
-		--  - filetypes (table): Override the default list of associated filetypes for the server
-		--  - capabilities (table): Override fields in capabilities. Can be used to disable certain LSP features.
-		--  - settings (table): Override the default settings passed when initializing the server.
-		--        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
 		local servers = {
 
 			clangd = {
-				on_attach = on_attach,
 				capabilities = capabilities,
-				cmd = {
-					"clangd",
-					"--background-index",
-					"--clang-tidy",
-					"--completion-style=detailed",
-					"--cross-file-rename",
-					"--compile-commands-dir=/home/dracuxan/OSDev/xv6-labs-2024",
-					"--query-driver=/usr/bin/gcc",
-					"--header-insertion=never",
-				},
+				cmd = { "clangd" },
 				filetypes = { "c", "cpp", "objc", "objcpp" },
 			},
 
 			gopls = {
-				on_attach = on_attach,
 				capabilities = capabilities,
+				cmd = { "gopls" },
+				filetypes = { "go", "gomod", "gowork", "gotmpl" },
 				settings = {
 					gopls = {
 						analyses = {
 							unusedparams = true,
-							unusedimport = true,
 						},
 						staticcheck = true,
 						gofumpt = true,
@@ -206,58 +214,32 @@ return {
 				},
 			},
 			pyright = {
-				on_attach = on_attach,
 				capabilities = capabilities,
 			},
-			-- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
-			--
-			-- Some languages (like typescript) have entire language plugins that can be useful:
-			--    https://github.com/pmizio/typescript-tools.nvim
-			--
-			-- But for many setups, the LSP (`tsserver`) will work just fine
-			ts_ls = {
-				on_attach = on_attach,
-				capabilities = capabilities,
-			}, -- tsserver is deprecated
-			ruff = {
-				on_attach = on_attach,
-				capabilities = capabilities,
-			},
-			pylsp = {
 
-				settings = {
-					pylsp = {
-						plugins = {
-							pyflakes = { enabled = false },
-							pycodestyle = { enabled = false },
-							autopep8 = { enabled = false },
-							yapf = { enabled = false },
-							mccabe = { enabled = false },
-							pylsp_mypy = { enabled = false },
-							pylsp_black = { enabled = false },
-							pylsp_isort = { enabled = false },
-						},
+			ts_ls = {
+				capabilities = capabilities,
+				init_options = {
+					preferences = {
+						disableSuggestions = true,
 					},
 				},
-			},
+				commands = {
+					OrganizeImports = {
+						organize_imports,
+						description = "Organize Imports",
+					},
+				},
+			}, -- tsserver is deprecated
+
 			html = { filetypes = { "html", "twig", "hbs" } },
 			cssls = {},
-			tailwindcss = {},
-			dockerls = {},
-			sqlls = {},
-			terraformls = {},
-			jsonls = {},
-			yamlls = {},
 
 			zls = {
-				on_attach = on_attach,
 				capabilities = capabilities,
 			},
 
 			lua_ls = {
-				-- cmd = {...},
-				-- filetypes = { ...},
-				-- capabilities = {},
 				settings = {
 					Lua = {
 						completion = {
@@ -271,7 +253,7 @@ return {
 								unpack(vim.api.nvim_get_runtime_file("", true)),
 							},
 						},
-						diagnostics = { disable = { "missing-fields" } },
+						diagnostics = { disable = { "missing-fields" }, globals = { "vim" } },
 						format = {
 							enable = false,
 						},

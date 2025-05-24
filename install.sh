@@ -1,10 +1,10 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 set -e # Exit on error
 
-echo "-----------------------------------------"
-echo "       dracuxan's Dotfiles Installer     "
-echo "-----------------------------------------"
+echo "-----------------------------------------------------"
+echo "       dracuxan's Dotfiles for Debian                "
+echo "-----------------------------------------------------"
 
 echo "[+] Checking stow..."
 if command -v stow >/dev/null 2>&1; then
@@ -19,18 +19,20 @@ echo "[+] Stowing dotfiles..."
 DOTFILES_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 echo "[+] Preparing ~/.config layout..."
-for dir in nvim fastfetch alacritty .doom.d; do
+for dir in fastfetch nvim; do
     mkdir -p "$HOME/.config/$dir"
 done
 
 echo "[+] Stowing configs into ~/.config..."
-stow --adopt -d "$DOTFILES_DIR" -t "$HOME/.config/nvim" nvim
-stow --adopt -d "$DOTFILES_DIR" -t "$HOME/.config/alacritty" alacritty
+
 stow --adopt -d "$DOTFILES_DIR" -t "$HOME/.config/fastfetch" fastfetch
+stow --adopt -d "$DOTFILES_DIR" -t "$HOME/.config/nvim" nvim
 
 echo "[+] Stowing legacy dotfiles into ~..."
-stow --adopt -d "$DOTFILES_DIR" -t "$HOME" tmux
+stow --adopt -d "$DOTFILES_DIR" -t "$HOME/.config" starship
 stow --adopt -d "$DOTFILES_DIR" -t "$HOME" zsh
+stow --adopt -d "$DOTFILES_DIR" -t "$HOME" tmux
+stow --adopt -d "$DOTFILES_DIR" -t "$HOME/.local/bin" scripts
 
 echo "-----------------------------------------"
 echo "       Setup Complete — Reboot Now       "

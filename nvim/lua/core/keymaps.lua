@@ -96,3 +96,9 @@ vim.keymap.set("n", "<M-t>", ":TyprStat<CR>", opts)
 local new_opts = { desc = "Reload current Lua file", noremap = true, silent = true }
 
 vim.keymap.set("n", "<leader>rr", ":luafile %<CR>", new_opts)
+
+-- For terminal navigation
+vim.keymap.set("t", "<C-h>", [[<C-\><C-N><C-w>h]])
+vim.keymap.set("t", "<C-j>", [[<C-\><C-N><C-w>j]])
+vim.keymap.set("t", "<C-k>", [[<C-\><C-N><C-w>k]])
+vim.keymap.set("t", "<C-l>", [[<C-\><C-N><C-w>l]])
