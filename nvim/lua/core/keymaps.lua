@@ -44,8 +44,8 @@ vim.keymap.set("n", "<Tab>", ":bnext<CR>", opts)
 vim.keymap.set("n", "<S-Tab>", ":bprevious<CR>", opts)
 vim.keymap.set("n", "<leader>x", ":bdelete!<CR>", opts) -- close buffer
 vim.keymap.set("n", "<leader>x", function()
-	local bufnr = vim.api.nvim_get_current_buf() -- Get the current buffer number
-	local buffers = vim.fn.getbufinfo({ buflisted = 1 }) -- Get list of open buffers
+	local bufnr = vim.api.nvim_get_current_buf()          -- Get the current buffer number
+	local buffers = vim.fn.getbufinfo({ buflisted = 1 })  -- Get list of open buffers
 
 	if #buffers > 1 then
 		vim.cmd("bnext") -- Switch to the next buffer
@@ -85,8 +85,8 @@ vim.keymap.set("v", ">", ">gv", opts)
 vim.keymap.set("v", "p", '"_dP', opts)
 
 -- Diagnostic keymaps
--- vim.keymap.set("n", "<leader>d", vim.diagnostic.open_float, { desc = "Open floating diagnostic message" })
--- vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostics list" })
+vim.keymap.set("n", "<leader>d", vim.diagnostic.open_float, { desc = "Open floating diagnostic message" })
+vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostics list" })
 
 -- Typing Test
 vim.keymap.set("n", "<C-t>", ":Typr<CR>", opts)
