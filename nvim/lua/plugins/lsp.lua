@@ -232,6 +232,20 @@ return {
 				},
 			}, -- tsserver is deprecated
 
+			rust_analyzer = {
+				capabilities = capabilities,
+				settings = {
+					["rust-analyzer"] = {
+						cargo = {
+							loadOutDirsFromCheck = true,
+						},
+						procMacro = {
+							enable = true,
+						},
+					},
+				},
+			},
+
 			html = { filetypes = { "html", "twig", "hbs" } },
 			cssls = {},
 
