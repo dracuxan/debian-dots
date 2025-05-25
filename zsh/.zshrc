@@ -77,10 +77,8 @@ export PATH="$HOME/bin:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
 alias tm='start_tmux.sh'
 alias tm='start_tmux.sh'
-alias coderunner='run.sh'
-
-# Fastfetch Variables
-export LOGO_DIR="$HOME/.config/fastfetch/logos/"
+alias run='run.sh'
+alias igris='ssh igris@192.168.0.198'
 
 # Emacs path
 export PATH="$HOME/.emacs.d/bin:$PATH" 
@@ -96,6 +94,13 @@ alias ga="git add .;"
 alias gc="git commit -m"
 alias gp="git push"
 
+# bun completions
+[ -s "/home/dracuxan/.bun/_bun" ] && source "/home/dracuxan/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
+
 # Python alias
 alias py='python3'
 
@@ -103,5 +108,10 @@ alias py='python3'
 alias nuke='nuclei'
 alias ff='firefox'
 
+# Solana environment Variables
+alias anchor="LD_LIBRARY_PATH=$HOME/glibc-2.39/local/lib:$LD_LIBRARY_PATH anchor"
+PATH="/home/dracuxan/.local/share/solana/install/active_release/bin:$PATH"
+
 # Startup Commands
 eval "$(starship init zsh)"
+cls
