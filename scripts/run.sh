@@ -16,6 +16,7 @@ FILE_NAME=$(basename "$FILE_PATH" ."$EXT")
 case "$EXT" in
 c)
     echo "Compiling ${FILE_NAME}.c..."
+    echo ""
     # Ensure 'bin' directory exists for compiled binaries
     mkdir -p "bin"
     gcc -Wall -Wextra -lm "$FILE_PATH" -o "bin/${FILE_NAME}"
@@ -24,14 +25,17 @@ c)
         exit 1
     fi
     echo "Running bin/${FILE_NAME}..."
+    echo ""
     ./bin/${FILE_NAME} $ARGS
     ;;
 py)
     echo "Running ${FILE_NAME}.py with Python..."
+    echo ""
     python3 "$FILE_PATH" $ARGS
     ;;
 go)
     echo "Compiling ${FILE_NAME}.go..."
+    echo ""
     # Ensure 'bin' directory exists for compiled binaries
     mkdir -p "bin"
     go build -o "bin/${FILE_NAME}" "$FILE_PATH"
@@ -41,6 +45,12 @@ go)
     fi
     echo "Running bin/${FILE_NAME}..."
     ./bin/${FILE_NAME} $ARGS
+    ;;
+rs)
+    echo "Running ${FILE_NAME}.rs with rustc..."
+    echo ""
+    rustc "$FILE_PATH" -o ./target/$FILE_NAME
+    ./target/${FILE_NAME} $ARGS
     ;;
 *)
     echo "Unsupported file type: .$EXT"
