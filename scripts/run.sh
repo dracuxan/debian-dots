@@ -49,6 +49,7 @@ go)
 rs)
     echo "Running ${FILE_NAME}.rs with rustc..."
     echo ""
+    mkdir -p "target"
     rustc "$FILE_PATH" -o ./target/$FILE_NAME
     ./target/${FILE_NAME} $ARGS
     ;;
