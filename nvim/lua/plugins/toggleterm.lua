@@ -51,7 +51,7 @@ function _RUN_SCRIPT()
 		cmd = "run.sh " .. filepath,
 		hidden = true,
 		close_on_exit = false,
-		direction = "horizontal",
+		direction = "float",
 		persist_size = true,
 	})
 
