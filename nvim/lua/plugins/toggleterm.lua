@@ -62,7 +62,7 @@ function _MAKE_RUN()
 	local make = Terminal:new({
 		cmd = "make run",
 		hidden = false,
-		direction = "horizontal",
+		direction = "float",
 		persist_size = true,
 		close_on_exit = false,
 	})
@@ -72,7 +72,7 @@ end
 function _MAKE_TEST()
 	local make = Terminal:new({
 		cmd = "make test",
-		direction = "horizontal",
+		direction = "float",
 		persist_size = true,
 		hidden = true,
 		close_on_exit = false,
@@ -84,7 +84,7 @@ function _MAKE_BENCH()
 	local make = Terminal:new({
 		cmd = "make bench",
 		hidden = true,
-		direction = "horizontal",
+		direction = "float",
 		persist_size = true,
 		close_on_exit = false,
 	})
@@ -95,7 +95,7 @@ function _MAKE_BUILD()
 	local make = Terminal:new({
 		cmd = "make build",
 		hidden = true,
-		direction = "horizontal",
+		direction = "float",
 		persist_size = true,
 		close_on_exit = false,
 	})
@@ -106,7 +106,7 @@ function _MAKE_CLEAN()
 	local make = Terminal:new({
 		cmd = "make clean",
 		hidden = true,
-		direction = "horizontal",
+		direction = "float",
 		persist_size = true,
 		close_on_exit = false,
 	})
