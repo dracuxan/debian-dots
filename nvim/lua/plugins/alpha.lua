@@ -1,3 +1,4 @@
+local alpa = require("alpha")
 local dashboard = require("alpha.themes.dashboard")
 
 dashboard.section.header.val = {
@@ -31,4 +32,4 @@ dashboard.section.footer.opts.hl = "AlphaFooter"
 
 dashboard.opts.layout[1].val = 8
 
-return dashboard.config
+alpa.setup(dashboard.config)

@@ -1,3 +1,4 @@
+local vim = vim
 local null_ls = require("null-ls")
 local formatting = null_ls.builtins.formatting -- to setup formatters
 -- local diagnostics = null_ls.builtins.diagnostics -- to setup linters
@@ -20,7 +21,7 @@ require("mason-null-ls").setup({
 })
 
 local sources = {
-	formatting.prettier.with({ filetypes = { "html", "json", "yaml", "markdown", "graphql" } }),
+	formatting.prettier.with({ filetypes = { "html", "json", "yaml", "markdown", "graphql", "typescriptreact" } }),
 	formatting.stylua,
 	formatting.shfmt.with({ args = { "-i", "4" } }),
 	formatting.terraform_fmt,

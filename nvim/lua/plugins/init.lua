@@ -1,4 +1,5 @@
 -- Set up the Lazy plugin manager
+local vim = vim
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
 	local lazyrepo = "https://github.com/folke/lazy.nvim.git"
@@ -137,7 +138,7 @@ local custom_plugins = {
 				end,
 			},
 			{ "nvim-telescope/telescope-ui-select.nvim" },
-			{ "nvim-tree/nvim-web-devicons", enabled = vim.g.have_nerd_font },
+			{ "nvim-tree/nvim-web-devicons",            enabled = vim.g.have_nerd_font },
 		},
 		config = function()
 			require("plugins.telescope") -- Loads the Telescope configuration
@@ -240,7 +241,7 @@ local custom_plugins = {
 		},
 
 		config = function()
-			require("alpha").setup(require("plugins.alpha"))
+			require("plugins.alpha")
 		end,
 	},
 
@@ -268,6 +269,7 @@ local custom_plugins = {
 	},
 	{
 		"github/copilot.vim",
+		-- lazy = true,
 	},
 	{
 		"simrat39/rust-tools.nvim",
