@@ -26,6 +26,7 @@ require("nvim-treesitter.configs").setup({
 		"tsx",
 		"css",
 		"html",
+		"rust",
 		"zig",
 	},
 	-- Autoinstall languages that are not installed
