@@ -267,10 +267,10 @@ local custom_plugins = {
 			vim.cmd([[silent! GoInstallDeps]])
 		end,
 	},
-	-- {
-	-- 	"github/copilot.vim",
-	-- 	-- lazy = true,
-	-- },
+	{
+		"github/copilot.vim",
+		-- lazy = true,
+	},
 	{
 		"simrat39/rust-tools.nvim",
 	},
