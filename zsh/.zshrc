@@ -48,6 +48,7 @@ alias cls='clear; fastfetch'
 alias tr='tree -Ld 1'
 alias trf='tree -I '.git' -I 'out' -L 2'
 alias x='exit'
+alias nvc='cd ~/dotfiles/nvim && nv'
 
 # Zig environment variables
 export PATH="$PATH:$HOME/zig/bin"
@@ -68,6 +69,7 @@ export PATH="$PATH:$HOME/.local/bin/protoc"
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # Load NVM
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # Load NVM bash_completion (optional)
+export PATH="$HOME/.npm-global/bin:$PATH"
 
 # Neovim Variables
 export PATH="$PATH:/opt/nvim-linux-x86_64/bin"
@@ -116,5 +118,6 @@ alias anchor="LD_LIBRARY_PATH=$HOME/glibc-2.39/local/lib:$LD_LIBRARY_PATH anchor
 PATH="/home/dracuxan/.local/share/solana/install/active_release/bin:$PATH"
 
 # Startup Commands
+[ -f ~/.chatgpt.env ] && source ~/.chatgpt.env
 eval "$(starship init zsh)"
 cls

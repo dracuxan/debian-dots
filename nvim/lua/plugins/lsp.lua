@@ -199,6 +199,10 @@ return {
 				filetypes = { "c", "cpp", "objc", "objcpp" },
 			},
 
+			bashls = {
+				capabilities = capabilities,
+			},
+
 			gopls = {
 				capabilities = capabilities,
 				cmd = { "gopls" },

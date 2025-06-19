@@ -84,7 +84,7 @@ ins_left({
 	function()
 		return "▊"
 	end,
-	color = { fg = colors.blue }, -- Sets highlighting of component
+	color = { fg = colors.blue },     -- Sets highlighting of component
 	padding = { left = 0, right = 1 }, -- We don't need space before this
 })
 
@@ -167,13 +167,17 @@ ins_right({
 			return "No LSP"
 		end
 
+		local excluded_clients = {
+			["null-ls"] = true,
+			["GitHub Copilot"] = true,
+		}
+
 		local client_names = {}
 		for _, client in pairs(clients) do
-			if client.name ~= "null-ls" then
+			if not excluded_clients[client.name] then
 				table.insert(client_names, client.name)
 			end
 		end
-
 		return table.concat(client_names, ", ")
 	end,
 	icon = " LSP:",
