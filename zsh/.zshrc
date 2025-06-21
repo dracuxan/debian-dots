@@ -111,7 +111,7 @@ alias nuke='nuclei'
 alias ff='firefox'
 
 # alacrity configurations
-alias alacritty_loc='nv /mnt/c/Users/Nisarg/AppData/Roaming/alacritty/alacritty.toml'
+alias alacritty_conf='nv /mnt/c/Users/Nisarg/AppData/Roaming/alacritty/alacritty.toml'
 
 # Solana environment Variables
 alias anchor="LD_LIBRARY_PATH=$HOME/glibc-2.39/local/lib:$LD_LIBRARY_PATH anchor"

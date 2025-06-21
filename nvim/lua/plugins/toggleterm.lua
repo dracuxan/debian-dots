@@ -7,7 +7,7 @@ end
 toggleterm.setup({
 	size = function(term)
 		if term.direction == "horizontal" then
-			return 15
+			return 10
 		else
 			return 60
 		end

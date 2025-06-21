@@ -1,7 +1,6 @@
 local vim = vim
 local null_ls = require("null-ls")
 local formatting = null_ls.builtins.formatting -- to setup formatters
--- local diagnostics = null_ls.builtins.diagnostics -- to setup linters
 
 -- Formatters & linters for mason to install
 require("mason-null-ls").setup({
@@ -12,10 +11,8 @@ require("mason-null-ls").setup({
 		"shfmt",   -- Shell formatter
 		"checkmake", -- linter for Makefiles
 		"ruff",    -- Python linter and formatter
-		"golines",
+		-- "golines",
 		"gofumpt",
-		"goimports-reviser",
-		"gopls",
 	},
 	automatic_installation = true,
 })
@@ -26,8 +23,8 @@ local sources = {
 	formatting.shfmt.with({ args = { "-i", "4" } }),
 	formatting.terraform_fmt,
 	formatting.gofumpt,
-	formatting.goimports_reviser,
-	formatting.golines,
+	-- formatting.goimports_reviser,
+	-- formatting.golines,
 	-- require("none-ls.formatting.ruff").with({ extra_args = { "--extend-select", "I" } }),
 	-- require("none-ls.formatting.ruff_format"),
 }
