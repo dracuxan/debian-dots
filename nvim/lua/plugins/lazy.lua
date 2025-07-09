@@ -320,9 +320,9 @@ local custom_plugins = {
 		"simrat39/rust-tools.nvim",
 	},
 
-	{
-		"github/copilot.vim",
-	},
+	-- {
+	-- 	"github/copilot.vim",
+	-- },
 	-- {
 	-- 	"saecki/crates.nvim",
 	-- 	ft = { "rust", "toml" },

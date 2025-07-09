@@ -117,6 +117,9 @@ alias alacritty_conf='nv /mnt/c/Users/Nisarg/AppData/Roaming/alacritty/alacritty
 alias anchor="LD_LIBRARY_PATH=$HOME/glibc-2.39/local/lib:$LD_LIBRARY_PATH anchor"
 PATH="/home/dracuxan/.local/share/solana/install/active_release/bin:$PATH"
 
+# Metasploit variables
+export PATH="$PATH:/opt/metasploit-framework/bin"
+
 # Startup Commands
 [ -f ~/.chatgpt.env ] && source ~/.chatgpt.env
 eval "$(starship init zsh)"
