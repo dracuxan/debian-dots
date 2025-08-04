@@ -1,3 +1,5 @@
+local vim = vim
+
 vim.wo.number = true -- Make line numbers default (default: false)
 vim.o.clipboard = "unnamedplus" -- Sync clipboard between OS and Neovim. (default: '')
 vim.o.relativenumber = true -- Set relative numbered lines (default: false)
@@ -54,3 +56,11 @@ vim.wo.foldmethod = "expr"
 vim.wo.foldexpr = "nvim_treesitter#foldexpr()"
 
 vim.wo.foldlevel = 99
+
+vim.opt.list = true
+vim.opt.listchars = {
+	tab = "· ",
+	trail = "·",
+	extends = ">",
+	precedes = "<",
+}
