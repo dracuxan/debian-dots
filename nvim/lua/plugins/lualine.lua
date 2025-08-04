@@ -37,7 +37,7 @@ local conditions = {
 local config = {
 	options = {
 		globalstatus = true,
-		disabled_filetypes = { "alpha", "TelescopePrompt", "toggleterm" },
+		disabled_filetypes = { "alpha", "TelescopePrompt" },
 		-- Disable sections and component separators
 		component_separators = "",
 		section_separators = "",
@@ -84,7 +84,7 @@ ins_left({
 	function()
 		return "▊"
 	end,
-	color = { fg = colors.blue },     -- Sets highlighting of component
+	color = { fg = colors.blue }, -- Sets highlighting of component
 	padding = { left = 0, right = 1 }, -- We don't need space before this
 })
 
