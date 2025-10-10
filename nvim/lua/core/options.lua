@@ -43,7 +43,7 @@ vim.o.completeopt =
 vim.opt.shortmess:append("c")          -- Don't give |ins-completion-menu| messages (default: does not include 'c')
 vim.opt.iskeyword:append("-")          -- Hyphenated words recognized by searches (default: does not include '-')
 vim.opt.formatoptions:remove({ "c", "r", "o" })
-vim.o.colorcolumn = "140"
+-- vim.o.colorcolumn = "140"
 -- Reset the cursor style on exit
 -- vim.cmd([[
 --   if exists('$NVIM_TUI_ENABLE_CURSOR_SHAPE')
