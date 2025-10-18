@@ -15,7 +15,7 @@ vim.o.softtabstop = 2                  -- Number of spaces that a tab counts for
 vim.o.expandtab = true                 -- Convert tabs to spaces (default: false)
 vim.o.scrolloff = 0                    -- Minimal number of screen lines to keep above and below the cursor (default: 0)
 vim.o.sidescrolloff = 8                -- Minimal number of screen columns either side of cursor if wrap is `false` (default: 0)
-vim.o.cursorline = false               -- Highlight the current line (default: false)
+vim.o.cursorline = true                -- Highlight the current line (default: false)
 vim.o.splitbelow = true                -- Force all horizontal splits to go below current window (default: false)
 vim.o.splitright = true                -- Force all vertical splits to go to the right of current window (default: false)
 vim.o.hlsearch = false                 -- Set highlight on search (default: true)
@@ -43,14 +43,6 @@ vim.o.completeopt =
 vim.opt.shortmess:append("c")          -- Don't give |ins-completion-menu| messages (default: does not include 'c')
 vim.opt.iskeyword:append("-")          -- Hyphenated words recognized by searches (default: does not include '-')
 vim.opt.formatoptions:remove({ "c", "r", "o" })
--- vim.o.colorcolumn = "140"
--- Reset the cursor style on exit
--- vim.cmd([[
---   if exists('$NVIM_TUI_ENABLE_CURSOR_SHAPE')
---     let $NVIM_TUI_ENABLE_CURSOR_SHAPE = 0
---   endif
---   autocmd VimLeave * set guicursor=a:ver25-blinkon350
--- ]])
 vim.opt.fillchars = { eob = " " }
 
 -- Treesitter folding
@@ -61,8 +53,53 @@ vim.wo.foldlevel = 99
 
 vim.opt.list = true
 vim.opt.listchars = {
-  tab = "· ",
-  trail = "·",
-  extends = ">",
-  precedes = "<",
+	tab = "· ",
+	trail = "·",
+	extends = ">",
+	precedes = "<",
 }
+
+_G.MyTabLabel = function(n)
+	local buf = vim.fn.bufname(vim.fn.tabpagebuflist(n)[vim.fn.tabpagewinnr(n)])
+	return buf ~= "" and "../" .. vim.fn.fnamemodify(buf, ":t") or "[No Name]"
+end
+
+_G.MyTabLine = function()
+	local s, cur, total = "", vim.fn.tabpagenr(), vim.fn.tabpagenr("$")
+	for i = 1, total do
+		s = s .. (i == cur and "%#TabLineSel#" or "%#TabLine#")
+		s = s .. ("%%%dT %%{v:lua.MyTabLabel(%d)} "):format(i, i)
+	end
+	return s .. "%#TabLineFill#%T" .. (total > 1 and "%=%#TabLine#%999Xclose" or "")
+end
+
+vim.o.showtabline = 2
+vim.o.tabline = "%!v:lua.MyTabLine()"
+
+-- -- Set colorcolumn to 60% of current window width and update on resize
+-- local function set_colorcolumn_pct(pct)
+-- 	local w = vim.api.nvim_win_get_width(0)
+-- 	local col = math.max(1, math.floor(w * pct / 100))
+-- 	vim.wo.colorcolumn = tostring(col)
+-- end
+--
+-- -- set on BufEnter and WinResized
+-- vim.api.nvim_create_autocmd({ "BufEnter", "WinResized" }, {
+-- 	callback = function()
+-- 		set_colorcolumn_pct(60)
+-- 	end,
+-- })
+
+vim.api.nvim_create_autocmd("ColorScheme", {
+	callback = function()
+		local set_hl = vim.api.nvim_set_hl
+		set_hl(0, "TabLine", { bg = "none" })
+		set_hl(0, "TabLineSel", { bg = "none", bold = true })
+		set_hl(0, "TabLineFill", { bg = "none" })
+		set_hl(0, "NormalFloat", { bg = "none" })
+		set_hl(0, "FloatBorder", { bg = "none" })
+		set_hl(0, "OilNormal", { bg = "none" })
+		set_hl(0, "OilFloat", { bg = "none" })
+		-- set_hl(0, "ColorColumn", { bg = "white" })
+	end,
+})

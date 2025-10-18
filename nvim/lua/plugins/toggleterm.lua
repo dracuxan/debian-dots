@@ -1,4 +1,5 @@
 local vim = vim
+local autoRun = "horizontal"
 local status_ok, toggleterm = pcall(require, "toggleterm")
 if not status_ok then
 	return
@@ -7,7 +8,7 @@ end
 toggleterm.setup({
 	size = function(term)
 		if term.direction == "horizontal" then
-			return 30
+			return 20
 		else
 			return 60
 		end
@@ -20,7 +21,7 @@ toggleterm.setup({
 	start_in_insert = true,
 	insert_mappings = true,
 	persist_size = true,
-	direction = "horizontal",
+	direction = "vertical",
 	close_on_exit = true,
 	shell = vim.o.shell,
 	float_opts = {
@@ -51,7 +52,7 @@ function _RUN_SCRIPT()
 		cmd = "run.sh " .. filepath,
 		hidden = true,
 		close_on_exit = false,
-		direction = "horizontal",
+		direction = autoRun,
 		persist_size = true,
 	})
 
@@ -62,7 +63,18 @@ function _MAKE_RUN()
 	local make = Terminal:new({
 		cmd = "make run",
 		hidden = false,
-		direction = "horizontal",
+		direction = autoRun,
+		persist_size = true,
+		close_on_exit = false,
+	})
+	make:toggle()
+end
+
+function _MAKE()
+	local make = Terminal:new({
+		cmd = "make",
+		hidden = false,
+		direction = autoRun,
 		persist_size = true,
 		close_on_exit = false,
 	})
@@ -72,7 +84,7 @@ end
 function _MAKE_TEST()
 	local make = Terminal:new({
 		cmd = "make test",
-		direction = "horizontal",
+		direction = autoRun,
 		persist_size = true,
 		hidden = true,
 		close_on_exit = false,
@@ -84,7 +96,7 @@ function _MAKE_BENCH()
 	local make = Terminal:new({
 		cmd = "make bench",
 		hidden = true,
-		direction = "horizontal",
+		direction = autoRun,
 		persist_size = true,
 		close_on_exit = false,
 	})
@@ -95,7 +107,7 @@ function _MAKE_BUILD()
 	local make = Terminal:new({
 		cmd = "make build",
 		hidden = true,
-		direction = "horizontal",
+		direction = autoRun,
 		persist_size = true,
 		close_on_exit = false,
 	})
@@ -106,7 +118,7 @@ function _MAKE_CLEAN()
 	local make = Terminal:new({
 		cmd = "make clean",
 		hidden = true,
-		direction = "horizontal",
+		direction = autoRun,
 		persist_size = true,
 		close_on_exit = false,
 	})
@@ -120,7 +132,8 @@ function _LAZYGIT_TOGGLE()
 end
 
 -- Set keymaps
-vim.keymap.set("n", "<M-m>s", _RUN_SCRIPT, { noremap = true, silent = true, desc = "use run script" })
+vim.keymap.set("n", "<M-m>s", _RUN_SCRIPT, { noremap = true, silent = true, desc = "run code" })
+vim.keymap.set("n", "<M-m>m", _MAKE, { noremap = true, silent = true, desc = "make" })
 vim.keymap.set("n", "<M-m>r", _MAKE_RUN, { noremap = true, silent = true, desc = "make run" })
 vim.keymap.set("n", "<M-m>t", _MAKE_TEST, { noremap = true, silent = true, desc = "make test" })
 vim.keymap.set("n", "<M-m>b", _MAKE_BUILD, { noremap = true, silent = true, desc = "make build" })

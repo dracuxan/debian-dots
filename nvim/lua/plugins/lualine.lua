@@ -6,7 +6,7 @@ local lualine = require("lualine")
 -- Color table for highlights
 -- stylua: ignore
 local colors = {
-	bg       = '#1F1F28',
+	bg       = 'none',
 	fg       = '#DCD7BA',
 	yellow   = '#E6C384',
 	cyan     = '#7AA89F',
@@ -84,7 +84,7 @@ ins_left({
 	function()
 		return "▊"
 	end,
-	color = { fg = colors.blue }, -- Sets highlighting of component
+	color = { fg = colors.blue },
 	padding = { left = 0, right = 1 }, -- We don't need space before this
 })
 
@@ -168,8 +168,8 @@ ins_right({
 		end
 
 		local excluded_clients = {
-			["null-ls"] = true,
 			["GitHub Copilot"] = true,
+			["null-ls"] = true,
 		}
 
 		local client_names = {}
