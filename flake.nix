@@ -1,5 +1,5 @@
 {
-  description = "Nisarg's system toolchain (flakes-only)";
+  description = "System-wide tools via Nix flakes";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
@@ -8,13 +8,46 @@
   outputs = { self, nixpkgs }:
   let
     system = "x86_64-linux";
-    pkgs = import nixpkgs { inherit system; };
+    pkgs = import nixpkgs {
+      inherit system;
+      config.allowUnfree = true;
+    };
   in
   {
-    packages.${system} = {
-      beam = import ./packages/beam.nix { inherit pkgs; };
-      dev  = import ./packages/dev.nix  { inherit pkgs; };
-      cli  = import ./packages/cli.nix  { inherit pkgs; };
+    packages.${system}.default = pkgs.buildEnv {
+      name = "system-tools";
+
+      paths = with pkgs; [
+        # editors / shell
+        neovim
+        tmux
+
+        # cli utils
+        ripgrep
+        fd
+        bat
+        eza
+        htop
+        curl
+        wget
+        git
+
+        # dev tools
+        gcc
+        gnumake
+        pkg-config
+        go
+        nodejs_20
+        docker
+        docker-compose
+        just
+
+        # BEAM
+        elixir
+        erlang
+        elixir-ls
+      ];
     };
   };
 }
+

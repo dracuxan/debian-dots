@@ -99,6 +99,14 @@ PATH="/home/dracuxan/.local/share/solana/install/active_release/bin:$PATH"
 # Metasploit variables
 export PATH="$PATH:/opt/metasploit-framework/bin"
 
+# nix alias
+alias nix-system-add='sudo nix profile add --profile /nix/var/nix/profiles/system'
+alias nix-system-upgrade='sudo nix profile upgrade --profile /nix/var/nix/profiles/system'
+alias nix-system-profile='sudo nix profile list --profile /nix/var/nix/profiles/system'
+
+# Nix system profile (required for Debian + Nix)
+export PATH=/nix/var/nix/profiles/system/bin:$PATH
+
 # Startup Commands
 [ -f ~/.chatgpt.env ] && source ~/.chatgpt.env
 eval "$(starship init zsh)"
