@@ -6,27 +6,6 @@ autoload -Uz +X compinit && compinit
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
 zstyle ':completion:*' menu select
 
-# Enable keybindings in Zsh
-bindkey -v  # Use Vim keybindings in Zsh
-
-# ALT + H (Move Left)
-bindkey '^[h' backward-char
-
-# ALT + L (Move Right)
-bindkey '^[l' forward-char
-
-# ALT + J (Move Down in history)
-bindkey '^[j' down-line-or-history
-
-# ALT + K (Move Up in history)
-bindkey '^[k' up-line-or-history
-
-#Disabeling arrow keys
-bindkey -r "^[[A"  # Remove Up Arrow
-bindkey -r "^[[B"  # Remove Down Arrow
-bindkey -r "^[[C"  # Remove Right Arrow
-bindkey -r "^[[D"  # Remove Left Arrow
-
 # Exports and Alias
 # History configurations
 HISTFILE=~/.zsh_history
@@ -80,7 +59,7 @@ export PATH="$HOME/.local/bin:$PATH"
 alias tm='start_tmux.sh'
 alias tm='start_tmux.sh'
 alias run='run.sh'
-alias igris='ssh igris@192.168.0.198'
+alias arise='ssh Igris'
 
 # Emacs path
 export PATH="$HOME/.emacs.d/bin:$PATH" 
@@ -139,3 +118,6 @@ cls
 # fi
 # unset __conda_setup
 # # <<< conda initialize <<<
+
+# opencode
+export PATH=/home/dracuxan/.opencode/bin:$PATH

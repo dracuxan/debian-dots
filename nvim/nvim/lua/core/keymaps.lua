@@ -26,7 +26,7 @@ vk({ "n", "v" }, "<Space>", "<Nop>", { silent = true })
 -- save file
 vk("n", "<C-s>", "<cmd> w <CR>", opts)
 vk("i", "<C-s>", "<Esc><cmd> w <CR>", opts)
-vk("n", "<C-a>", "<cmd> AutoSession search <CR>", opts)
+vk("n", "<M-a>", "<cmd> AutoSession search <CR>", opts)
 
 -- delete single character without copying into register
 vk("n", "x", '"_x', opts)
@@ -91,6 +91,10 @@ vk("n", "qq", "<cmd> q <CR>", opts)
 
 -- Find todos using fzf
 vk("n", "<leader>ft", "<cmd> TodoFzfLua <CR>", { desc = "[F]ind [T]odos using fzf", noremap = true, silent = true })
+
+-- Manual file reload control
+vk("n", "<leader>fr", ":checktime<CR>", { desc = "Check external file changes" })
+vk("n", "<leader>fr!", ":edit!<CR>", { desc = "Force reload file" })
 
 -- For terminal navigation
 vk("t", "<C-h>", [[<C-\><C-N><C-w>h]])

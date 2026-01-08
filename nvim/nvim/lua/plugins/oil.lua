@@ -23,9 +23,21 @@ return {
 				view_options = {
 					show_hidden = true,
 					is_always_hidden = function(name, _)
-						local folder_skip = { "dev-tools.locks", "dune.lock", "_build" }
+						local folder_skip = { "dev-tools.locks", "dune.lock" }
 						return vim.tbl_contains(folder_skip, name)
 					end,
+				},
+				float = {
+					padding = 2,
+					max_width = 0.8,
+					max_height = 0.8,
+					border = "rounded",
+					win_options = {
+						winblend = 0,
+					},
+				},
+				confirmation = {
+					border = "rounded",
 				},
 			})
 

@@ -3,7 +3,7 @@
 set -e # Exit on error
 
 echo "-----------------------------------------------------"
-echo "       dracuxan's Dotfiles for Debian                "
+echo "       dracuxan's Dotfiles for NixOS Installer       "
 echo "-----------------------------------------------------"
 
 echo "[+] Checking stow..."
@@ -19,17 +19,16 @@ echo "[+] Stowing dotfiles..."
 DOTFILES_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 echo "[+] Preparing ~/.config layout..."
-for dir in fastfetch nvim; do
+for dir in alacritty fastfetch nvim i3 i3status picom; do
     mkdir -p "$HOME/.config/$dir"
 done
 
 echo "[+] Stowing configs into ~/.config..."
 
-stow --adopt -d "$DOTFILES_DIR" -t "$HOME/.config/fastfetch" fastfetch
-stow --adopt -d "$DOTFILES_DIR" -t "$HOME/.config/nvim" nvim
+stow --adopt -d "$DOTFILES_DIR" -t "$HOME/.config/" fastfetch
+stow --adopt -d "$DOTFILES_DIR" -t "$HOME/.config/" nvim
 
 echo "[+] Stowing legacy dotfiles into ~..."
-stow --adopt -d "$DOTFILES_DIR" -t "$HOME/.config" starship
 stow --adopt -d "$DOTFILES_DIR" -t "$HOME" zsh
 stow --adopt -d "$DOTFILES_DIR" -t "$HOME" tmux
 stow --adopt -d "$DOTFILES_DIR" -t "$HOME/.local/bin" scripts

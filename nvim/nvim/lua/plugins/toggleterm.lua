@@ -1,5 +1,6 @@
 local vim = vim
 local autoRun = "horizontal"
+local default = "vertical"
 local status_ok, toggleterm = pcall(require, "toggleterm")
 if not status_ok then
 	return
@@ -21,7 +22,7 @@ toggleterm.setup({
 	start_in_insert = true,
 	insert_mappings = true,
 	persist_size = true,
-	direction = "vertical",
+	direction = default,
 	close_on_exit = true,
 	shell = vim.o.shell,
 	float_opts = {
@@ -48,7 +49,7 @@ local Terminal = require("toggleterm.terminal").Terminal
 function _RUN_SCRIPT()
 	local buffname = vim.api.nvim_buf_get_name(0)
 	local filepath = vim.fn.fnamemodify(buffname, ":p")
-	local script_term = Terminal:new({
+	local script_run = Terminal:new({
 		cmd = "run.sh " .. filepath,
 		hidden = true,
 		close_on_exit = false,
@@ -56,73 +57,58 @@ function _RUN_SCRIPT()
 		persist_size = true,
 	})
 
-	script_term:toggle()
+	script_run:toggle()
 end
 
-function _MAKE_RUN()
-	local make = Terminal:new({
-		cmd = "make run",
-		hidden = false,
-		direction = autoRun,
-		persist_size = true,
-		close_on_exit = false,
-	})
-	make:toggle()
-end
-
-function _MAKE()
-	local make = Terminal:new({
-		cmd = "make",
-		hidden = false,
-		direction = autoRun,
-		persist_size = true,
-		close_on_exit = false,
-	})
-	make:toggle()
-end
-
-function _MAKE_TEST()
-	local make = Terminal:new({
-		cmd = "make test",
+function _RUN_TEST()
+	local buffname = vim.api.nvim_buf_get_name(0)
+	local filepath = vim.fn.fnamemodify(buffname, ":p")
+	local script_test = Terminal:new({
+		cmd = "run.sh " .. filepath .. " --test",
 		direction = autoRun,
 		persist_size = true,
 		hidden = true,
 		close_on_exit = false,
 	})
-	make:toggle()
+	script_test:toggle()
 end
 
-function _MAKE_BENCH()
-	local make = Terminal:new({
-		cmd = "make bench",
+function _RUN_REPL()
+	local buffname = vim.api.nvim_buf_get_name(0)
+	local filepath = vim.fn.fnamemodify(buffname, ":p")
+	local script_test = Terminal:new({
+		cmd = "run.sh " .. filepath .. " --repl",
+		direction = autoRun,
+		persist_size = true,
+		hidden = true,
+		close_on_exit = false,
+	})
+	script_test:toggle()
+end
+
+function _RUN_BUILD()
+	local buffname = vim.api.nvim_buf_get_name(0)
+	local filepath = vim.fn.fnamemodify(buffname, ":p")
+	local script_build = Terminal:new({
+		cmd = "run.sh " .. filepath .. " --build-only",
 		hidden = true,
 		direction = autoRun,
 		persist_size = true,
 		close_on_exit = false,
 	})
-	make:toggle()
+	script_build:toggle()
 end
 
-function _MAKE_BUILD()
-	local make = Terminal:new({
-		cmd = "make build",
+function _SEND_BIN()
+	local sendToServer = "run.sh main.go --build-only && scp ./bin/main igris@192.168.0.198:/home/igris/exps"
+	local script_send = Terminal:new({
+		cmd = sendToServer,
 		hidden = true,
 		direction = autoRun,
 		persist_size = true,
 		close_on_exit = false,
 	})
-	make:toggle()
-end
-
-function _MAKE_CLEAN()
-	local make = Terminal:new({
-		cmd = "make clean",
-		hidden = true,
-		direction = autoRun,
-		persist_size = true,
-		close_on_exit = false,
-	})
-	make:toggle()
+	script_send:toggle()
 end
 
 function _LAZYGIT_TOGGLE()
@@ -132,11 +118,9 @@ function _LAZYGIT_TOGGLE()
 end
 
 -- Set keymaps
-vim.keymap.set("n", "<M-m>s", _RUN_SCRIPT, { noremap = true, silent = true, desc = "run code" })
-vim.keymap.set("n", "<M-m>m", _MAKE, { noremap = true, silent = true, desc = "make" })
-vim.keymap.set("n", "<M-m>r", _MAKE_RUN, { noremap = true, silent = true, desc = "make run" })
-vim.keymap.set("n", "<M-m>t", _MAKE_TEST, { noremap = true, silent = true, desc = "make test" })
-vim.keymap.set("n", "<M-m>b", _MAKE_BUILD, { noremap = true, silent = true, desc = "make build" })
-vim.keymap.set("n", "<M-m>B", _MAKE_BENCH, { noremap = true, silent = true, desc = "make bench" })
-vim.keymap.set("n", "<M-m>c", _MAKE_CLEAN, { noremap = true, silent = true, desc = "make clean" })
+vim.keymap.set("n", "<M-m>r", _RUN_SCRIPT, { noremap = true, silent = true, desc = "run script" })
+vim.keymap.set("n", "<M-m>t", _RUN_TEST, { noremap = true, silent = true, desc = "run test(s)" })
+vim.keymap.set("n", "<M-m>i", _RUN_REPL, { noremap = true, silent = true, desc = "run REPL" })
+vim.keymap.set("n", "<M-m>b", _RUN_BUILD, { noremap = true, silent = true, desc = "build project" })
+vim.keymap.set("n", "<M-m>s", _SEND_BIN, { noremap = true, silent = true, desc = "send binaries to server" })
 vim.keymap.set("n", "<M-m>l", _LAZYGIT_TOGGLE, { noremap = true, silent = true, desc = "lazygit" })

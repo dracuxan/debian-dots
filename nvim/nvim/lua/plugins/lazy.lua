@@ -16,12 +16,24 @@ local custom_plugins = {
 	require("plugins.oil"),
 	require("plugins.lsp"),
 	require("plugins.langages"),
+	require("plugins.textobjects"),
+	require("plugins.markdown"),
 
 	{
 		"folke/noice.nvim",
 		config = function()
 			require("noice").setup({
 				-- add any options here
+				lsp = {
+					documentation = {
+						opts = {
+							size = {
+								max_width = 80,
+								max_height = 20,
+							},
+						},
+					},
+				},
 				routes = {
 					{
 						filter = {
@@ -154,6 +166,11 @@ local custom_plugins = {
 			)
 		end,
 	},
+
+	-- {
+	-- 	"github/copilot.vim",
+	-- 	-- lazy = true,
+	-- },
 }
 
 require("lazy").setup(custom_plugins)

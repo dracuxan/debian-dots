@@ -37,7 +37,7 @@ local conditions = {
 local config = {
 	options = {
 		globalstatus = true,
-		disabled_filetypes = { "alpha", "TelescopePrompt" },
+		disabled_filetypes = {},
 		-- Disable sections and component separators
 		component_separators = "",
 		section_separators = "",
@@ -169,7 +169,7 @@ ins_right({
 
 		local excluded_clients = {
 			["GitHub Copilot"] = true,
-			["null-ls"] = true,
+			-- ["null-ls"] = true,
 		}
 
 		local client_names = {}
