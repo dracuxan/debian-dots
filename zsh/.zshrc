@@ -101,7 +101,7 @@ export PATH="$PATH:/opt/metasploit-framework/bin"
 
 # nix alias
 alias nix-system-add='sudo nix profile add --profile /nix/var/nix/profiles/system'
-alias nix-system-upgrade='sudo nix profile upgrade --profile /nix/var/nix/profiles/system'
+alias nix-system-upgrade='sudo nix profile upgrade --profile /nix/var/nix/profiles/system dotfiles'
 alias nix-system-profile='sudo nix profile list --profile /nix/var/nix/profiles/system'
 
 # Nix system profile (required for Debian + Nix)

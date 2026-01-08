@@ -27,7 +27,7 @@
         fd
         bat
         eza
-        htop
+        btop
         curl
         wget
         git
@@ -40,7 +40,6 @@
         nodejs_20
         docker
         docker-compose
-        just
 
         # BEAM
         elixir
