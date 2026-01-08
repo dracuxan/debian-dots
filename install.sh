@@ -19,7 +19,7 @@ echo "[+] Stowing dotfiles..."
 DOTFILES_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 echo "[+] Preparing ~/.config layout..."
-for dir in alacritty fastfetch nvim i3 i3status picom; do
+for dir in fastfetch nvim; do
     mkdir -p "$HOME/.config/$dir"
 done
 

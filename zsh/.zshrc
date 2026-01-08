@@ -121,3 +121,4 @@ cls
 
 # opencode
 export PATH=/home/dracuxan/.opencode/bin:$PATH
+. /etc/profile.d/nix.sh
