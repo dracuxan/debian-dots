@@ -28,6 +28,7 @@ alias tr='tree -Ld 1'
 alias trf='tree -I '.git' -I 'out' -L 2'
 alias x='exit'
 alias nvc='cd ~/dotfiles/nvim && nv'
+alias cd='z'
 
 # Zig environment variables
 export PATH="$PATH:$HOME/zig/bin"
@@ -130,3 +131,4 @@ cls
 # opencode
 export PATH=/home/dracuxan/.opencode/bin:$PATH
 . /etc/profile.d/nix.sh
+eval "$(zoxide init zsh)"

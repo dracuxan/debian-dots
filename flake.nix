@@ -31,20 +31,24 @@
         curl
         wget
         git
+        zoxide
 
         # dev tools
         gcc
         gnumake
         pkg-config
         go
-        nodejs_20
+        nodejs_24
         docker
         docker-compose
 
         # BEAM
         elixir
         erlang
+        inotify-tools
         elixir-ls
+        xdg-utils
+        watchman
       ];
     };
   };

@@ -20,6 +20,9 @@ null_ls.setup({
 				group = augroup,
 				buffer = bufnr,
 				callback = function()
+					if vim.bo.filetype == "oil" then
+						return
+					end
 					vim.lsp.buf.format({ async = false })
 				end,
 			})

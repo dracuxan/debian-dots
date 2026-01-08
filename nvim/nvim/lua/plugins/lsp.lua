@@ -1,6 +1,4 @@
 local vim = vim
-local augroup = augroup
-local bufnr = bufnr
 
 return {
 	"neovim/nvim-lspconfig",
@@ -74,16 +72,16 @@ return {
 				end
 
 				if client.supports_method("textDocument/formatting") then
-					vim.api.nvim_clear_autocmds({
-						group = augroup,
-						buffer = bufnr,
-					})
+					local format_augroup = vim.api.nvim_create_augroup("lsp-format-" .. event.buf, { clear = true })
 
 					vim.api.nvim_create_autocmd("BufWritePre", {
-						group = augroup,
-						buffer = bufnr,
+						group = format_augroup,
+						buffer = event.buf,
 						callback = function()
-							vim.lsp.buf.format({ bufnr = bufnr })
+							if vim.bo.filetype == "oil" then
+								return
+							end
+							vim.lsp.buf.format({ bufnr = event.buf })
 						end,
 					})
 
@@ -98,6 +96,9 @@ return {
 				vim.api.nvim_create_autocmd("BufWritePre", {
 					pattern = "*.go",
 					callback = function()
+						if vim.bo.filetype == "oil" then
+							return
+						end
 						local params = vim.lsp.util.make_range_params(0, "utf-16")
 						params.context = { only = { "source.organizeImports" } }
 						local result = vim.lsp.buf_request_sync(0, "textDocument/codeAction", params)
