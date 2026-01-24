@@ -111,6 +111,16 @@ exs | ex)
 
     fi
     ;;
+ts | js)
+    if [[ "$EXT" == "js" ]]; then
+        echo "Running ${FILE_NAME}.js..."
+    else
+
+        echo "Running ${FILE_NAME}.ts..."
+    fi
+    echo ""
+    node $FILE_PATH
+    ;;
 sh)
     echo "Running ${FILE_NAME}.sh script...."
     echo ""
