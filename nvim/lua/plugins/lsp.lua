@@ -161,7 +161,6 @@ return {
 			"shfmt",
 			"checkmake",
 			"ruff",
-			"gofumpt",
 			"clang-format",
 			"prettierd",
 		})

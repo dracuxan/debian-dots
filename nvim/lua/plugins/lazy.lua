@@ -19,6 +19,50 @@ local custom_plugins = {
 	require("plugins.textobjects"),
 
 	{
+		"nvim-neo-tree/neo-tree.nvim",
+		branch = "v3.x",
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+			"MunifTanjim/nui.nvim",
+			"nvim-tree/nvim-web-devicons",
+		},
+		lazy = false,
+		opts = {
+			window = {
+				position = "right",
+			},
+
+			filesystem = {
+				persist_state = true,
+				follow_current_file = {
+					enabled = true,
+				},
+			},
+
+			diagnostics = {
+				enable = false,
+			},
+
+			git_status = {
+				window = {
+					position = "right",
+				},
+			},
+		},
+	},
+
+	{
+		"nyoom-engineering/oxocarbon.nvim",
+	},
+
+	{
+		"nvim-treesitter/nvim-treesitter",
+		branch = "master",
+		lazy = false,
+		build = ":TSUpdate",
+	},
+
+	{
 		"folke/noice.nvim",
 		config = function()
 			require("noice").setup({

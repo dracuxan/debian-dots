@@ -8,11 +8,13 @@ require("vesper").setup({
 		variables = true, -- Boolean: Italicizes variables
 	},
 	overrides = {
-			OilNormal = { bg = "NONE" },
-			OilFloat = { bg = "NONE" },
-			FloatBorder = { bg = "NONE", fg = "#5e81ac" },
-		}, -- A dictionary of group names, can be a function returning a dictionary or a table.
+		OilNormal = { bg = "NONE" },
+		OilFloat = { bg = "NONE" },
+		FloatBorder = { bg = "NONE", fg = "#5e81ac" },
+	}, -- A dictionary of group names, can be a function returning a dictionary or a table.
 	palette_overrides = {},
 })
 
+-- vim.cmd.colorscheme("vesper")
+vim.opt.background = "dark" -- set this to dark or light
 vim.cmd.colorscheme("vesper")

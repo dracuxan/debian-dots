@@ -24,8 +24,10 @@ vk("i", "<C-e>", "<C-o>$", opts) -- Move to end of line
 vk({ "n", "v" }, "<Space>", "<Nop>", { silent = true })
 
 -- save file
-vk("n", "<C-s>", "<cmd> w <CR>", opts)
-vk("i", "<C-s>", "<Esc><cmd> w <CR>", opts)
+vk("n", "<leader>s", "<cmd> w <CR>", opts)
+vk("i", "<leader>s", "<Esc><cmd> w <CR>", opts)
+vk("n", "<C-s>", "<cmd> noautocmd w <CR>", opts)
+vk("i", "<C-s>", "<Esc><cmd> noautocmd w <CR>", opts)
 vk("n", "<M-a>", "<cmd> AutoSession search <CR>", opts)
 
 -- delete single character without copying into register
@@ -81,6 +83,14 @@ vk("n", "<leader>rr", ":luafile %<CR>", new_opts)
 
 -- Open Lazy Plugin Manager
 vk("n", "<leader>l", "<cmd>Lazy<CR>", opts)
+
+vk("n", "<M-\\>", function()
+	require("neo-tree.command").execute({
+
+		toggle = true,
+		position = "right",
+	})
+end, { desc = "Toggle Neo-tree (right)" })
 
 -- Quit all
 vk("n", "<C-q>", "<cmd> qa <CR>", opts)

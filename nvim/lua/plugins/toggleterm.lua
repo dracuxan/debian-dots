@@ -14,7 +14,7 @@ toggleterm.setup({
 			return 60
 		end
 	end,
-	open_mapping = [[<M-\>]],
+	open_mapping = [[<C-t>]],
 	hide_numbers = true,
 	shade_filetypes = {},
 	shade_terminals = true,

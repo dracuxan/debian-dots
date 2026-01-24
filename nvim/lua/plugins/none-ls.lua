@@ -6,7 +6,6 @@ local sources = {
 	formatting.prettierd,
 	formatting.shfmt.with({ args = { "-i", "4" } }),
 	formatting.terraform_fmt,
-	formatting.gofumpt,
 	formatting.clang_format,
 }
 
