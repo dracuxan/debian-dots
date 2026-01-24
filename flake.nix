@@ -37,7 +37,7 @@
         gcc
         gnumake
         pkg-config
-        go
+        go_1_24
         nodejs_24
         docker
         docker-compose

@@ -25,8 +25,8 @@ done
 
 echo "[+] Stowing configs into ~/.config..."
 
-stow --adopt -d "$DOTFILES_DIR" -t "$HOME/.config/" fastfetch
-stow --adopt -d "$DOTFILES_DIR" -t "$HOME/.config/" nvim
+stow --adopt -d "$DOTFILES_DIR" -t "$HOME/.config/nvim" fastfetch
+stow --adopt -d "$DOTFILES_DIR" -t "$HOME/.config/nvim" nvim
 
 echo "[+] Stowing legacy dotfiles into ~..."
 stow --adopt -d "$DOTFILES_DIR" -t "$HOME" zsh
