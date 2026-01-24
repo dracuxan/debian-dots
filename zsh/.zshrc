@@ -41,6 +41,9 @@ export GOBIN=$GOPATH/bin
 # Add Go binaries to PATH
 export PATH=$GOROOT/bin:$GOPATH/bin:$PATH
 
+# Elixir env
+export PATH="$HOME/.mix/escripts:$PATH"
+
 # Protoc Variables
 export PATH="$PATH:$HOME/.local/bin/protoc"
 . "$HOME/.cargo/env"
