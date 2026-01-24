@@ -1,0 +1,42 @@
+[cursor.style]
+blinking = "Always"
+shape = "Block"
+
+[font]
+size = 10
+
+[font.bold]
+family = "FiraCode Nerd Font Mono"
+style = "Bold"
+
+[font.italic]
+family = "FiraCode Nerd Font Mono"
+style = "Italic"
+
+[font.normal]
+family = "FiraCode Nerd Font Mono"
+style = "Regular"
+
+[font.offset]
+x = 0
+y = 0
+
+[scrolling]
+history = 10000
+multiplier = 3
+
+[selection]
+save_to_clipboard = true
+
+[terminal.shell]
+program = "wsl.exe"
+args = ["~"]
+
+[window]
+decorations = "none"
+startup_mode = "Maximized"
+# opacity = 0.85
+
+[window.padding]
+x = 10
+y = 10
