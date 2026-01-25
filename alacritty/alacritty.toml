@@ -6,15 +6,15 @@ shape = "Block"
 size = 10
 
 [font.bold]
-family = "FiraCode Nerd Font Mono"
+family = "JetBrainsMono Nerd Font"
 style = "Bold"
 
 [font.italic]
-family = "FiraCode Nerd Font Mono"
+family = "JetBrainsMono Nerd Font"
 style = "Italic"
 
 [font.normal]
-family = "FiraCode Nerd Font Mono"
+family = "JetBrainsMono Nerd Font"
 style = "Regular"
 
 [font.offset]
@@ -28,14 +28,8 @@ multiplier = 3
 [selection]
 save_to_clipboard = true
 
-[terminal.shell]
-program = "wsl.exe"
-args = ["~"]
-
 [window]
-decorations = "none"
-startup_mode = "Maximized"
-# opacity = 0.85
+opacity = 0.85
 
 [window.padding]
 x = 10
