@@ -32,15 +32,27 @@
         wget
         git
         zoxide
+	stow
+        fastfetch
+        starship
+        fzf
+        fd
+        gh
+        gawk
+        acpi
+        lazygit
 
         # dev tools
+        zig
         gcc
         gnumake
         pkg-config
         go_1_24
         nodejs_24
-        docker
-        docker-compose
+        rustc
+        cargo
+        rustfmt
+        clippy
 
         # BEAM
         elixir
