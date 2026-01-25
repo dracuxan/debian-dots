@@ -44,10 +44,6 @@ export PATH=$GOROOT/bin:$GOPATH/bin:$PATH
 # Elixir env
 export PATH="$HOME/.mix/escripts:$PATH"
 
-# Protoc Variables
-export PATH="$PATH:$HOME/.local/bin/protoc"
-. "$HOME/.cargo/env"
-
 # NVM Variables
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # Load NVM
@@ -65,8 +61,7 @@ alias tm='start_tmux.sh'
 alias run='run.sh'
 alias arise='ssh Igris'
 
-# Emacs path
-export PATH="$HOME/.emacs.d/bin:$PATH" 
+export LC_ALL=C.UTF-8
 
 # Git aliases
 alias gitupd='git add .; git commit -m "upd"; git push'
@@ -114,9 +109,9 @@ export PATH=/nix/var/nix/profiles/system/bin:$PATH
 # Startup Commands
 [ -f ~/.chatgpt.env ] && source ~/.chatgpt.env
 eval "$(starship init zsh)"
-cls
 
 # opencode
 export PATH=/home/dracuxan/.opencode/bin:$PATH
 . /etc/profile.d/nix.sh
 eval "$(zoxide init zsh)"
+cls
