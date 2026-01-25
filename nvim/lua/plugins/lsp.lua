@@ -136,7 +136,6 @@ return {
 			gopls = {},
 			rust_analyzer = {},
 			nil_ls = {},
-			clangd = {},
 			bashls = {},
 			pyright = {},
 			zls = {},
@@ -160,8 +159,6 @@ return {
 			"stylua",
 			"shfmt",
 			"checkmake",
-			"ruff",
-			"clang-format",
 			"prettierd",
 		})
 		require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
