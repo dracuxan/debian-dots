@@ -19,7 +19,7 @@ Required tools:
 ## Installation
 
 > [!WARNING]\
-> Under _**active development**_ — Existing config files will be overwritten!
+> under _**active development**_ — existing config files will be overwritten!
 
 ```bash
 git clone https://github.com/dracuxan/Dot-Files.git ~/dotfiles && cd ~/dotfiles
@@ -63,14 +63,6 @@ dotfiles/
 **Neovim Plus Tmux**
 ![nvim](./screenshots/nvim_plus_tmux.png)
 
-## Customization
-
-Modify colors and themes in:
-
-- i3: `~/.config/i3/config`
-- zsh: `~/.zshrc` and starship config
-- nvim: `~/.config/nvim/lua/`
-
 ## Nix Integration
 
 Install packages with: `nix profile install .#default`
@@ -86,7 +78,7 @@ Common fixes:
 ## Scripts
 
 > [!WARNING]\
-> Under _**active development**_ — scripts may or may not work for you. use at your own risk
+> under _**active development**_ — scripts may or may not work for you. use at your own risk
 
 Key utilities:
 
