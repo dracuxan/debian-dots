@@ -86,7 +86,7 @@ return {
 					})
 
 					vim.diagnostic.config({
-						update_in_insert = true, -- Show errors while typing
+						update_in_insert = false, -- Show errors while typing
 						virtual_text = true, -- Show inline errors
 						signs = true, -- Show signs in the gutter
 						underline = true, -- Underline errors
