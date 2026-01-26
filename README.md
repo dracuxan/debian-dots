@@ -22,8 +22,19 @@ Required tools:
 > under _**active development**_ — existing config files will be overwritten!
 
 ```bash
-git clone https://github.com/dracuxan/Dot-Files.git ~/dotfiles && cd ~/dotfiles
+git clone https://github.com/dracuxan/debian-dots.git ~/dotfiles && cd ~/dotfiles
+```
+
+```bash
 ./install.sh
+```
+
+## Nix Integration
+
+Install packages with:
+
+```bash
+nix profile install .#default
 ```
 
 ## Directory Structure
@@ -50,7 +61,7 @@ dotfiles/
 - tmux with custom keybindings
 - zsh with starship prompt
 - Wallpaper management scripts
-- Application launchers (steam, obs, etc.)
+- Application launcher scripts for flatpak installed apps (steam, obs, etc.)
 
 ## Screenshots
 
@@ -62,10 +73,6 @@ dotfiles/
 
 **Neovim Plus Tmux**
 ![nvim](./screenshots/nvim_plus_tmux.png)
-
-## Nix Integration
-
-Install packages with: `nix profile install .#default`
 
 ## Troubleshooting
 
