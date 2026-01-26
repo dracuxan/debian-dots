@@ -1,10 +1,10 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
 set -e # Exit on error
 
-echo "-----------------------------------------------------"
-echo "       dracuxan's Dotfiles for NixOS Installer       "
-echo "-----------------------------------------------------"
+echo "-----------------------------------------"
+echo "       DRACUXAN'S DOTFILES FOR DEBIAN    "
+echo "-----------------------------------------"
 
 echo "[+] Checking stow..."
 if command -v stow >/dev/null 2>&1; then
@@ -38,6 +38,7 @@ stow --adopt -d "$DOTFILES_DIR" -t "$HOME" tmux
 stow --adopt -d "$DOTFILES_DIR" -t "$HOME/.local/bin" scripts
 
 echo "[+] Checking wallpaper config..."
+
 if [[ ! -f "$HOME/.config/wallpaper.conf" ]]; then
     mkdir -p "$HOME/.config"
     echo "# Wallpaper Configuration" >"$HOME/.config/wallpaper.conf"
@@ -46,5 +47,5 @@ if [[ ! -f "$HOME/.config/wallpaper.conf" ]]; then
 fi
 
 echo "-----------------------------------------"
-echo "       Setup Complete — Reboot Now       "
+echo "       SETUP COMPLETE. REBOOT NOW       "
 echo "-----------------------------------------"
