@@ -1,70 +1,95 @@
 [![wakatime](https://wakatime.com/badge/user/0d75cfc5-da70-41b7-b8c8-661ef9d8338b/project/9358976a-67c2-4357-8140-bd4a4c743b96.svg)](https://wakatime.com/badge/user/0d75cfc5-da70-41b7-b8c8-661ef9d8338b/project/9358976a-67c2-4357-8140-bd4a4c743b96)
 
-# [#] Dotfiles
+# Dotfiles
 
-Personal dotfiles setup for managing Neovim, Fastfetch, Starship, zsh, tmux and more — using `stow` for clean symlinks and `make` for convenience.
+Personal dotfiles for managing Neovim, i3, tmux, zsh and other tools using stow.
 
-## [+] Pre-requisites
+## Prerequisites
 
-Make sure your system has:
+Required tools:
 
 - git
 - stow
 - zsh
-- Neovim (v0.9 or higher)
-- Fastfetch
-- Starship
+- i3
+- picom
+- Neovim
 - tmux
 
-Additional tools for LSP / Development:
+## Installation
 
-- Go
-- Clang
-- gcc
-- Python
-- Node.js
-- Rust
+> [!WARNING]\
+> Under _**active development**_ — Existing config files will be overwritten!
+
+```bash
+git clone https://github.com/dracuxan/Dot-Files.git ~/dotfiles && cd ~/dotfiles
+./install.sh
+```
 
 ## Directory Structure
 
 ```
 dotfiles/
-│
-├── alacritty/          → Alacritty config
-├── fastfetch/          → Fastfetch config
+├── alacritty/          → Terminal config
+├── fastfetch/          → System info
+├── i3/                 → Window manager
+├── i3status/           → Status bar
 ├── nvim/               → Neovim config
-├── tmux/               → tmux config
-├── zsh/                → zsh config
-│
-├── scripts/
-│   ├── install.sh      → setup installer
-│   └── start_tmux.sh   → tmux script
-│
-├── Makefile            → run scripts using make
+├── picom/              → Compositor
+├── tmux/               → Terminal multiplexer
+├── zsh/                → Shell config
+├── scripts/            → Utility scripts
+├── flake.nix           → Nix packages
 └── README.md
 ```
 
-## [>>] Installation
+## Features
 
-> [!WARNING]\
-> Under _**active development**_ — Existing config files will be overwritten!
-
-```
-git clone https://github.com/dracuxan/Dot-Files.git ~/dotfiles && cd ~/dotfiles
-```
-
-### [::] Make Commands to Complete the installation
-
-| Command      | Description                                         |
-| ------------ | --------------------------------------------------- |
-| make install | runs `install.sh` — Installs by using stow          |
-| make setup   | copies the script `start_tmux.sh` to /usr/local/bin |
-| make clean   | unstows (removes) all symlinked configs             |
+- i3 window manager with picom compositor
+- Neovim configuration with LSP support
+- tmux with custom keybindings
+- zsh with starship prompt
+- Wallpaper management scripts
+- Application launchers (steam, obs, etc.)
 
 ## Screenshots
 
-![Fastfetch](https://github.com/user-attachments/assets/31804d54-ff43-45c6-8f1b-79e3ae28cd0d)
-![Neovim](https://github.com/user-attachments/assets/cb92ce16-dd48-48de-aea7-0d83d5bd2709)
-![Neovim](https://github.com/user-attachments/assets/ab2f30a2-6305-4d98-af52-cd81d4dc5b1f)
-![toggleterm](https://github.com/user-attachments/assets/e465ac94-6129-469a-94f4-8658a2dbc416)
-![tmux](https://github.com/user-attachments/assets/e72e1d81-1c6a-4da1-b68c-6859778b783d)
+**i3 WM**
+![i3](./screenshots/rice-1.png)
+
+**Fastfetch**
+![fastfetch](./screenshots/alacritty.png)
+
+**Neovim Plus Tmux**
+![nvim](./screenshots/nvim_plus_tmux.png)
+
+## Customization
+
+Modify colors and themes in:
+
+- i3: `~/.config/i3/config`
+- zsh: `~/.zshrc` and starship config
+- nvim: `~/.config/nvim/lua/`
+
+## Nix Integration
+
+Install packages with: `nix profile install .#default`
+
+## Troubleshooting
+
+Common fixes:
+
+- Font issues: Install ttf-font-awesome
+- Keybinding conflicts: Check i3 config
+- Display issues: Verify xorg server
+
+## Scripts
+
+> [!WARNING]\
+> Under _**active development**_ — scripts may or may not work for you. use at your own risk
+
+Key utilities:
+
+- `set_wallpaper.sh` - Wallpaper management
+- `setup_monitors.sh` - Multi-monitor setup
+- App launchers in `scripts/` for steam, obs, etc.

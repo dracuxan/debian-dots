@@ -41,6 +41,7 @@
         gawk
         acpi
         lazygit
+        opencode
 
         # dev tools
         zig
@@ -49,6 +50,7 @@
         pkg-config
         go_1_24
         nodejs_24
+        bun
         rustc
         cargo
         rustfmt
