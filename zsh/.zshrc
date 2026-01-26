@@ -113,6 +113,10 @@ export PATH=/nix/var/nix/profiles/system/bin:$PATH
 [ -f ~/.chatgpt.env ] && source ~/.chatgpt.env
 eval "$(starship init zsh)"
 
+if [[ -n "$IN_NIX_SHELL" ]]; then
+    PROMPT="(nix-shell) $PROMPT"
+fi
+
 # opencode
 export PATH=/home/dracuxan/.opencode/bin:$PATH
 . /etc/profile.d/nix.sh

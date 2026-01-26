@@ -98,7 +98,7 @@ apply_wallpaper() {
     fi
 
     # Apply wallpaper
-    if xwallpaper --center "$wallpaper_path"; then
+    if xwallpaper --stretch "$wallpaper_path"; then
         log_info "Wallpaper applied successfully: $(basename "$wallpaper_path")"
         return 0
     else

@@ -51,6 +51,7 @@
         go_1_24
         nodejs_24
         bun
+        pnpm
         rustc
         cargo
         rustfmt

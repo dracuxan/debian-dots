@@ -1,7 +1,3 @@
-[cursor.style]
-blinking = "Always"
-shape = "Block"
-
 [font]
 size = 10
 
