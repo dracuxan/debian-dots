@@ -81,6 +81,9 @@ alias gp="git push"
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
 
+# cargo
+export PATH="/home/dracuxan/.cargo/bin:$PATH"
+
 # Python alias
 alias py='python3'
 
@@ -114,4 +117,3 @@ eval "$(starship init zsh)"
 export PATH=/home/dracuxan/.opencode/bin:$PATH
 . /etc/profile.d/nix.sh
 eval "$(zoxide init zsh)"
-cls

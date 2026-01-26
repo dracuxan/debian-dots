@@ -1,2 +1,2 @@
 #!/bin/sh
-flatpak run com.brave.Browse 
+flatpak run com.brave.Browser
