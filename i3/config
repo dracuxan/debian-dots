@@ -25,6 +25,8 @@ exec --no-startup-id xset r rate 200 30
 exec --no-startup-id dex --autostart --environment i3
 exec --no-startup-id blueman-applet
 exec --no-startup-id xinput set-prop 15 "libinput Natural Scrolling Enabled" 1
+exec --no-startup-id xset -dpms
+exec --no-startup-id xset s off
 # exec --no-startup-id xrandr --output eDP-1 --primary --auto --output HDMI-1-1 --auto --left-of eDP-1
 # exec --no-startup-id xwallpaper --center ~/Downloads/gruvbox_image31.png
 
@@ -57,7 +59,7 @@ bindsym XF86AudioMute exec --no-startup-id wpctl set-mute @DEFAULT_AUDIO_SINK@ t
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec alacritty
+bindsym $mod+Return exec --no-startup-id alacritty
 
 # kill focused window
 bindsym $mod+q kill
@@ -70,7 +72,6 @@ bindsym $mod+d exec --no-startup-id dmenu_run -m 2
 # .desktop file. It is a wrapper around dmenu, so you need that installed.
 # bindcode $mod+40 exec --no-startup-id i3-dmenu-desktop
 bindsym $mod+b exec --no-startup-id zen
-bindsym $mod+x exec --no-startup-id zen https://x.com/dracuxan
 
 # change focus
 bindsym $mod+j focus left
@@ -126,10 +127,6 @@ set $ws2 "2"
 set $ws3 "3"
 set $ws4 "4"
 set $ws5 "5"
-set $ws6 "6"
-set $ws7 "7"
-set $ws8 "8"
-set $ws9 "9"
 
 # switch to workspace
 bindsym $mod+1 workspace number $ws1
@@ -137,10 +134,6 @@ bindsym $mod+2 workspace number $ws2
 bindsym $mod+3 workspace number $ws3
 bindsym $mod+4 workspace number $ws4
 bindsym $mod+5 workspace number $ws5
-bindsym $mod+6 workspace number $ws6
-bindsym $mod+7 workspace number $ws7
-bindsym $mod+8 workspace number $ws8
-bindsym $mod+9 workspace number $ws9
 
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace number $ws1
@@ -192,15 +185,15 @@ bar {
         status_command i3status
         colors {
                 background #181818
-                statusline #eeeeee
-                separator  #666666
+                statusline #ffffff
+                separator  #ffffff
 
                                    # border    background   text
-                focused_workspace  #2e3440     #ffffff      #888888
-                active_workspace   #2e3440     #4c566a      #ffffff
-                inactive_workspace #2e3440     #3b4252      #888888
-                urgent_workspace   #2e3440     #bf616a      #ffffff
-                binding_mode       #2e3440     #d08770      #ffffff
+                focused_workspace  #181818     #ffffff      #888888
+                active_workspace   #181818     #181818      #ffffff
+                inactive_workspace #181818     #181818      #888888
+                urgent_workspace   #181818     #bf616a      #ffffff
+                binding_mode       #181818     #d08770      #ffffff
             }
 }
 
@@ -212,7 +205,6 @@ bindsym $mod+p exec sioyek
 # Startup commands
 exec --no-startup-id sleep 3 && /home/dracuxan/.local/bin/setup_monitors.sh; /home/dracuxan/.local/bin/set_wallpaper.sh
 exec --no-startup-id fusuma
-exec_always --no-startup-id picom --config /home/dracuxan/nix-dots/picom/picom.conf -b
 
 # keybind for OBS
 bindsym $mod+o exec obs
@@ -246,10 +238,12 @@ bindsym $mod+Shift+s exec flameshot gui
 bindsym $mod+Tab workspace back_and_forth
 # bindsym $mod+Tab focus left
 # toggle between last focused window
-bindsym Mod1+Tab focus left
+bindsym Mod1+Tab focus right
 
 # change focus between tiling / floating windows
 bindsym $mod+space focus mode_toggle
+
+bindsym $mod+c move position center
 
 # change focus to next workspace
 bindsym $mod+n workspace next
@@ -265,10 +259,10 @@ gaps outer 0
 gaps inner 0
 
 # Increase inner gaps
-bindsym $mod+g gaps inner current plus 50
+bindsym $mod+g gaps inner current plus 5
 
 # Decrease inner gaps
-bindsym $mod+Shift+g gaps inner current minus 50
+bindsym $mod+Shift+g gaps inner current minus 5
 
 # Brightness
 bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl set +10%

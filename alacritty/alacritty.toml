@@ -29,7 +29,7 @@ multiplier = 3
 save_to_clipboard = true
 
 [window]
-opacity = 0.85
+opacity = 0.95
 
 [window.padding]
 x = 10
