@@ -1,69 +1,63 @@
 [![wakatime](https://wakatime.com/badge/user/0d75cfc5-da70-41b7-b8c8-661ef9d8338b/project/9358976a-67c2-4357-8140-bd4a4c743b96.svg)](https://wakatime.com/badge/user/0d75cfc5-da70-41b7-b8c8-661ef9d8338b/project/9358976a-67c2-4357-8140-bd4a4c743b96)
 
+<div align="center">
 # Dotfiles
+</div>
 
-Personal dotfiles for managing Neovim, i3, tmux, zsh and other tools using stow.
+Personal configuration for Neovim, i3, tmux, zsh, and other tools, managed with GNU stow.
 
 ![preview](./screenshots/new_rice.png)
 
-## Prerequisites
-
-Required tools:
-
-- git
-- stow
-- zsh
-- i3
-- picom
-- Neovim
-- tmux
-
 ## Installation
 
-> [!WARNING]\
-> under _**active development**_ — existing config files will be overwritten!
+> [!WARNING]
+> These dotfiles are under **active development**. Existing configurations will be overwritten.
+
+### 1. Clone & Dependencies
+
+Install packages using Nix (recommended) or your system package manager.
+**Requirements:** `stow`, `git`, `zsh`, `Neovim`, `tmux`, `i3`, `picom`.
 
 ```bash
 git clone https://github.com/dracuxan/debian-dots.git ~/dotfiles && cd ~/dotfiles
+# Optional: Install tools via Nix
+nix profile install .#default
 ```
+
+### 2. Apply Configs
 
 ```bash
 ./install.sh
-```
-
-## Nix Integration
-
-Install packages with:
-
-```bash
-nix profile install .#default
 ```
 
 ## Directory Structure
 
 ```
 dotfiles/
-├── alacritty/          → Terminal config
+├── alacritty/          → Terminal
 ├── fastfetch/          → System info
 ├── i3/                 → Window manager
 ├── i3status/           → Status bar
-├── nvim/               → Neovim config
+├── iex/                → Elixir REPL
+├── kitty/              → Terminal
+├── nvim/               → Neovim
 ├── picom/              → Compositor
-├── tmux/               → Terminal multiplexer
-├── zsh/                → Shell config
-├── scripts/            → Utility scripts
-├── flake.nix           → Nix packages
-└── README.md
+├── rofi/               → Launcher
+├── scripts/            → Utilities
+├── starship/           → Shell prompt
+├── tmux/               → Multiplexer
+├── zsh/                → Shell
+├── flake.nix           → Nix dependencies
+└── install.sh          → Setup script
 ```
 
 ## Features
 
-- i3 window manager with picom compositor
-- Neovim configuration with LSP support
-- tmux with custom keybindings
-- zsh with starship prompt
-- Wallpaper management scripts
-- Application launcher scripts for flatpak installed apps (steam, obs, etc.)
+- **Window Management**: i3 + picom + rofi
+- **Editor**: Neovim with full LSP support
+- **Shell**: zsh + starship
+- **Terminal**: Alacritty & Kitty configs
+- **Utils**: Custom scripts for wallpapers and monitor management
 
 ## Screenshots
 
@@ -73,24 +67,18 @@ dotfiles/
 **Fastfetch**
 ![fastfetch](./screenshots/alacritty.png)
 
-**Neovim Plus Tmux**
+**Neovim + Tmux**
 ![nvim](./screenshots/nvim_plus_tmux.png)
 
 ## Troubleshooting
 
-Common fixes:
-
-- Font issues: Install ttf-font-awesome
-- Keybinding conflicts: Check i3 config
-- Display issues: Verify xorg server
+- **Fonts**: Ensure `ttf-font-awesome` is installed if icons are missing.
+- **Keybindings**: Review `i3/config` for conflicts.
 
 ## Scripts
 
-> [!WARNING]\
-> under _**active development**_ — scripts may or may not work for you. use at your own risk
+> [!WARNING]
+> Scripts in `scripts/` are experimental.
 
-Key utilities:
-
-- `set_wallpaper.sh` - Wallpaper management
-- `setup_monitors.sh` - Multi-monitor setup
-- App launchers in `scripts/` for steam, obs, etc.
+- `set_wallpaper.sh`: Manages background images.
+- `setup_monitors.sh`: Configures multi-monitor layouts.
