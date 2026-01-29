@@ -1,14 +1,10 @@
-# i3status configuration file.
-# see "man i3status" for documentation.
-
-# It is important that this file is edited as UTF-8.
-# The following line should contain a sharp s:
-# ß
-# If the above line is not correctly displayed, fix your editor first!
-
 general {
-        colors = true
-        interval = 5
+    colors = true
+    interval = 5
+
+    color_good     = "#99ffe4"
+    color_degraded = "#ffcfa8"
+    color_bad      = "#ff8080"
 }
 
 order += "wireless _first_"
@@ -18,24 +14,27 @@ order += "memory"
 order += "tztime local"
 
 wireless _first_ {
-        format_up = " W: (%quality at %essid) %ip "
-        format_down = " W: down "
+    format_up   = "󰖩  %quality @ %essid "
+    format_down = "󰖪  down "
 }
 
 battery all {
-        format = " %status %percentage %remaining "
+    format = "  %percentage %remaining"
+    format_down = "   "
+    last_full_capacity = true
 }
 
 disk "/" {
-        format = " %avail "
+    format = " 󰋊 %avail "
 }
 
 memory {
-        format = " %used | %available "
-        threshold_degraded = "1G"
-        format_degraded = "MEMORY < %available"
+    format = "   %used "
+    threshold_degraded = "1G"
+    format_degraded = " < %available"
 }
 
 tztime local {
-        format = " %d-%m-%Y | %I:%M %p "
+    format = " 󰃭 %d-%m-%Y | %I:%M %p "
 }
+

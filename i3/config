@@ -179,11 +179,24 @@ bindsym $mod+r mode "resize"
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
-        # mode hide
-        hidden_state hide
-        modifier Mod5
-        position top
-        status_command i3status
+    i3bar_command i3bar -t
+    status_command i3status
+    modifier Mod5
+    position top
+    strip_workspace_numbers yes
+    height 25
+    font pango:JetBrainsMono Nerd Font 10
+
+    colors {
+        background #00000000
+        statusline #ffcfa8
+        separator  #999ecf
+
+                              #<border>      <background>     <text>
+        focused_workspace      $black        #00000000        #ffffff
+        inactive_workspace     #00000000     #00000000        #cccccc
+        urgent_workspace       $black        #00000000        #ff5555
+    }
 }
 
 #Custom Config
@@ -296,3 +309,4 @@ for_window [class="Slack"] floating enable
 for_window [class="kitty"] floating enable
 for_window [class="org.gnome.Music"] floating enable
 for_window [class="Blueman-manager"] floating enable
+for_window [class="^.*"] floating enable

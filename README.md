@@ -4,6 +4,8 @@
 
 Personal dotfiles for managing Neovim, i3, tmux, zsh and other tools using stow.
 
+<video src="screenshots/clip.mp4" autoplay></video>
+
 ## Prerequisites
 
 Required tools:
@@ -67,7 +69,6 @@ dotfiles/
 
 **i3 WM**
 ![i3](./screenshots/rice-1.png)
-![i3](./screenshots/new_rice.png)
 
 **Fastfetch**
 ![fastfetch](./screenshots/alacritty.png)
