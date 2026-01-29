@@ -117,6 +117,13 @@ if [[ -n "$IN_NIX_SHELL" ]]; then
     PROMPT="(nix-shell) $PROMPT"
 fi
 
+export POLYBAR_COLLECTION="/home/dracuxan/debian-dots/polybar"
+export POLYBAR_BATTERY_ADP="ACAD"
+export POLYBAR_BATTERY_BAT="BAT1"
+export POLYBAR_WIRELESS="wlan0"
+export POLYBAR_WIRED="enp3s0"
+export POLYBAR_WEATHER_API="46276f91dcb44de4ac0134024262101"
+
 # opencode
 export PATH=/home/dracuxan/.opencode/bin:$PATH
 . /etc/profile.d/nix.sh
