@@ -42,9 +42,7 @@
 
           # dev tools
           zig
-          gcc
           gnumake
-          pkg-config
           go_1_24
           nodejs_24
           bun

@@ -1,8 +1,6 @@
 [![wakatime](https://wakatime.com/badge/user/0d75cfc5-da70-41b7-b8c8-661ef9d8338b/project/9358976a-67c2-4357-8140-bd4a4c743b96.svg)](https://wakatime.com/badge/user/0d75cfc5-da70-41b7-b8c8-661ef9d8338b/project/9358976a-67c2-4357-8140-bd4a4c743b96)
 
-<div align="center">
 # Dotfiles
-</div>
 
 Personal configuration for Neovim, i3, tmux, zsh, and other tools, managed with GNU stow.
 
@@ -28,6 +26,12 @@ nix profile install .#default
 
 ```bash
 ./install.sh
+```
+
+### Uninstall
+
+```bash
+./uninstall.sh
 ```
 
 ## Directory Structure
@@ -58,17 +62,19 @@ dotfiles/
 - **Shell**: zsh + starship
 - **Terminal**: Alacritty & Kitty configs
 - **Utils**: Custom scripts for wallpapers and monitor management
+- **GLava**: Custom GLava configs
 
 ## Screenshots
 
-**i3 WM**
-![i3](./screenshots/rice-1.png)
+<div align="center">
+  <img src="./screenshots/rice-1.png" alt="i3 WM" width="49%"/>
+  <img src="./screenshots/alacritty.png" alt="Fastfetch" width="49%"/>
+</div>
 
-**Fastfetch**
-![fastfetch](./screenshots/alacritty.png)
-
-**Neovim + Tmux**
-![nvim](./screenshots/nvim_plus_tmux.png)
+<div align="center">
+  <img src="./screenshots/nvim_plus_tmux.png" alt="Neovim+Tmux" width="49%"/>
+  <img src="./screenshots/blank.png" alt="Clean Desktop" width="49%"/>
+</div>
 
 ## Troubleshooting
 
@@ -80,5 +86,12 @@ dotfiles/
 > [!WARNING]
 > Scripts in `scripts/` are experimental.
 
+- `run.sh`: Universal runner for C, Go, Rust, Elixir, JS, and more.
+- `start_tmux.sh`: Smart session manager (auto-attach/create) with logging.
 - `set_wallpaper.sh`: Manages background images.
 - `setup_monitors.sh`: Configures multi-monitor layouts.
+- `steam`, `obs`, `zen`, etc.: Wrappers for Flatpak applications.
+
+---
+
+_Inspirations: [windots by ashish0kumar](https://github.com/ashish0kumar/windots) & [Windots by scottmckendry](https://github.com/scottmckendry/Windots)_
