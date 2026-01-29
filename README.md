@@ -67,6 +67,7 @@ dotfiles/
 
 **i3 WM**
 ![i3](./screenshots/rice-1.png)
+![i3](./screenshots/new_rice.png)
 
 **Fastfetch**
 ![fastfetch](./screenshots/alacritty.png)

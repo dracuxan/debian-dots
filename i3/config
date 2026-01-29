@@ -292,7 +292,7 @@ bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl set 10%-
 for_window [class="workfolio"] floating enable
 for_window [class="steam"] floating enable
 for_window [class="pcsx2-qt"] floating enable
-for_window [class="slack"] floating enable
+for_window [class="Slack"] floating enable
 for_window [class="kitty"] floating enable
 for_window [class="org.gnome.Music"] floating enable
 for_window [class="Blueman-manager"] floating enable
