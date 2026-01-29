@@ -1,0 +1,39 @@
+add_newline = true
+
+[character]
+success_symbol = "[❯](bold #99ffe4)"
+error_symbol   = "[✗](bold #ff8080)"
+
+[directory]
+format = "[$path]($style fg:#a0a0a0) "
+read_only = " "
+
+[cmd_duration]
+format = "[󱇻 $duration ]($style fg:#6b6f82)"
+
+[git_branch]
+format = "[on]($style fg:#65737e) [$symbol$branch ]($style fg:#99ffe4)"
+
+[git_status]
+style = "bold fg:#ffcfa8"
+
+[username]
+show_always = false
+
+[hostname]
+ssh_only = true
+
+[line_break]
+disabled = false
+
+[package]
+disabled = true
+
+[aws]
+disabled = true
+
+[gcloud]
+disabled = true
+
+[docker_context]
+disabled = true
