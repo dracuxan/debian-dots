@@ -14,7 +14,7 @@ Personal configuration for Neovim, i3, tmux, zsh, and other tools, managed with 
 ### 1. Clone & Dependencies
 
 Install packages using Nix (recommended) or your system package manager.
-**Requirements:** `stow`, `git`, `zsh`, `Neovim`, `tmux`, `i3`, `picom`.
+**Requirements:** `stow`, `git`, `zsh`, `Neovim`, `tmux`, `i3`, `picom`, `glava`.
 
 ```bash
 git clone https://github.com/dracuxan/debian-dots.git ~/dotfiles && cd ~/dotfiles
@@ -51,6 +51,7 @@ dotfiles/
 ├── starship/           → Shell prompt
 ├── tmux/               → Multiplexer
 ├── zsh/                → Shell
+├── glava/              → GLava
 ├── flake.nix           → Nix dependencies
 └── install.sh          → Setup script
 ```
