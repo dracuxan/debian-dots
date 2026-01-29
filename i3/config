@@ -258,7 +258,7 @@ bindsym $mod+m bar mode toggle
 gaps outer 0
 
 # Set space between windows
-gaps inner 0
+gaps inner 5
 
 # Increase inner gaps
 bindsym $mod+g gaps inner current plus 5
@@ -302,11 +302,11 @@ bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl set 10%-
 # bindsym Mod1+5 exec --no-startup-id steam
 
 # floating windows by default
+for_window [class="^.*"] floating enable
 for_window [class="workfolio"] floating enable
 for_window [class="steam"] floating enable
 for_window [class="pcsx2-qt"] floating enable
 for_window [class="Slack"] floating enable
 for_window [class="kitty"] floating enable
 for_window [class="org.gnome.Music"] floating enable
-for_window [class="Blueman-manager"] floating enable
-for_window [class="^.*"] floating enable
+for_window [class="Antigravity"] floating disable
