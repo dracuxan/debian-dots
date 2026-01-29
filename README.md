@@ -4,7 +4,7 @@
 
 Personal dotfiles for managing Neovim, i3, tmux, zsh and other tools using stow.
 
-[![demo](https://github.com/user-attachments/assets/7a9ae08a-2506-4ab6-be8e-cb7a663058ee)](https://github.com/user-attachments/assets/7a9ae08a-2506-4ab6-be8e-cb7a663058ee)
+![preview](./screenshots/new_rice.png)
 
 ## Prerequisites
 
