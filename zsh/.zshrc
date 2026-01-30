@@ -56,9 +56,7 @@ export PATH="$PATH:/opt/nvim-linux-x86_64/bin"
 # Path for custom scripts
 export PATH="$HOME/bin:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
-alias tm='start_tmux.sh'
-alias tm='start_tmux.sh'
-alias run='run.sh'
+alias tm='start_tmux'
 alias arise='ssh Igris'
 
 export LC_ALL=C.UTF-8

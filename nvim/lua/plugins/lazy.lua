@@ -131,8 +131,8 @@ local custom_plugins = {
 			local row = vim.o.lines - height - 2
 
 			require("auto-session").setup({
+				lazy_support = true,
 				session_lens = {
-					picker = "fzf",
 					picker_opts = {
 						height = height,
 						width = 70,

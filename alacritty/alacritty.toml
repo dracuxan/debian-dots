@@ -25,8 +25,28 @@ multiplier = 3
 save_to_clipboard = true
 
 [window]
-opacity = 0.95
+opacity = 0.9
+dimensions = { columns = 100, lines = 50 }
 
 [window.padding]
 x = 10
 y = 10
+
+[colors.primary]
+background = "#000000"
+foreground = "#dddddd"
+
+[keyboard]
+bindings = [
+  # Existing bindings
+  { key = "Return", mods = "Control|Shift", action = "SpawnNewInstance" },
+  { key = "V", mods = "Control|Shift", action = "Paste" },
+  { key = "C", mods = "Control|Shift", action = "Copy" },
+  { key = "L", mods = "Control", chars = "\u000c" },
+
+  # Alt + hjkl navigation
+  { key = "H", mods = "Alt", chars = "\u001b[D" }, # Left
+  { key = "J", mods = "Alt", chars = "\u001b[B" }, # Down
+  { key = "K", mods = "Alt", chars = "\u001b[A" }, # Up
+  { key = "L", mods = "Alt", chars = "\u001b[C" }, # Right
+]

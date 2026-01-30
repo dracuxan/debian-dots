@@ -39,6 +39,7 @@
           acpi
           lazygit
           ffmpeg
+          opencode
 
           # dev tools
           zig

@@ -18,6 +18,12 @@ return {
 	-- or if using mini.icons/mini.nvim
 	dependencies = { "echasnovski/mini.icons" },
 	opts = {},
+	config = function(_, opts)
+		require("fzf-lua").setup(opts)
+		-- Register fzf-lua as global ui.select handler
+		require("fzf-lua").register_ui_select()
+	end,
+
 	keys = {
 		{
 			"<leader><leader>",

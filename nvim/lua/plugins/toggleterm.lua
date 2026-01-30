@@ -50,7 +50,7 @@ function _RUN_SCRIPT()
 	local buffname = vim.api.nvim_buf_get_name(0)
 	local filepath = vim.fn.fnamemodify(buffname, ":p")
 	local script_run = Terminal:new({
-		cmd = "run.sh " .. filepath,
+		cmd = "run " .. filepath,
 		hidden = true,
 		close_on_exit = false,
 		direction = autoRun,
@@ -64,7 +64,7 @@ function _RUN_TEST()
 	local buffname = vim.api.nvim_buf_get_name(0)
 	local filepath = vim.fn.fnamemodify(buffname, ":p")
 	local script_test = Terminal:new({
-		cmd = "run.sh " .. filepath .. " --test",
+		cmd = "run " .. filepath .. " --test",
 		direction = autoRun,
 		persist_size = true,
 		hidden = true,
@@ -77,7 +77,7 @@ function _RUN_REPL()
 	local buffname = vim.api.nvim_buf_get_name(0)
 	local filepath = vim.fn.fnamemodify(buffname, ":p")
 	local script_test = Terminal:new({
-		cmd = "run.sh " .. filepath .. " --repl",
+		cmd = "run " .. filepath .. " --repl",
 		direction = autoRun,
 		persist_size = true,
 		hidden = true,
@@ -90,7 +90,7 @@ function _RUN_BUILD()
 	local buffname = vim.api.nvim_buf_get_name(0)
 	local filepath = vim.fn.fnamemodify(buffname, ":p")
 	local script_build = Terminal:new({
-		cmd = "run.sh " .. filepath .. " --build-only",
+		cmd = "run " .. filepath .. " --build-only",
 		hidden = true,
 		direction = autoRun,
 		persist_size = true,
@@ -100,7 +100,7 @@ function _RUN_BUILD()
 end
 
 function _SEND_BIN()
-	local sendToServer = "run.sh main.go --build-only && scp ./bin/main igris@192.168.0.198:/home/igris/exps"
+	local sendToServer = "run main.go --build-only && scp ./bin/main igris@192.168.0.198:/home/igris/exps"
 	local script_send = Terminal:new({
 		cmd = sendToServer,
 		hidden = true,
