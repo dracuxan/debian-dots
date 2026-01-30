@@ -13,7 +13,7 @@ set $mod Mod4
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
-font pango:FiraCode Nerd Font 8
+font pango:JetBrainsMono Nerd Font 8
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
@@ -186,6 +186,7 @@ bar {
     strip_workspace_numbers yes
     height 25
     font pango:JetBrainsMono Nerd Font 10
+    tray_output none
 
     colors {
         background #00000000
@@ -194,6 +195,7 @@ bar {
 
                               #<border>      <background>     <text>
         focused_workspace      $black        #00000000        #ffffff
+        active_workspace       #00000000     #00000000        #ffcfa8
         inactive_workspace     #00000000     #00000000        #cccccc
         urgent_workspace       $black        #00000000        #ff5555
     }
@@ -258,7 +260,7 @@ bindsym $mod+m bar mode toggle
 gaps outer 0
 
 # Set space between windows
-gaps inner 5
+gaps inner 0
 
 # Increase inner gaps
 bindsym $mod+g gaps inner current plus 5
@@ -303,10 +305,6 @@ bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl set 10%-
 
 # floating windows by default
 for_window [class="^.*"] floating enable
-for_window [class="workfolio"] floating enable
-for_window [class="steam"] floating enable
-for_window [class="pcsx2-qt"] floating enable
-for_window [class="Slack"] floating enable
-for_window [class="kitty"] floating enable
-for_window [class="org.gnome.Music"] floating enable
 for_window [class="Antigravity"] floating disable
+for_window [class="Brave"] floating disable
+for_window [class="sioyek"] floating disable

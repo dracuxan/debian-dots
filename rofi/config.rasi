@@ -1,15 +1,107 @@
-/* ROUNDED THEME FOR ROFI */
-/* Author: Newman Sanchez (https://github.com/newmanls) */
-
 * {
-    bg0:    #212121F2;
-    bg1:    #2A2A2A;
-    bg2:    #3D3D3D80;
-    bg3:    #1A73E8F2;
-    fg0:    #E6E6E6;
-    fg1:    #FFFFFF;
-    fg2:    #969696;
-    fg3:    #3D3D3D;
+    font: "JetBrainsMono Nerd Font 12";
+
+    /* palette */
+    bg0: #1e1f24f2;
+    bg1: #262830;
+    bg2: #2f323c80;
+    bg3: #99ffe4;
+
+    fg0: #999ecf;
+    fg1: #999ecf;
+    fg2: #999ecf;
+
+    background-color: transparent;
+    text-color: @fg0;
+
+    margin: 0;
+    padding: 0;
+    spacing: 0;
 }
 
-@import "template/rounded-template.rasi"
+/* window */
+window {
+    background-color: @bg0;
+    location: center;
+    width: 500;
+    border-radius: 8;
+}
+
+/* input */
+inputbar {
+    font: "Montserrat 20";
+    padding: 12px;
+    spacing: 12px;
+    children: [ icon-search, entry ];
+    background-color: @bg1;
+}
+
+icon-search {
+    expand: false;
+    filename: "search";
+    size: 28px;
+}
+
+icon-search,
+entry,
+element-icon,
+element-text {
+    vertical-align: 0.5;
+}
+
+entry {
+    font: inherit;
+    text-color: @fg1;
+    placeholder: "Search";
+    placeholder-color: @fg2;
+}
+
+/* message */
+message {
+    border: 2px 0 0;
+    border-color: @bg2;
+    background-color: @bg1;
+}
+
+textbox {
+    padding: 8px 24px;
+}
+
+/* list */
+listview {
+    lines: 6;
+    columns: 1;
+    fixed-height: false;
+    border: 1px 0 0;
+    border-color: @bg2;
+    background-color: @bg0;
+}
+
+/* elements */
+element {
+    padding: 8px 16px;
+    spacing: 16px;
+    background-color: transparent;
+    text-color: @fg0;
+}
+
+element normal active,
+element alternate active {
+    text-color: @fg0;
+}
+
+element selected normal,
+element selected active {
+    background-color: @bg3;
+    text-color: #1e1f24;
+}
+
+/* content */
+element-icon {
+    size: 1em;
+}
+
+element-text {
+    text-color: inherit;
+}
+
