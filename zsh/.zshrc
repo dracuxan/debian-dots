@@ -33,13 +33,10 @@ alias cd='z'
 # Zig environment variables
 export PATH="$PATH:$HOME/zig/bin"
 
-# Go environment variables
-export GOROOT=/usr/local/go
-export GOPATH=$HOME/go
-export GOBIN=$GOPATH/bin
+# Go via Nix
+export GOPATH="$HOME/go"
+export PATH="$PATH:$GOPATH/bin"
 
-# Add Go binaries to PATH
-export PATH=$GOROOT/bin:$GOPATH/bin:$PATH
 
 # Elixir env
 export PATH="$HOME/.mix/escripts:$PATH"
