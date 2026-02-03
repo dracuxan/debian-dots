@@ -121,6 +121,11 @@ ts | js)
     echo ""
     node $FILE_PATH
     ;;
+py)
+    echo "Running ${FILE_NAME}.py...."
+    echo ""
+    python3 $FILE_PATH
+    ;;
 sh)
     echo "Running ${FILE_NAME}.sh script...."
     echo ""
