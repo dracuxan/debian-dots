@@ -26,7 +26,7 @@ save_to_clipboard = true
 
 [window]
 opacity = 0.9
-dimensions = { columns = 100, lines = 50 }
+dimensions = { columns = 80, lines = 55 }
 
 [window.padding]
 x = 10

@@ -90,7 +90,7 @@ function _RUN_BUILD()
 	local buffname = vim.api.nvim_buf_get_name(0)
 	local filepath = vim.fn.fnamemodify(buffname, ":p")
 	local script_build = Terminal:new({
-		cmd = "run " .. filepath .. " --build-only",
+		cmd = "run " .. filepath .. " --build",
 		hidden = true,
 		direction = autoRun,
 		persist_size = true,
@@ -100,7 +100,9 @@ function _RUN_BUILD()
 end
 
 function _SEND_BIN()
-	local sendToServer = "run main.go --build-only && scp ./bin/main igris@192.168.0.198:/home/igris/exps"
+	local buffname = vim.api.nvim_buf_get_name(0)
+	local filepath = vim.fn.fnamemodify(buffname, ":p")
+	local sendToServer = "run " .. filepath .. " --build && scp ./bin/* Igris.local:/home/igris/exps"
 	local script_send = Terminal:new({
 		cmd = sendToServer,
 		hidden = true,

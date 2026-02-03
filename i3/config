@@ -84,6 +84,9 @@ set $ws3 "3"
 set $ws4 "4"
 set $ws5 "5"
 
+# Bind workspaces to outputs
+workspace 5 output eDP-1-0
+
 # switch to workspace
 bindsym $mod+1 workspace number $ws1
 bindsym $mod+2 workspace number $ws2
@@ -225,3 +228,5 @@ for_window [class="Brave"] floating disable
 for_window [workspace="1"] floating disable
 assign [class="sioyek"]  workspace 1
 for_window [class="sioyek"]  workspace 1
+assign [class="workfolio"]  workspace 5
+for_window [class="workfolio"]  workspace 5
