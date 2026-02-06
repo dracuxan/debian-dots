@@ -125,6 +125,34 @@ local custom_plugins = {
 	},
 
 	{
+		"lukas-reineke/indent-blankline.nvim",
+		main = "ibl",
+		config = function()
+			local hooks = require("ibl.hooks")
+
+			hooks.register(hooks.type.HIGHLIGHT_SETUP, function()
+				-- normal indent lines (purple)
+				vim.api.nvim_set_hl(0, "IndentPurple", { fg = "#2f324f" })
+
+				-- active scope (when cursor inside function)
+				vim.api.nvim_set_hl(0, "ScopePeach", { fg = "#999ecf" })
+			end)
+
+			require("ibl").setup({
+				indent = {
+					highlight = { "IndentPurple" },
+				},
+				scope = {
+					enabled = true,
+					highlight = { "ScopePeach" },
+					show_start = true,
+					show_end = true,
+				},
+			})
+		end,
+	},
+
+	{
 		"rmagatti/auto-session",
 		config = function()
 			local height = math.floor(vim.o.lines * 0.45)

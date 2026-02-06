@@ -52,13 +52,13 @@ vim.wo.foldexpr = "nvim_treesitter#foldexpr()"
 
 vim.wo.foldlevel = 99
 
-vim.opt.list = true
-vim.opt.listchars = {
-	tab = "· ",
-	trail = "·",
-	extends = ">",
-	precedes = "<",
-}
+-- vim.opt.list = true
+-- vim.opt.listchars = {
+-- 	tab = "· ",
+-- 	trail = "·",
+-- 	extends = ">",
+-- 	precedes = "<",
+-- }
 
 _G.MyTabLabel = function(n)
 	local buf = vim.fn.bufname(vim.fn.tabpagebuflist(n)[vim.fn.tabpagewinnr(n)])

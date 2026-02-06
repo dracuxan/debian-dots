@@ -85,7 +85,7 @@ validate_wallpaper() {
     return 0
 }
 
-# Apply wallpaper using xwallpaper
+# Apply wallpaper using feh
 apply_wallpaper() {
     local wallpaper_path="$1"
 
@@ -98,7 +98,7 @@ apply_wallpaper() {
     fi
 
     # Apply wallpaper
-    if xwallpaper --stretch "$wallpaper_path"; then
+    if feh --bg-fill --fade 2 "$wallpaper_path"; then
         log_info "Wallpaper applied successfully: $(basename "$wallpaper_path")"
         return 0
     else

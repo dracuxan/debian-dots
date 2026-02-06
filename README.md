@@ -2,7 +2,7 @@
 
 # Dotfiles
 
-Personal configuration for Neovim, i3, tmux, zsh, and other tools, managed with GNU stow.
+Personal configuration for Neovim, i3, tmux, zsh, and other tools, managed with GNU stow (may or may not work for you).
 
 ![preview](./screenshots/new_rice.png)
 
@@ -34,35 +34,6 @@ nix profile install .#default
 ./uninstall.sh
 ```
 
-## Directory Structure
-
-```
-dotfiles/
-├── alacritty/          → Terminal
-├── fastfetch/          → System info
-├── i3/                 → Window manager
-├── i3status/           → Status bar
-├── iex/                → Elixir REPL
-├── kitty/              → Terminal
-├── nvim/               → Neovim
-├── picom/              → Compositor
-├── rofi/               → Launcher
-├── scripts/            → Utilities
-├── starship/           → Shell prompt
-├── tmux/               → Multiplexer
-├── zsh/                → Shell
-├── flake.nix           → Nix dependencies
-└── install.sh          → Setup script
-```
-
-## Features
-
-- **Window Management**: i3 + picom + rofi
-- **Editor**: Neovim with full LSP support
-- **Shell**: zsh + starship
-- **Terminal**: Alacritty & Kitty configs
-- **Utils**: Custom scripts for wallpapers and monitor management
-
 ## Screenshots
 
 <div align="center">
@@ -75,11 +46,6 @@ dotfiles/
   <img src="./screenshots/blank.png" alt="Clean Desktop" width="49%"/>
 </div>
 
-## Troubleshooting
-
-- **Fonts**: Ensure `ttf-font-awesome` is installed if icons are missing.
-- **Keybindings**: Review `i3/config` for conflicts.
-
 ## Scripts
 
 > [!WARNING]
@@ -90,7 +56,3 @@ dotfiles/
 - `set_wallpaper.sh`: Manages background images.
 - `setup_monitors.sh`: Configures multi-monitor layouts.
 - `steam`, `obs`, `zen`, etc.: Wrappers for Flatpak applications.
-
----
-
-_Inspirations: [windots by ashish0kumar](https://github.com/ashish0kumar/windots) & [Windots by scottmckendry](https://github.com/scottmckendry/Windots)_
