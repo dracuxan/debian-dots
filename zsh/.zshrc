@@ -9,6 +9,8 @@ zstyle ':completion:*' menu select
 # Exports and Alias
 # History configurations
 HISTFILE=~/.zsh_history
+HISTSIZE=100000
+SAVEHIST=200000
 
 # force zsh to show the complete history
 alias history="history 0"
@@ -121,5 +123,3 @@ export POLYBAR_WEATHER_API="46276f91dcb44de4ac0134024262101"
 export PATH=/home/dracuxan/.opencode/bin:$PATH
 . /etc/profile.d/nix.sh
 eval "$(zoxide init zsh)"
-
-cls

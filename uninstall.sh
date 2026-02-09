@@ -20,6 +20,7 @@ stow -D -d "$DOTFILES_DIR" -t "$HOME/.config/i3" i3 || true
 stow -D -d "$DOTFILES_DIR" -t "$HOME/.config/i3status" i3status || true
 stow -D -d "$DOTFILES_DIR" -t "$HOME/.config/picom" picom || true
 stow -D -d "$DOTFILES_DIR" -t "$HOME/.config/rofi" rofi || true
+stow -D -d "$DOTFILES_DIR" -t "$HOME/.config/dunst" dunst || true
 stow -D -d "$DOTFILES_DIR" -t "$HOME/.config" starship || true
 
 echo "[+] Unstowing legacy dotfiles from ~/..."
