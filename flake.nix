@@ -40,6 +40,7 @@
           lazygit
           ffmpeg
           opencode
+          cmus
 
           # dev tools
           zig

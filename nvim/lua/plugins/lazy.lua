@@ -19,6 +19,20 @@ local custom_plugins = {
 	require("plugins.textobjects"),
 
 	{
+		"nvim-telescope/telescope.nvim",
+		version = "*",
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+			-- optional but recommended
+			{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
+		},
+		config = function()
+			require("telescope").setup({})
+			require("telescope").load_extension("session-lens")
+		end,
+	},
+
+	{
 		"nvim-neo-tree/neo-tree.nvim",
 		branch = "v3.x",
 		dependencies = {
@@ -160,13 +174,12 @@ local custom_plugins = {
 
 			require("auto-session").setup({
 				session_lens = {
-					picker = "fzf",
 					picker_opts = {
 						height = height,
 						width = 70,
 						row = row,
 						col = 0, -- left edge
-						border = "rounded",
+						-- 	border = "rounded",
 					},
 				},
 				log_level = "error",
