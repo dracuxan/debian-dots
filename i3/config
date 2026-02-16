@@ -129,7 +129,7 @@ bar {
     i3bar_command i3bar -t
     status_command i3status
     modifier Mod5
-    position top
+    position top 
     strip_workspace_numbers yes
     height 25
     font pango:JetBrainsMono Nerd Font 10
@@ -162,7 +162,7 @@ bindsym $mod+o exec obs
 # Colorscheme
 
 # Focused window (active)
-client.focused         #999ecf #999ecf #888888 #999ecf #999ecf
+client.focused         #999ecf #999ecf #000000 #999ecf #999ecf
 
 # Unfocused windows
 client.unfocused        #1D1E1C #000000 #888888 #000000 #1D1E1C
@@ -214,6 +214,10 @@ bindsym $mod+g gaps inner current plus 5
 
 # Decrease inner gaps
 bindsym $mod+Shift+g gaps inner current minus 5
+
+# resize windows to a custom size
+bindsym $mod+Shift+m resize set width 35 ppt
+bindsym $mod+Shift+n resize set width 50 ppt
 
 # Brightness
 bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl set +10%
