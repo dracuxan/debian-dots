@@ -25,21 +25,16 @@ done
 
 echo "[+] Stowing configs into ~/.config/..."
 
-stow --adopt -d "$DOTFILES_DIR" -t "$HOME/.config/fastfetch" fastfetch
-stow --adopt -d "$DOTFILES_DIR" -t "$HOME/.config/nvim" nvim
-stow --adopt -d "$DOTFILES_DIR" -t "$HOME/.config/alacritty" alacritty
-stow --adopt -d "$DOTFILES_DIR" -t "$HOME/.config/kitty" kitty
-stow --adopt -d "$DOTFILES_DIR" -t "$HOME/.config/i3" i3
-stow --adopt -d "$DOTFILES_DIR" -t "$HOME/.config/i3status" i3status
-stow --adopt -d "$DOTFILES_DIR" -t "$HOME/.config/picom" picom
-stow --adopt -d "$DOTFILES_DIR" -t "$HOME/.config/rofi" rofi
-stow --adopt -d "$DOTFILES_DIR" -t "$HOME/.config/dunst/" dunst
+for dir in fastfetch nvim alacritty i3 i3status picom kitty rofi dunst; do
+    stow --adopt -d "$DOTFILES_DIR" -t "$HOME/.config/$dir" "$dir"
+done
+
 stow --adopt -d "$DOTFILES_DIR" -t "$HOME/.config" starship
 
 echo "[+] Stowing legacy dotfiles into ~/..."
-stow --adopt -d "$DOTFILES_DIR" -t "$HOME" zsh
-stow --adopt -d "$DOTFILES_DIR" -t "$HOME" tmux
-stow --adopt -d "$DOTFILES_DIR" -t "$HOME" iex
+for dir in zsh tmux iex; do
+    stow --adopt -d "$DOTFILES_DIR" -t "$HOME" "$dir"
+done
 stow --adopt -d "$DOTFILES_DIR" -t "$HOME/.local/bin" scripts
 
 echo "[+] Checking wallpaper config..."

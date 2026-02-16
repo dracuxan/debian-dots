@@ -93,11 +93,11 @@ exs | ex)
         mix test
     elif $REPL; then
         if [[ "$EXT" == "exs" ]] && [[ "$FILE_NAME" != "mix" ]]; then
-            echo "Running app with iex..."
+            echo "starting iex repl..."
             echo ""
             iex
         else
-            echo "Running app with iex..."
+            echo "running app with iex..."
             echo ""
             iex -S mix
         fi
