@@ -11,26 +11,12 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 local custom_plugins = {
-	require("plugins.fzf-lua"),
+	require("plugins.telescope"),
 	require("plugins.misic"),
 	require("plugins.oil"),
 	require("plugins.lsp"),
 	require("plugins.langages"),
 	require("plugins.textobjects"),
-
-	{
-		"nvim-telescope/telescope.nvim",
-		version = "*",
-		dependencies = {
-			"nvim-lua/plenary.nvim",
-			-- optional but recommended
-			{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
-		},
-		config = function()
-			require("telescope").setup({})
-			require("telescope").load_extension("session-lens")
-		end,
-	},
 
 	{
 		"nvim-neo-tree/neo-tree.nvim",

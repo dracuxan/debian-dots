@@ -98,8 +98,8 @@ vk("i", "<C-q>", "<cmd> qa <CR>", opts)
 -- Quit
 vk("n", "qq", "<cmd> q <CR>", opts)
 
--- Find todos using fzf
-vk("n", "<leader>ft", "<cmd> TodoFzfLua <CR>", { desc = "[F]ind [T]odos using fzf", noremap = true, silent = true })
+-- Find todos using telescope
+vk("n", "<leader>ft", "<cmd> TodoTelescope <CR>", { desc = "[F]ind [T]odos using telescope", noremap = true, silent = true })
 
 -- Manual file reload control
 vk("n", "<leader>fr", ":checktime<CR>", { desc = "Check external file changes" })

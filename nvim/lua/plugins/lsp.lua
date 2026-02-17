@@ -21,24 +21,24 @@ return {
 					vim.keymap.set(mode, keys, func, { buffer = event.buf, desc = "LSP: " .. desc })
 				end
 
-				local fzf = require("fzf-lua")
+				local telescope = require("telescope.builtin")
 				-- Jump to the definition of the word under your cursor
-				map("gd", fzf.lsp_definitions, "[G]oto [D]efinition")
+				map("gd", telescope.lsp_definitions, "[G]oto [D]efinition")
 
 				-- Find references for the word under your cursor
-				map("gr", fzf.lsp_references, "[G]oto [R]eferences")
+				map("gr", telescope.lsp_references, "[G]oto [R]eferences")
 
 				-- Jump to the implementation of the word under your cursor
-				map("gI", fzf.lsp_implementations, "[G]oto [I]mplementation")
+				map("gI", telescope.lsp_implementations, "[G]oto [I]mplementation")
 
 				-- Jump to the type of the word under your cursor
-				map("<leader>D", fzf.lsp_typedefs, "Type [D]efinition")
+				map("<leader>D", telescope.lsp_type_definitions, "Type [D]efinition")
 
 				-- Fuzzy find all the symbols in your current document
-				map("<leader>ds", fzf.lsp_document_symbols, "[D]ocument [S]ymbols")
+				map("<leader>ds", telescope.lsp_document_symbols, "[D]ocument [S]ymbols")
 
 				-- Fuzzy find all the symbols in your current workspace
-				map("<leader>ws", fzf.lsp_live_workspace_symbols, "[W]orkspace [S]ymbols")
+				map("<leader>ws", telescope.lsp_dynamic_workspace_symbols, "[W]orkspace [S]ymbols")
 				-- Rename the variable under your cursor.
 				--  Most Language Servers support renaming across files, etc.
 				map("<leader>rn", vim.lsp.buf.rename, "[R]e[n]ame")
