@@ -41,6 +41,8 @@
           ffmpeg
           opencode
           cmus
+          tokei
+          rumno
 
           # dev tools
           zig
@@ -54,6 +56,7 @@
           rustfmt
           clippy
           python315
+          uv
 
           # BEAM
           elixir
