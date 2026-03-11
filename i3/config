@@ -1,5 +1,5 @@
 set $mod Mod4
-font pango:JetBrainsMono Nerd Font 8
+font pango:JetBrainsMono Nerd Font 11
 exec --no-startup-id xset r rate 200 30
 exec --no-startup-id dex --autostart --environment i3
 exec --no-startup-id blueman-applet
@@ -7,14 +7,15 @@ exec --no-startup-id xinput set-prop 15 "libinput Natural Scrolling Enabled" 1
 exec --no-startup-id xset -dpms
 exec --no-startup-id xset s off
 exec --no-startup-id dunst
+exec --no-startup-id rumno daemon --foreground
 exec --no-startup-id autorandr --change
 exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 exec --no-startup-id nm-applet
 
 # Volume control with PipeWire (wpctl)
-bindsym XF86AudioRaiseVolume exec --no-startup-id wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+
-bindsym XF86AudioLowerVolume exec --no-startup-id wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-
-bindsym XF86AudioMute exec --no-startup-id wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
+bindsym XF86AudioRaiseVolume exec --no-startup-id volume_control up
+bindsym XF86AudioLowerVolume exec --no-startup-id volume_control down
+bindsym XF86AudioMute exec --no-startup-id volume_control mute
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -26,14 +27,15 @@ bindsym $mod+Return exec --no-startup-id alacritty
 bindsym $mod+q kill
 
 # start dmenu (a program launcher)
-bindsym $mod+d exec --no-startup-id rofi -show run -m 1
+bindsym $mod+d exec --no-startup-id rofi -show run -m 2
 bindsym $mod+b exec --no-startup-id zen
+bindsym $mod+x exec --no-startup-id zen x.com
 
 # change focus
-bindsym $mod+j focus left
-bindsym $mod+k focus right
-bindsym $mod+l focus up
-bindsym $mod+semicolon focus down
+bindsym $mod+h focus left
+bindsym $mod+l focus right
+bindsym $mod+k focus up
+bindsym $mod+j focus down
 
 # alternatively, you can use the cursor keys:
 bindsym $mod+Left focus left
@@ -42,10 +44,10 @@ bindsym $mod+Up focus up
 bindsym $mod+Right focus right
 
 # move focused window
-bindsym $mod+Shift+j move left
-bindsym $mod+Shift+k move down
-bindsym $mod+Shift+l move up
-bindsym $mod+Shift+semicolon move right
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
 
 # alternatively, you can use the cursor keys:
 bindsym $mod+Shift+Left move left
@@ -54,7 +56,7 @@ bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
 # split in horizontal orientation
-bindsym $mod+h split h
+bindsym $mod+semicolon split h
 
 # split in vertical orientation
 bindsym $mod+v split v
@@ -110,10 +112,10 @@ bindsym $mod+Shift+e exec "i3-msg exit"
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
-        bindsym j resize shrink width 10 px or 10 ppt
-        bindsym k resize grow height 10 px or 10 ppt
-        bindsym l resize shrink height 10 px or 10 ppt
-        bindsym semicolon resize grow width 10 px or 10 ppt
+        bindsym h resize shrink width 10 px or 10 ppt
+        bindsym j resize grow height 10 px or 10 ppt
+        bindsym k resize shrink height 10 px or 10 ppt
+        bindsym l resize grow width 10 px or 10 ppt
         bindsym Left resize shrink width 10 px or 10 ppt
         bindsym Down resize grow height 10 px or 10 ppt
         bindsym Up resize shrink height 10 px or 10 ppt
@@ -188,8 +190,8 @@ bindsym $mod+Shift+s exec flameshot gui
 bindsym $mod+Tab workspace back_and_forth
 # bindsym $mod+Tab focus left
 # toggle between last focused window
-bindsym Mod1+Tab focus right
-bindsym Mod1+Shift+Tab focus left
+bindsym Mod1+Tab focus left
+bindsym Mod1+Shift+Tab focus right
 
 # change focus between tiling / floating windows
 bindsym $mod+space focus mode_toggle
@@ -207,7 +209,7 @@ bindsym $mod+m bar mode toggle
 gaps outer 0
 
 # Set space between windows
-gaps inner 5
+gaps inner 0
 
 # Increase inner gaps
 bindsym $mod+g gaps inner current plus 5
@@ -219,6 +221,12 @@ bindsym $mod+Shift+g gaps inner current minus 5
 bindsym $mod+Shift+m resize set width 35 ppt
 bindsym $mod+Shift+n resize set width 50 ppt
 
+# Move to scratchpad
+bindsym $mod+Shift+minus move scratchpad
+
+# Show scratchpad
+bindsym $mod+minus scratchpad show
+
 # Brightness
 bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl set +10%
 bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl set 10%-
@@ -226,11 +234,7 @@ bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl set 10%-
 # floating windows by default
 for_window [class="^.*"] floating enable
 
-for_window [class="Antigravity"] floating disable
-for_window [class="Brave"] floating disable
-
 for_window [workspace="1"] floating disable
 assign [class="sioyek"]  workspace 1
-for_window [class="sioyek"]  workspace 1
 assign [class="workfolio"]  workspace 5
 for_window [class="workfolio"]  workspace 5

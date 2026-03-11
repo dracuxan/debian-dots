@@ -1,0 +1,19 @@
+#!/bin/bash
+case "$1" in
+up)
+    wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+
+    rumno notify -v $(wpctl get-volume @DEFAULT_AUDIO_SINK@ | awk '{print int($2*100)}')
+    ;;
+down)
+    wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-
+    rumno notify -v $(wpctl get-volume @DEFAULT_AUDIO_SINK@ | awk '{print int($2*100)}')
+    ;;
+mute)
+    wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
+    if wpctl get-volume @DEFAULT_AUDIO_SINK@ | grep -q MUTED; then
+        rumno notify -m
+    else
+        rumno notify -v $(wpctl get-volume @DEFAULT_AUDIO_SINK@ | awk '{print int($2*100)}')
+    fi
+    ;;
+esac

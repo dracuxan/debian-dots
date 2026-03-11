@@ -25,3 +25,7 @@ background = "#1D1E1C"
 foreground = "#ff5555"
 frame_color = "#ff5555"
 timeout = 0
+
+[volume]
+summary = "Volume"
+skip_display = true

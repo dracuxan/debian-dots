@@ -21,6 +21,7 @@ wireless _first_ {
 battery all {
     format = "  %percentage %remaining"
     format_down = "   "
+    last_full_capacity = true
 }
 
 disk "/" {

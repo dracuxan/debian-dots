@@ -95,7 +95,7 @@ exs | ex)
         if [[ "$EXT" == "exs" ]] && [[ "$FILE_NAME" != "mix" ]]; then
             echo "starting iex repl..."
             echo ""
-            iex
+            iex ${FILE_NAME}.${EXT}
         else
             echo "running app with iex..."
             echo ""
@@ -110,7 +110,7 @@ exs | ex)
             if $BUILD_ONLY; then
                 echo "Compiling mix project..."
                 echo ""
-                mix compile
+                mix escript.build
 
             else
                 echo "Running mix project..."

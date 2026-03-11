@@ -1,11 +1,11 @@
 #!/bin/bash
 set -e
 
-POSITION="right" # left | right | above | below
+POSITION="left" # left | right | above | below
 DRY_RUN=false
 
-EXTERNAL_OUTPUT="HDMI-0"
-INTERNAL_OUTPUT="eDP-1-0"
+EXTERNAL_OUTPUT="HDMI-1-0"
+INTERNAL_OUTPUT="eDP"
 
 run() {
     if $DRY_RUN; then
@@ -16,8 +16,8 @@ run() {
 }
 
 # Enable both monitors
-run --output "$INTERNAL_OUTPUT" --auto
-run --output "$EXTERNAL_OUTPUT" --mode 1920x1080 --rate 180.00 --primary
+run --output "$INTERNAL_OUTPUT" --auto --primary
+run --output "$EXTERNAL_OUTPUT" --mode 1920x1080 --rate 100.00
 
 # Position external monitor
 case "$POSITION" in
