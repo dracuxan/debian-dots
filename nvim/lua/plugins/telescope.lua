@@ -1,22 +1,18 @@
 local vim = vim
 local sizes = {
-	bottom_left_height = math.floor(vim.o.lines * 0.45),
-	bottom_left_width = 70,
 	center_height = math.floor(vim.o.lines * 0.6),
 	center_width = math.floor(vim.o.columns * 0.6),
 }
 
-local bottom_left_layout = {
-	layout_strategy = "vertical",
-	layout_config = {
-		height = sizes.bottom_left_height,
-		width = sizes.bottom_left_width,
-		prompt_position = "top",
-		anchor = "SW",
-	},
-}
+local function pct(value, total)
+	return math.floor(total * value)
+end
 
-local bottom_left_pickers = { "find_files", "current_buffer_fuzzy_find", "buffers" }
+local picker_layouts = {
+	find_files = { height = 0.4, width = 0.5, anchor = "SW" },
+	current_buffer_fuzzy_find = { height = 0.4, width = 0.5, anchor = "SW" },
+	buffers = { height = 0.45, width = 0.5, anchor = "SW" },
+}
 
 local function builtin(name, opts)
 	return function()
@@ -35,6 +31,18 @@ return {
 	},
 	opts = {
 		defaults = {
+			vimgrep_arguments = {
+				"rg",
+				"--color=never",
+				"--no-heading",
+				"--with-filename",
+				"--line-number",
+				"--column",
+				"--smart-case",
+				"--hidden",
+				"--glob",
+				"!.git/",
+			},
 			layout_strategy = "center",
 			layout_config = {
 				height = sizes.center_height,
@@ -49,14 +57,23 @@ return {
 		pickers = {
 			find_files = {
 				previewer = false,
+				hidden = true,
 			},
 			current_buffer_fuzzy_find = { previewer = false },
 			buffers = { previewer = false },
 		},
 	},
 	config = function(_, opts)
-		for _, picker in ipairs(bottom_left_pickers) do
-			opts.pickers[picker] = vim.tbl_extend("force", opts.pickers[picker], bottom_left_layout)
+		for picker, layout in pairs(picker_layouts) do
+			opts.pickers[picker] = vim.tbl_extend("force", opts.pickers[picker], {
+				layout_strategy = "vertical",
+				layout_config = {
+					height = pct(layout.height, vim.o.lines),
+					width = pct(layout.width, vim.o.columns),
+					prompt_position = "top",
+					anchor = layout.anchor,
+				},
+			})
 		end
 
 		require("telescope").setup(opts)
@@ -121,7 +138,7 @@ return {
 			desc = "[F]ind [O]ld Files",
 		},
 		{
-			"<C-b>",
+			"<leader>b",
 			builtin("buffers"),
 			desc = "[,] Find existing buffers",
 		},

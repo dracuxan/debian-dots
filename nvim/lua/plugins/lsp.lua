@@ -161,6 +161,7 @@ return {
 			"checkmake",
 			"prettierd",
 			"nixfmt",
+			"black",
 		})
 		require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
 

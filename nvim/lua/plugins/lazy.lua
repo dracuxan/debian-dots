@@ -156,15 +156,17 @@ local custom_plugins = {
 		"rmagatti/auto-session",
 		config = function()
 			local height = math.floor(vim.o.lines * 0.45)
-			local row = vim.o.lines - height - 2
+			local width = 70
 
 			require("auto-session").setup({
 				session_lens = {
 					picker_opts = {
 						height = height,
-						width = 70,
-						row = row,
-						col = 0, -- left edge
+						width = width,
+						layout_strategy = "center",
+						layout_config = {
+							anchor = "C",
+						},
 						-- 	border = "rounded",
 					},
 				},
@@ -183,24 +185,24 @@ local custom_plugins = {
 		end,
 	},
 
-	{
-		"folke/which-key.nvim",
-		lazy = false,
-		config = function()
-			require("which-key").setup({
-				plugins = {
-					spelling = {
-						enabled = true,
-					},
-				},
-				win = {
-					border = "single",
-				},
-				timeout = true,
-				timeoutlen = 1000,
-			})
-		end,
-	},
+	-- {
+	-- 	"folke/which-key.nvim",
+	-- 	lazy = false,
+	-- 	config = function()
+	-- 		require("which-key").setup({
+	-- 			plugins = {
+	-- 				spelling = {
+	-- 					enabled = true,
+	-- 				},
+	-- 			},
+	-- 			win = {
+	-- 				border = "single",
+	-- 			},
+	-- 			timeout = true,
+	-- 			timeoutlen = 1000,
+	-- 		})
+	-- 	end,
+	-- },
 
 	{
 		"lewis6991/gitsigns.nvim",

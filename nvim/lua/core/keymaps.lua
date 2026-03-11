@@ -12,10 +12,10 @@ local opts = { noremap = true, silent = true }
 vk("i", "jj", "<Esc>", opts)
 
 -- Navigation in insert mode
-vk("i", "<C-h>", "<Left>", opts)
-vk("i", "<C-l>", "<Right>", opts)
-vk("i", "<C-j>", "<Down>", opts)
-vk("i", "<C-k>", "<Up>", opts)
+-- vk("i", "<C-h>", "<Left>", opts)
+-- vk("i", "<C-l>", "<Right>", opts)
+-- vk("i", "<C-j>", "<Down>", opts)
+-- vk("i", "<C-k>", "<Up>", opts)
 
 vk("i", "<C-b>", "<C-o>^", opts) -- Move to start of line
 vk("i", "<C-e>", "<C-o>$", opts) -- Move to end of line
@@ -27,7 +27,7 @@ vk({ "n", "v" }, "<Space>", "<Nop>", { silent = true })
 vk("n", "<C-s>", "<cmd> w <CR>", opts)
 vk("i", "<C-s>", "<Esc><cmd> w <CR>", opts)
 vk("n", "<leader>s", "<cmd> noautocmd w <CR>", opts)
-vk("n", "<M-a>", "<cmd> AutoSession search <CR>", opts)
+vk("n", "<leader>a", "<cmd> AutoSession search <CR>", opts)
 
 -- delete single character without copying into register
 vk("n", "x", '"_x', opts)
@@ -99,7 +99,12 @@ vk("i", "<C-q>", "<cmd> qa <CR>", opts)
 vk("n", "qq", "<cmd> q <CR>", opts)
 
 -- Find todos using telescope
-vk("n", "<leader>ft", "<cmd> TodoTelescope <CR>", { desc = "[F]ind [T]odos using telescope", noremap = true, silent = true })
+vk(
+	"n",
+	"<leader>ft",
+	"<cmd> TodoTelescope <CR>",
+	{ desc = "[F]ind [T]odos using telescope", noremap = true, silent = true }
+)
 
 -- Manual file reload control
 vk("n", "<leader>fr", ":checktime<CR>", { desc = "Check external file changes" })

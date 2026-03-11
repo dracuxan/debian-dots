@@ -1,39 +1,43 @@
-add_newline = true
+"$schema" = 'https://starship.rs/config-schema.json'
+
+format = """
+$username\
+$hostname\
+$directory\
+$git_branch\
+$git_state\
+$git_status\
+$cmd_duration\
+$line_break\
+$python\
+$character"""
+
+[directory]
+style = "fg:#a0a0a0"
 
 [character]
 success_symbol = "[❯](bold #99ffe4)"
-error_symbol   = "[✗](bold #ff8080)"
-
-[directory]
-format = "[$path]($style fg:#a0a0a0) "
-read_only = " "
-
-[cmd_duration]
-format = "[󰔟 $duration ]($style fg:#6b6f82)"
+error_symbol = "[❯](red)"
+vimcmd_symbol = "[❮](bold #ff8080)"
 
 [git_branch]
-format = "[on]($style fg:#65737e) [$symbol$branch ]($style fg:#99ffe4)"
+format = "[$branch]($style)"
+style = "bright-black"
 
 [git_status]
-style = "bold fg:#ffcfa8"
+format = "[[(*$conflicted$untracked$modified$staged$renamed$deleted)](218) ($ahead_behind$stashed)]($style)"
+style = "cyan"
+conflicted = "​"
+untracked = "​"
+modified = "​"
+staged = "​"
+renamed = "​"
+deleted = "​"
+stashed = "≡"
 
-[username]
-show_always = false
+[git_state]
+format = '\([$state( $progress_current/$progress_total)]($style)\) '
+style = "bright-black"
 
-[hostname]
-ssh_only = true
-
-[line_break]
-disabled = false
-
-[package]
-disabled = true
-
-[aws]
-disabled = true
-
-[gcloud]
-disabled = true
-
-[docker_context]
-disabled = true
+[cmd_duration]
+format = "[$duration](fg:#6b6f82) "

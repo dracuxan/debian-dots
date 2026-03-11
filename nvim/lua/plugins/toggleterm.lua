@@ -120,9 +120,9 @@ function _LAZYGIT_TOGGLE()
 end
 
 -- Set keymaps
-vim.keymap.set("n", "<M-m>r", _RUN_SCRIPT, { noremap = true, silent = true, desc = "run script" })
-vim.keymap.set("n", "<M-m>t", _RUN_TEST, { noremap = true, silent = true, desc = "run test(s)" })
-vim.keymap.set("n", "<M-m>i", _RUN_REPL, { noremap = true, silent = true, desc = "run REPL" })
-vim.keymap.set("n", "<M-m>b", _RUN_BUILD, { noremap = true, silent = true, desc = "build project" })
-vim.keymap.set("n", "<M-m>s", _SEND_BIN, { noremap = true, silent = true, desc = "send binaries to server" })
-vim.keymap.set("n", "<M-m>l", _LAZYGIT_TOGGLE, { noremap = true, silent = true, desc = "lazygit" })
+vim.keymap.set("n", "<leader>mr", _RUN_SCRIPT, { noremap = true, silent = true, desc = "run script" })
+vim.keymap.set("n", "<leader>mt", _RUN_TEST, { noremap = true, silent = true, desc = "run test(s)" })
+vim.keymap.set("n", "<leader>mi", _RUN_REPL, { noremap = true, silent = true, desc = "run REPL" })
+vim.keymap.set("n", "<leader>mb", _RUN_BUILD, { noremap = true, silent = true, desc = "build project" })
+vim.keymap.set("n", "<leader>ms", _SEND_BIN, { noremap = true, silent = true, desc = "send binaries to server" })
+vim.keymap.set("n", "<leader>ml", _LAZYGIT_TOGGLE, { noremap = true, silent = true, desc = "lazygit" })

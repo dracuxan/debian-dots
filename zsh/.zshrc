@@ -124,3 +124,5 @@ export PATH=/home/dracuxan/.opencode/bin:$PATH
 . /etc/profile.d/nix.sh
 eval "$(zoxide init zsh)"
 export PATH=$HOME/.npm-global/bin:$PATH
+
+export GPG_TTY=$(tty)

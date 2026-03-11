@@ -6,7 +6,8 @@ local sources = {
 	formatting.prettierd,
 	formatting.shfmt.with({ args = { "-i", "4" } }),
 	formatting.terraform_fmt,
-	null_ls.builtins.formatting.nixfmt,
+	formatting.nixfmt,
+	formatting.black,
 }
 
 local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
