@@ -19,33 +19,25 @@ local custom_plugins = {
 	require("plugins.textobjects"),
 
 	{
-		"nvim-neo-tree/neo-tree.nvim",
-		branch = "v3.x",
-		dependencies = {
-			"nvim-lua/plenary.nvim",
-			"MunifTanjim/nui.nvim",
-			"nvim-tree/nvim-web-devicons",
-		},
+		"folke/snacks.nvim",
+		priority = 1000,
 		lazy = false,
 		opts = {
-			window = {
-				position = "right",
+			explorer = {
+				enabled = true,
 			},
-
-			filesystem = {
-				persist_state = true,
-				follow_current_file = {
-					enabled = true,
-				},
-			},
-
-			diagnostics = {
-				enable = false,
-			},
-
-			git_status = {
-				window = {
-					position = "right",
+			picker = {
+				sources = {
+					explorer = {
+						layout = {
+							preset = "sidebar",
+							preview = false,
+							layout = {
+								position = "right",
+								width = 35,
+							},
+						},
+					},
 				},
 			},
 		},

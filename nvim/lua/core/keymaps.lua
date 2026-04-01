@@ -84,12 +84,8 @@ vk("n", "<leader>rr", ":luafile %<CR>", new_opts)
 vk("n", "<leader>l", "<cmd>Lazy<CR>", opts)
 
 vk("n", "<M-\\>", function()
-	require("neo-tree.command").execute({
-
-		toggle = true,
-		position = "right",
-	})
-end, { desc = "Toggle Neo-tree (right)" })
+	Snacks.explorer()
+end, { desc = "Toggle Snacks Explorer" })
 
 -- Quit all
 vk("n", "<C-q>", "<cmd> qa <CR>", opts)
