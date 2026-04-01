@@ -95,7 +95,7 @@ exs | ex)
         if [[ "$EXT" == "exs" ]] && [[ "$FILE_NAME" != "mix" ]]; then
             echo "starting iex repl..."
             echo ""
-            iex ${FILE_NAME}.${EXT}
+            iex ${FILE_PATH}
         else
             echo "running app with iex..."
             echo ""
@@ -103,7 +103,7 @@ exs | ex)
         fi
     else
         if [[ "$EXT" == "exs" ]] && [[ "$FILE_NAME" != "mix" ]]; then
-            echo "Running ${FILE_NAME}.exs with Elixir..."
+            echo "Running ${FILE_NAME}.exs with elixir..."
             echo ""
             elixir "$FILE_PATH" $ARGS
         else

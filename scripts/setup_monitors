@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 
-POSITION="left" # left | right | above | below
+POSITION="above" # left | right | above | below
 DRY_RUN=false
 
 EXTERNAL_OUTPUT="HDMI-1-0"
