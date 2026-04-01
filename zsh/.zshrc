@@ -86,6 +86,9 @@ alias py='python3'
 alias nuke='nuclei'
 alias ff='firefox'
 
+# codex alias
+alias cr='codex resume'
+
 # alacrity configurations
 alias alacritty_conf='nv /mnt/c/Users/Nisarg/AppData/Roaming/alacritty/alacritty.toml'
 

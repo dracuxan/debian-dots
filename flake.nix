@@ -16,7 +16,6 @@
 
         paths = with pkgs; [
           # editors / shell
-          neovim
           tmux
 
           # cli utils
@@ -24,7 +23,6 @@
           fd
           bat
           eza
-          btop
           curl
           wget
           git
