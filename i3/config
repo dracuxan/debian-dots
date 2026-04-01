@@ -21,7 +21,7 @@ bindsym XF86AudioMute exec --no-startup-id volume_control mute
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec --no-startup-id alacritty
+bindsym $mod+Return exec --no-startup-id kitty
 
 # kill focused window
 bindsym $mod+q kill
@@ -235,6 +235,7 @@ bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl set 10%-
 for_window [class="^.*"] floating enable
 
 for_window [workspace="1"] floating disable
+for_window [workspace="3"] floating disable
 assign [class="sioyek"]  workspace 1
 assign [class="workfolio"]  workspace 5
 for_window [class="workfolio"]  workspace 5
