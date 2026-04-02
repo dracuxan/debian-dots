@@ -6,6 +6,7 @@ ARGS="$@" # Capture any additional arguments
 BUILD_ONLY=false
 TEST_PROJECT=false
 REPL=false
+MIX=false
 C_FLAGS=""
 
 for arg in "$@"; do
@@ -20,6 +21,10 @@ for arg in "$@"; do
         ;;
     --repl | -r)
         REPL=true
+        shift
+        ;;
+    --mix | -m)
+        MIX=true
         shift
         ;;
     --cflags)
@@ -91,6 +96,10 @@ rs)
 exs | ex)
     if $TEST_PROJECT; then
         mix test
+    elif $MIX; then
+        echo "running script with mix..."
+        echo ""
+        mix run ${FILE_PATH}
     elif $REPL; then
         if [[ "$EXT" == "exs" ]] && [[ "$FILE_NAME" != "mix" ]]; then
             echo "starting iex repl..."

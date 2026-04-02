@@ -9,7 +9,7 @@ end
 toggleterm.setup({
 	size = function(term)
 		if term.direction == "horizontal" then
-			return 20
+			return 10
 		else
 			return 60
 		end
@@ -86,6 +86,19 @@ function _RUN_REPL()
 	script_test:toggle()
 end
 
+function _RUN_MIX()
+	local buffname = vim.api.nvim_buf_get_name(0)
+	local filepath = vim.fn.fnamemodify(buffname, ":p")
+	local script_test = Terminal:new({
+		cmd = "run " .. filepath .. " --mix",
+		direction = autoRun,
+		persist_size = true,
+		hidden = true,
+		close_on_exit = false,
+	})
+	script_test:toggle()
+end
+
 function _RUN_BUILD()
 	local buffname = vim.api.nvim_buf_get_name(0)
 	local filepath = vim.fn.fnamemodify(buffname, ":p")
@@ -123,6 +136,7 @@ end
 vim.keymap.set("n", "<leader>mr", _RUN_SCRIPT, { noremap = true, silent = true, desc = "run script" })
 vim.keymap.set("n", "<leader>mt", _RUN_TEST, { noremap = true, silent = true, desc = "run test(s)" })
 vim.keymap.set("n", "<leader>mi", _RUN_REPL, { noremap = true, silent = true, desc = "run REPL" })
+vim.keymap.set("n", "<leader>mm", _RUN_MIX, { noremap = true, silent = true, desc = "run with MIX" })
 vim.keymap.set("n", "<leader>mb", _RUN_BUILD, { noremap = true, silent = true, desc = "build project" })
 vim.keymap.set("n", "<leader>ms", _SEND_BIN, { noremap = true, silent = true, desc = "send binaries to server" })
 vim.keymap.set("n", "<leader>ml", _LAZYGIT_TOGGLE, { noremap = true, silent = true, desc = "lazygit" })
