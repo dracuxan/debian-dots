@@ -4,6 +4,7 @@ font = "JetBrainsMono Nerd Font 10"
 transparency = 1
 frame_color = "#999ecf"
 separator_color = "#999ecf"
+monitor = 1
 
 # Colors matching your i3 config
 background = "#1D1E1C"

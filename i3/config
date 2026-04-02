@@ -11,6 +11,7 @@ exec --no-startup-id rumno daemon --foreground
 exec --no-startup-id autorandr --change
 exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 exec --no-startup-id nm-applet
+exec --no-startup-id /home/dracuxan/rust/eww/target/release/eww open activate-linux
 
 # Volume control with PipeWire (wpctl)
 bindsym XF86AudioRaiseVolume exec --no-startup-id volume_control up
@@ -29,7 +30,7 @@ bindsym $mod+q kill
 # start dmenu (a program launcher)
 bindsym $mod+d exec --no-startup-id rofi -show run -m 2
 bindsym $mod+b exec --no-startup-id zen
-bindsym $mod+x exec --no-startup-id zen x.com
+bindsym $mod+x exec --no-startup-id zen x.com/xandrom_app
 
 # change focus
 bindsym $mod+h focus left
