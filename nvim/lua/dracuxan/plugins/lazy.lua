@@ -11,12 +11,12 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 local custom_plugins = {
-	require("plugins.telescope"),
-	require("plugins.misic"),
-	require("plugins.oil"),
-	require("plugins.lsp"),
-	require("plugins.langages"),
-	require("plugins.textobjects"),
+	require("dracuxan.plugins.telescope"),
+	require("dracuxan.plugins.misic"),
+	require("dracuxan.plugins.oil"),
+	require("dracuxan.plugins.lsp"),
+	require("dracuxan.plugins.langages"),
+	require("dracuxan.plugins.textobjects"),
 
 	{
 		"folke/snacks.nvim",
@@ -99,7 +99,7 @@ local custom_plugins = {
 		"akinsho/toggleterm.nvim",
 		version = "*",
 		config = function()
-			require("plugins.toggleterm")
+			require("dracuxan.plugins.toggleterm")
 		end,
 		lazy = false,
 	},
@@ -112,7 +112,7 @@ local custom_plugins = {
 		lazy = false,
 		priority = 1000, -- make sure to load this before all the other start plugins
 		config = function()
-			require("plugins.vesper")
+			require("dracuxan.plugins.vesper")
 		end,
 	},
 
@@ -173,7 +173,7 @@ local custom_plugins = {
 		dependencies = { "nvim-tree/nvim-web-devicons" },
 		disabled_filetypes = { "alpha" },
 		config = function()
-			require("plugins.lualine")
+			require("dracuxan.plugins.lualine")
 		end,
 	},
 

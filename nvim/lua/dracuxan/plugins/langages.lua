@@ -42,7 +42,7 @@ return {
 		build = ":TSUpdate",
 		main = "nvim-treesitter.configs", -- Sets main module to use for opts
 		config = function()
-			require("plugins.treesitter") -- Loads the Treesitter configuration
+			require("dracuxan.plugins.treesitter") -- Loads the Treesitter configuration
 		end,
 	},
 
@@ -75,7 +75,7 @@ return {
 			"hrsh7th/cmp-path",
 		},
 		config = function()
-			require("plugins.cmp")
+			require("dracuxan.plugins.cmp")
 		end,
 	},
 
@@ -86,7 +86,7 @@ return {
 			"jayp0521/mason-null-ls.nvim", -- ensures dependencies are installed
 		},
 		config = function()
-			require("plugins.none-ls")
+			require("dracuxan.plugins.none-ls")
 		end,
 	},
 }
