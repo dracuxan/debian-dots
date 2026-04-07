@@ -1,81 +1,70 @@
 local vim = vim
 
-vim.wo.number = true -- Make line numbers default (default: false)
-vim.o.clipboard = "unnamedplus" -- Sync clipboard between OS and Neovim. (default: '')
-vim.o.relativenumber = true -- Set relative numbered lines (default: false)
-vim.o.wrap = true -- Display lines as one long line (default: true)
-vim.o.linebreak = true -- Companion to wrap, don't split words (default: false)
-vim.o.mouse = "" -- Enable mouse mode (default: '')
-vim.o.autoindent = true -- Copy indent from current line when starting new one (default: true)
-vim.o.ignorecase = true -- Case-insensitive searching UNLESS \C or capital in search (default: false)
-vim.o.smartcase = true -- Smart case (default: false)
-vim.o.shiftwidth = 2 -- The number of spaces inserted for each indentation (default: 8)
-vim.o.tabstop = 2 -- Insert n spaces for a tab (default: 8)
-vim.o.softtabstop = 2 -- Number of spaces that a tab counts for while performing editing operations (default: 0)
-vim.o.expandtab = true -- Convert tabs to spaces (default: false)
-vim.o.scrolloff = 0 -- Minimal number of screen lines to keep above and below the cursor (default: 0)
-vim.o.sidescrolloff = 8 -- Minimal number of screen columns either side of cursor if wrap is `false` (default: 0)
-vim.o.cursorline = false -- Highlight the current line (default: false)
-vim.o.splitbelow = true -- Force all horizontal splits to go below current window (default: false)
-vim.o.splitright = true -- Force all vertical splits to go to the right of current window (default: false)
-vim.o.hlsearch = false -- Set highlight on search (default: true)
-vim.o.showmode = false -- We don't need to see things like -- INSERT -- anymore (default: true)
-vim.opt.termguicolors = true -- Set termguicolors to enable highlight groups (default: false)
-vim.o.whichwrap = "bs<>[]hl" -- Which "horizontal" keys are allowed to travel to prev/next line (default: 'b,s')
-vim.o.numberwidth = 2 -- Set number column width to 2 {default 4} (default: 4)
-vim.o.swapfile = false -- Creates a swapfile (default: true)
-vim.o.smartindent = true -- Make indenting smarter again (default: false)
-vim.o.showtabline = 2 -- Always show tabs (default: 1)
-vim.o.backspace = "indent,eol,start" -- Allow backspace on (default: 'indent,eol,start')
-vim.o.pumheight = 10 -- Pop up menu height (default: 0)
-vim.o.conceallevel = 0 -- So that `` is visible in markdown files (default: 1)
-vim.wo.signcolumn = "yes" -- Keep signcolumn on by default (default: 'auto')
-vim.o.fileencoding = "utf-8" -- The encoding written to a file (default: 'utf-8')
-vim.o.cmdheight = 1 -- More space in the Neovim command line for displaying messages (default: 1)
-vim.o.breakindent = true -- Enable break indent (default: false)
-vim.o.updatetime = 250 -- Decrease update time (default: 4000)
-vim.o.timeoutlen = 300 -- Time to wait for a mapped sequence to complete (in milliseconds) (default: 1000)
-vim.o.backup = false -- Creates a backup file (default: false)
-vim.o.writebackup = false -- If a file is being edited by another program (or was written to file while editing with another program), it is not allowed to be edited (default: true)
-vim.o.undofile = true -- Save undo history (default: false)
-vim.o.completeopt = "menuone,noselect" -- Set completeopt to have a better completion experience (default: 'menu,preview')
-vim.opt.shortmess:append("c") -- Don't give |ins-completion-menu| messages (default: does not include 'c')
-vim.opt.iskeyword:append("-") -- Hyphenated words recognized by searches (default: does not include '-')
-vim.opt.formatoptions:remove({ "c", "r", "o" })
+-- UI
+vim.wo.number = true
+vim.o.relativenumber = true
+vim.o.numberwidth = 2
+vim.o.cursorline = false
+vim.o.wrap = true
+vim.o.linebreak = true
+vim.o.breakindent = true
+vim.wo.signcolumn = "yes"
+vim.o.showmode = false
+vim.opt.termguicolors = true
+vim.o.showtabline = 2
+vim.o.pumheight = 10
+vim.o.conceallevel = 0
+vim.o.cmdheight = 1
 vim.opt.fillchars = { eob = " " }
-vim.o.updatetime = 1000 -- 1 second for faster external change detection
+
+-- Behavior
+vim.o.mouse = ""
+vim.o.autoindent = true
+vim.o.smartindent = true
+vim.o.ignorecase = true
+vim.o.smartcase = true
+vim.o.hlsearch = false
+vim.o.whichwrap = "bs<>[]hl"
+vim.o.scrolloff = 0
+vim.o.sidescrolloff = 8
+vim.o.splitbelow = true
+vim.o.splitright = true
+vim.o.backspace = "indent,eol,start"
+
+-- Indentation
+vim.o.shiftwidth = 2
+vim.o.tabstop = 2
+vim.o.softtabstop = 2
+vim.o.expandtab = true
+
+-- Files and undo
+vim.o.swapfile = false
+vim.o.backup = false
+vim.o.writebackup = false
+vim.o.undofile = true
+vim.o.fileencoding = "utf-8"
+
+-- Completion and messaging
+vim.o.completeopt = "menuone,noselect"
+vim.opt.shortmess:append("c")
+vim.opt.iskeyword:append("-")
+vim.opt.formatoptions:remove({ "c", "r", "o" })
+
+-- Timing
+vim.o.updatetime = 250
+vim.o.timeoutlen = 300
+vim.o.updatetime = 1000
+
+-- Clipboard
+vim.o.clipboard = "unnamedplus"
 vim.opt.clipboard = "unnamedplus"
 
--- Treesitter folding
+-- Folding
 vim.wo.foldmethod = "expr"
 vim.wo.foldexpr = "nvim_treesitter#foldexpr()"
-
 vim.wo.foldlevel = 99
-
--- vim.opt.list = true
--- vim.opt.listchars = {
--- 	tab = "· ",
--- 	trail = "·",
--- 	extends = ">",
--- 	precedes = "<",
--- }
-
-_G.MyTabLabel = function(n)
-	local buf = vim.fn.bufname(vim.fn.tabpagebuflist(n)[vim.fn.tabpagewinnr(n)])
-	return buf ~= "" and "../" .. vim.fn.fnamemodify(buf, ":t") or "[No Name]"
-end
-
-_G.MyTabLine = function()
-	local s, cur, total = "", vim.fn.tabpagenr(), vim.fn.tabpagenr("$")
-	for i = 1, total do
-		s = s .. (i == cur and "%#TabLineSel#" or "%#TabLine#")
-		s = s .. ("%%%dT %%{v:lua.MyTabLabel(%d)} "):format(i, i)
-	end
-	return s .. "%#TabLineFill#%T" .. (total > 1 and "%=%#TabLine#%999Xclose" or "")
-end
-
-vim.o.showtabline = 2
-vim.o.tabline = "%!v:lua.MyTabLine()"
+vim.o.showtabline = 0
+vim.o.tabline = ""
 
 vim.api.nvim_create_autocmd("ColorScheme", {
 	callback = function()

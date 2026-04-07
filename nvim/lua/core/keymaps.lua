@@ -1,38 +1,31 @@
 local vim = vim
 local vk = vim.keymap.set
--- Set leader key
+
+-- Leader
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
--- For conciseness
+-- Defaults
 local opts = { noremap = true, silent = true }
 
--- Custom
--- Exit to normal mode
+-- Insert
 vk("i", "jj", "<Esc>", opts)
+vk("i", "<C-b>", "<C-o>^", opts)
+vk("i", "<C-e>", "<C-o>$", opts)
 
--- Navigation in insert mode
--- vk("i", "<C-h>", "<Left>", opts)
--- vk("i", "<C-l>", "<Right>", opts)
--- vk("i", "<C-j>", "<Down>", opts)
--- vk("i", "<C-k>", "<Up>", opts)
-
-vk("i", "<C-b>", "<C-o>^", opts) -- Move to start of line
-vk("i", "<C-e>", "<C-o>$", opts) -- Move to end of line
-
--- Disable the spacebar key's default behavior in Normal and Visual modes
+-- Normal/Visual
 vk({ "n", "v" }, "<Space>", "<Nop>", { silent = true })
 
--- save file
+-- Save
 vk("n", "<C-s>", "<cmd> w <CR>", opts)
 vk("i", "<C-s>", "<Esc><cmd> w <CR>", opts)
 vk("n", "<leader>s", "<cmd> noautocmd w <CR>", opts)
 vk("n", "<leader>a", "<cmd> AutoSession search <CR>", opts)
 
--- delete single character without copying into register
+-- Edit
 vk("n", "x", '"_x', opts)
 
--- Resize with arrows
+-- Resize
 vk("n", "<Up>", ":resize -2<CR>", opts)
 vk("n", "<Down>", ":resize +2<CR>", opts)
 vk("n", "<Left>", ":vertical resize -2<CR>", opts)
@@ -41,7 +34,7 @@ vk("n", "<Right>", ":vertical resize +2<CR>", opts)
 -- Buffers
 vk("n", "<Tab>", ":bnext<CR>", opts)
 vk("n", "<S-Tab>", ":bprevious<CR>", opts)
-vk("n", "<leader>x", ":bdelete!<CR>", opts) -- close buffer
+vk("n", "<leader>x", ":bdelete!<CR>", opts)
 vk("n", "<leader>x", function()
 	local bufnr = vim.api.nvim_get_current_buf() -- Get the current buffer number
 	local buffers = vim.fn.getbufinfo({ buflisted = 1 }) -- Get list of open buffers
@@ -55,46 +48,39 @@ vk("n", "<leader>x", function()
 	vim.cmd("bdelete! " .. bufnr) -- Delete the previous buffer
 end, opts)
 
--- Navigate between splits
+-- Windows
 vk("n", "<C-k>", ":wincmd k<CR>", opts)
 vk("n", "<C-j>", ":wincmd j<CR>", opts)
 vk("n", "<C-h>", ":wincmd h<CR>", opts)
 vk("n", "<C-l>", ":wincmd l<CR>", opts)
 
--- Toggle line wrapping
--- vk("n", "<leader>lw", "<cmd>set wrap!<CR>", opts)
-
--- Stay in indent mode
+-- Visual
 vk("v", "<", "<gv", opts)
 vk("v", ">", ">gv", opts)
-
--- Keep last yanked when pasting
 vk("v", "p", '"_dP', opts)
 
--- Diagnostic keymaps
+-- Diagnostics
 vk("n", "<leader>d", vim.diagnostic.open_float, { desc = "Open floating diagnostic message" })
 vk("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostics list" })
 
--- Reload Config
+-- Reload
 local new_opts = { desc = "Reload current Lua file", noremap = true, silent = true }
-
 vk("n", "<leader>rr", ":luafile %<CR>", new_opts)
 
--- Open Lazy Plugin Manager
+-- Lazy
 vk("n", "<leader>l", "<cmd>Lazy<CR>", opts)
 
+-- Snacks
 vk("n", "<M-\\>", function()
 	Snacks.explorer()
 end, { desc = "Toggle Snacks Explorer" })
 
--- Quit all
+-- Quit
 vk("n", "<C-q>", "<cmd> qa <CR>", opts)
 vk("i", "<C-q>", "<cmd> qa <CR>", opts)
-
--- Quit
 vk("n", "qq", "<cmd> q <CR>", opts)
 
--- Find todos using telescope
+-- Telescope
 vk(
 	"n",
 	"<leader>ft",
@@ -102,11 +88,11 @@ vk(
 	{ desc = "[F]ind [T]odos using telescope", noremap = true, silent = true }
 )
 
--- Manual file reload control
+-- File reload
 vk("n", "<leader>fr", ":checktime<CR>", { desc = "Check external file changes" })
 vk("n", "<leader>fr!", ":edit!<CR>", { desc = "Force reload file" })
 
--- For terminal navigation
+-- Terminal
 vk("t", "<C-h>", [[<C-\><C-N><C-w>h]])
 vk("t", "<C-j>", [[<C-\><C-N><C-w>j]])
 vk("t", "<C-k>", [[<C-\><C-N><C-w>k]])
