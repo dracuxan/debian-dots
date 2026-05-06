@@ -40,7 +40,7 @@ export PATH="$PATH:$GOPATH/bin"
 
 # Elixir env
 export PATH="$HOME/.mix/escripts:$PATH"
-
+# Elixir install (official installer)
 # NVM Variables
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # Load NVM
@@ -129,3 +129,17 @@ eval "$(zoxide init zsh)"
 export PATH=$HOME/.npm-global/bin:$PATH
 
 export GPG_TTY=$(tty)
+
+export PATH="/home/dracuxan/.pixi/bin:$PATH"
+. "$HOME/.asdf/asdf.sh"
+
+preexec() { LAST_CMD="$1" }
+precmd() {
+  local exclude=("ls" "cd" "source" "clear" "x" "neo" "noe" "nv" "cls" "notif_script" "tm" "git" "lazygit")
+  local cmd_base="${LAST_CMD%% *}"
+  
+  if [[ -n "$LAST_CMD" ]] && [[ ! " ${exclude[@]} " =~ " ${cmd_base} " ]]; then
+    dunstify "command completed: $LAST_CMD"
+  fi
+  LAST_CMD=""
+}

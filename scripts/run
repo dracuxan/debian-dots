@@ -41,6 +41,12 @@ if [[ -z "$FILE_PATH" ]]; then
     exit 1
 fi
 
+if [[ -f "build.zig" ]]; then
+    IS_ZIG_PROJECT=true
+else
+    IS_ZIG_PROJECT=false
+fi
+
 EXT="${FILE_PATH##*.}"
 FILE_NAME=$(basename "$FILE_PATH" ."$EXT")
 
@@ -128,6 +134,45 @@ exs | ex)
             fi
         fi
 
+    fi
+    ;;
+zig)
+    if $IS_ZIG_PROJECT; then
+        # Project mode
+        if $TEST_PROJECT; then
+            echo "Running Zig project tests..."
+            echo ""
+            zig build test
+
+        elif $BUILD_ONLY; then
+            echo "Building Zig project..."
+            echo ""
+            zig build
+
+        else
+            echo "Running Zig project..."
+            echo ""
+            zig build run -- $ARGS
+        fi
+
+    else
+        # Single file mode
+        if $TEST_PROJECT; then
+            echo "Running tests for ${FILE_NAME}.zig..."
+            echo ""
+            zig test "$FILE_PATH"
+
+        elif $BUILD_ONLY; then
+            echo "Building ${FILE_NAME}.zig..."
+            echo ""
+            mkdir -p target
+            zig build-exe "$FILE_PATH" -o "target/${FILE_NAME}"
+
+        else
+            echo "Running ${FILE_NAME}.zig..."
+            echo ""
+            zig run "$FILE_PATH" -- $ARGS
+        fi
     fi
     ;;
 ts | js)

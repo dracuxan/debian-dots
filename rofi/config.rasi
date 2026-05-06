@@ -1,15 +1,11 @@
 * {
-    font: "JetBrainsMono Nerd Font 12";
+    font: "JetBrainsMono Nerd Font 10";
 
     /* palette */
-    bg0: #1e1f24f2;
-    bg1: #262830;
-    bg2: #2f323c80;
-    bg3: #99ffe4;
+    bg0: #00000000;
+    bg2: #999ecf;
 
-    fg0: #999ecf;
-    fg1: #999ecf;
-    fg2: #999ecf;
+    fg0: #ffcfa8;
 
     background-color: transparent;
     text-color: @fg0;
@@ -21,28 +17,29 @@
 
 /* window */
 window {
-    background-color: @bg0;
+    background-color: transparent;
+    anchor: center;
     location: center;
-    width: 500;
-    border-radius: 8;
+    width: 360px;
+    border-radius: 0;
+    border-color: @bg2;
 }
 
 /* input */
 inputbar {
-    font: "Montserrat 20";
+    font: inherit;
     padding: 12px;
     spacing: 12px;
-    children: [ icon-search, entry ];
-    background-color: @bg1;
+    children: [ prompt, entry ];
+    background-color: transparent;
 }
 
-icon-search {
+prompt {
     expand: false;
-    filename: "search";
-    size: 28px;
+    text-color: @fg0;
 }
 
-icon-search,
+prompt,
 entry,
 element-icon,
 element-text {
@@ -51,30 +48,15 @@ element-text {
 
 entry {
     font: inherit;
-    text-color: @fg1;
-    placeholder: "Search";
-    placeholder-color: @fg2;
-}
-
-/* message */
-message {
-    border: 2px 0 0;
-    border-color: @bg2;
-    background-color: @bg1;
-}
-
-textbox {
-    padding: 8px 24px;
+    text-color: @fg0;
 }
 
 /* list */
 listview {
-    lines: 6;
-    columns: 1;
+    lines: 8;
     fixed-height: false;
-    border: 1px 0 0;
-    border-color: @bg2;
-    background-color: @bg0;
+    border: 0;
+    scrollbar: false;
 }
 
 /* elements */
@@ -85,15 +67,18 @@ element {
     text-color: @fg0;
 }
 
-element normal active,
-element alternate active {
-    text-color: @fg0;
-}
-
 element selected normal,
 element selected active {
-    background-color: @bg3;
-    text-color: #1e1f24;
+    background-color: @bg0;
+    text-color: @bg2;
+}
+
+element normal normal,
+element alternate normal,
+element normal active,
+element alternate active {
+    background-color: transparent;
+    text-color: @fg0;
 }
 
 /* content */
@@ -104,4 +89,3 @@ element-icon {
 element-text {
     text-color: inherit;
 }
-

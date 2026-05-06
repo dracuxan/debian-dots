@@ -5,6 +5,7 @@
 #   set_wallpaper.sh              # Set wallpaper from config file
 #   set_wallpaper.sh filename.jpg # Set new wallpaper and update config
 #   set_wallpaper.sh --random     # Set random wallpaper from ~/Wallpapers
+#   set_wallpaper.sh --select     # Select wallpaper using rofi
 
 set -e
 
@@ -57,10 +58,8 @@ write_wallpaper_config() {
     local config_dir
     config_dir="$(dirname "$CONFIG_FILE")"
 
-    # Ensure config directory exists
     mkdir -p "$config_dir"
 
-    # Write to config file
     echo "# Wallpaper Configuration" >"$CONFIG_FILE"
     echo "# Format: WALLPAPER_PATH=~/Wallpapers/filename.jpg" >>"$CONFIG_FILE"
     echo "# The wallpaper script will read this file and apply the specified wallpaper" >>"$CONFIG_FILE"
@@ -74,7 +73,6 @@ write_wallpaper_config() {
 validate_wallpaper() {
     local wallpaper_path="$1"
 
-    # Expand ~ to home directory
     wallpaper_path="${wallpaper_path/#\~/$HOME}"
 
     if [[ ! -f "$wallpaper_path" ]]; then
@@ -89,15 +87,12 @@ validate_wallpaper() {
 apply_wallpaper() {
     local wallpaper_path="$1"
 
-    # Expand ~ to home directory
     wallpaper_path="${wallpaper_path/#\~/$HOME}"
 
-    # Validate file exists
     if ! validate_wallpaper "$wallpaper_path"; then
         return 1
     fi
 
-    # Apply wallpaper
     if feh --bg-fill "$wallpaper_path"; then
         log_info "Wallpaper applied successfully: $(basename "$wallpaper_path")"
         return 0
@@ -114,8 +109,8 @@ get_random_wallpaper() {
     local wallpapers
     wallpapers=("$WALLPAPER_DIR"/*.{jpg,jpeg,png,bmp,webp})
 
-    # Filter to existing files
     local existing_wallpapers=()
+
     for wallpaper in "${wallpapers[@]}"; do
         if [[ -f "$wallpaper" ]]; then
             existing_wallpapers+=("$wallpaper")
@@ -127,12 +122,29 @@ get_random_wallpaper() {
         return 1
     fi
 
-    # Select random wallpaper
     local random_index=$((RANDOM % ${#existing_wallpapers[@]}))
     local selected_wallpaper="${existing_wallpapers[$random_index]}"
 
-    # Convert to ~ format for config
     echo "${selected_wallpaper/#$HOME/\~}"
+}
+
+# Select wallpaper using rofi
+select_wallpaper() {
+    ensure_wallpaper_dir
+
+    local selected
+
+    selected=$(
+        find "$WALLPAPER_DIR" -maxdepth 1 -type f \
+            \( -iname "*.jpg" -o -iname "*.jpeg" -o -iname "*.png" -o -iname "*.webp" -o -iname "*.bmp" \) |
+            sed "s|$WALLPAPER_DIR/||" |
+            sort |
+            rofi -dmenu -i -p "Wallpaper"
+    )
+
+    [[ -z "$selected" ]] && exit 0
+
+    echo "$WALLPAPER_DIR/$selected"
 }
 
 # Show usage
@@ -141,15 +153,17 @@ show_usage() {
     echo ""
     echo "Usage:"
     echo "  $0                    # Set wallpaper from config file"
-    echo "  $0 filename.jpg      # Set new wallpaper and update config"
-    echo "  $0 --random          # Set random wallpaper from ~/Wallpapers"
-    echo "  $0 --list            # List available wallpapers"
-    echo "  $0 --help            # Show this help"
+    echo "  $0 filename.jpg       # Set new wallpaper and update config"
+    echo "  $0 --random           # Set random wallpaper from ~/Wallpapers"
+    echo "  $0 --select           # Select wallpaper using rofi"
+    echo "  $0 --list             # List available wallpapers"
+    echo "  $0 --help             # Show this help"
     echo ""
     echo "Examples:"
-    echo "  $0 gruvbox_spac.jpg  # Set specific wallpaper"
+    echo "  $0 gruvbox_spac.jpg"
     echo "  $0 ~/Wallpapers/joyboy.png"
-    echo "  $0 --random          # Random selection"
+    echo "  $0 --random"
+    echo "  $0 --select"
 }
 
 # List available wallpapers
@@ -162,6 +176,7 @@ list_wallpapers() {
     wallpapers=("$WALLPAPER_DIR"/*.{jpg,jpeg,png,bmp,webp})
 
     local found=false
+
     for wallpaper in "${wallpapers[@]}"; do
         if [[ -f "$wallpaper" ]]; then
             echo "  $(basename "$wallpaper")"
@@ -179,63 +194,74 @@ main() {
     local wallpaper_path
     local action="from_config"
 
-    # Parse arguments
     case "${1:-}" in
     --help | -h)
         show_usage
         exit 0
         ;;
+
     --random | -r)
         action="random"
         ;;
+
+    --select | -s)
+        action="select"
+        ;;
+
     --list | -l)
         list_wallpapers
         exit 0
         ;;
+
     "")
-        # No argument, use config
         action="from_config"
         ;;
+
     *)
-        # Specific wallpaper provided
         wallpaper_path="$1"
 
-        # If no directory specified, assume ~/Wallpapers/
         if [[ "$wallpaper_path" != *"/"* ]]; then
             wallpaper_path="$WALLPAPER_DIR/$wallpaper_path"
         fi
 
-        # Convert to ~ format for consistency
         wallpaper_path="${wallpaper_path/#$HOME/\~}"
         action="specific"
         ;;
     esac
 
-    # Execute action
     case "$action" in
     "from_config")
         wallpaper_path=$(read_wallpaper_config)
         log_info "Setting wallpaper from config: $(basename "$wallpaper_path")"
         ;;
+
     "random")
         wallpaper_path=$(get_random_wallpaper)
+
         if [[ $? -ne 0 ]]; then
             exit 1
         fi
+
         log_info "Random wallpaper selected: $(basename "$wallpaper_path")"
         ;;
+
+    "select")
+        wallpaper_path=$(select_wallpaper)
+        log_info "Selected wallpaper: $(basename "$wallpaper_path")"
+        ;;
+
     "specific")
         log_info "Setting specific wallpaper: $(basename "$wallpaper_path")"
         ;;
     esac
 
-    # Validate and apply wallpaper
     if validate_wallpaper "$wallpaper_path"; then
         if apply_wallpaper "$wallpaper_path"; then
-            # Update config if not reading from it
+
             if [[ "$action" != "from_config" ]]; then
                 write_wallpaper_config "$wallpaper_path"
             fi
+
             log_info "Wallpaper set successfully!"
         else
             log_error "Failed to set wallpaper"
@@ -247,5 +273,4 @@ main() {
     fi
 }
 
-# Run main function with all arguments
 main "$@"

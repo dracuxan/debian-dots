@@ -1,5 +1,5 @@
 [font]
-size = 9
+size = 10
 
 [font.bold]
 family = "JetBrainsMono Nerd Font"
@@ -7,7 +7,7 @@ style = "Bold"
 
 [font.italic]
 family = "JetBrainsMono Nerd Font"
-style = "Italic"
+style = "Regular"
 
 [font.normal]
 family = "JetBrainsMono Nerd Font"
@@ -24,25 +24,12 @@ multiplier = 3
 [selection]
 save_to_clipboard = true
 
-[window]
-dimensions = { columns = 150, lines = 50 }
-
 [window.padding]
 x = 10
 y = 10
 
-[colors.primary]
-background = "#000000"
-foreground = "#dddddd"
-
 [keyboard]
 bindings = [
-  # Existing bindings
-  { key = "Return", mods = "Control|Shift", action = "SpawnNewInstance" },
-  { key = "V", mods = "Control|Shift", action = "Paste" },
-  { key = "C", mods = "Control|Shift", action = "Copy" },
-  { key = "L", mods = "Control", chars = "\u000c" },
-
   # Alt + hjkl navigation
   { key = "H", mods = "Alt", chars = "\u001b[D" }, # Left
   { key = "J", mods = "Alt", chars = "\u001b[B" }, # Down

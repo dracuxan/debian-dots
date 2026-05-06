@@ -17,7 +17,7 @@ run() {
 
 # Enable both monitors
 run --output "$INTERNAL_OUTPUT" --auto --primary
-run --output "$EXTERNAL_OUTPUT" --mode 1920x1080 --rate 100.00
+run --output "$EXTERNAL_OUTPUT" --mode 1920x1080 --rate 180.00
 
 # Position external monitor
 case "$POSITION" in

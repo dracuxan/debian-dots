@@ -3,10 +3,7 @@ IEx.configure(
   default_prompt: "λ > ",
 
   # Prompt when connected to a distributed node
-  alive_prompt: "λ (#{IO.ANSI.cyan()}%node#{IO.ANSI.reset()}) >",
-
-  # Prompt when IEx is waiting for more input
-  continuation_prompt: "...> "
+  alive_prompt: "λ (#{IO.ANSI.cyan()}%node#{IO.ANSI.reset()}) >"
 )
 
 # Optional helper functions

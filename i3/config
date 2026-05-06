@@ -1,5 +1,11 @@
+# Base
 set $mod Mod4
 font pango:JetBrainsMono Nerd Font 11
+
+# Use Mouse+$mod to drag floating windows to their wanted position
+floating_modifier $mod
+
+# Autostart
 exec --no-startup-id xset r rate 200 30
 exec --no-startup-id dex --autostart --environment i3
 exec --no-startup-id blueman-applet
@@ -11,27 +17,41 @@ exec --no-startup-id rumno daemon --foreground
 exec --no-startup-id autorandr --change
 exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 exec --no-startup-id nm-applet
-exec --no-startup-id /home/dracuxan/rust/eww/target/release/eww open activate-linux
+exec --no-startup-id /home/dracuxan/source/eww/target/release/eww open activate-linux
 
+# Startup commands
+exec --no-startup-id sleep 3 && /home/dracuxan/.local/bin/setup_monitors; /home/dracuxan/.local/bin/set_wallpaper
+exec --no-startup-id fusuma
+
+# Media + Brightness
 # Volume control with PipeWire (wpctl)
 bindsym XF86AudioRaiseVolume exec --no-startup-id volume_control up
 bindsym XF86AudioLowerVolume exec --no-startup-id volume_control down
 bindsym XF86AudioMute exec --no-startup-id volume_control mute
 
-# Use Mouse+$mod to drag floating windows to their wanted position
-floating_modifier $mod
+# Brightness
+bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl set +10%
+bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl set 10%-
 
+# Launchers + Apps
 # start a terminal
-bindsym $mod+Return exec --no-startup-id kitty
-
-# kill focused window
-bindsym $mod+q kill
+bindsym $mod+Return exec --no-startup-id alacritty 
 
 # start dmenu (a program launcher)
-bindsym $mod+d exec --no-startup-id rofi -show run -m 2
-bindsym $mod+b exec --no-startup-id zen
-bindsym $mod+x exec --no-startup-id zen x.com/xandrom_app
+bindsym $mod+d exec --no-startup-id rofi -show run -display-run '>' -m 2
+bindsym $mod+b exec --no-startup-id helium
+bindsym $mod+x exec --no-startup-id helium x.com/xandrom_app
 
+# Custom keybinds
+bindsym $mod+p exec sioyek
+
+# keybind for OBS
+bindsym $mod+o exec obs
+
+# Screenshot
+bindsym $mod+Shift+s exec flameshot gui
+
+# Window Focus + Movement
 # change focus
 bindsym $mod+h focus left
 bindsym $mod+l focus right
@@ -56,6 +76,26 @@ bindsym $mod+Shift+Down move down
 bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
+# focus the parent container
+bindsym $mod+a focus parent
+
+# focus the child container
+# bindsym $mod+d focus child
+
+# kill focused window
+bindsym $mod+q kill
+
+# toggle between last focused window
+bindsym Mod1+Tab focus left
+bindsym Mod1+Shift+Tab focus right
+
+# change focus between tiling / floating windows
+bindsym $mod+space focus mode_toggle
+
+# move window to center
+bindsym $mod+c move position center
+
+# Layout + Containers
 # split in horizontal orientation
 bindsym $mod+semicolon split h
 
@@ -70,15 +110,13 @@ bindsym $mod+s layout stacking
 bindsym $mod+w layout tabbed
 bindsym $mod+e layout toggle split
 
+# change wallpaper
+bindsym $mod+Shift+w exec --no-startup-id set_wallpaper --select
+
 # toggle tiling / floating
 bindsym $mod+Shift+space floating toggle
 
-# focus the parent container
-bindsym $mod+a focus parent
-
-# focus the child container
-#bindsym $mod+d focus child
-
+# Workspaces
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
 set $ws1 "1"
@@ -86,9 +124,11 @@ set $ws2 "2"
 set $ws3 "3"
 set $ws4 "4"
 set $ws5 "5"
+set $ws5 "5"
+set $ws6 "6"
 
 # Bind workspaces to outputs
-workspace 5 output eDP-1-0
+workspace 6 output eDP
 
 # switch to workspace
 bindsym $mod+1 workspace number $ws1
@@ -96,6 +136,7 @@ bindsym $mod+2 workspace number $ws2
 bindsym $mod+3 workspace number $ws3
 bindsym $mod+4 workspace number $ws4
 bindsym $mod+5 workspace number $ws5
+bindsym $mod+6 workspace number $ws6
 
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace number $ws1
@@ -103,7 +144,16 @@ bindsym $mod+Shift+2 move container to workspace number $ws2
 bindsym $mod+Shift+3 move container to workspace number $ws3
 bindsym $mod+Shift+4 move container to workspace number $ws4
 bindsym $mod+Shift+5 move container to workspace number $ws5
+bindsym $mod+Shift+6 move container to workspace number $ws6
 
+# switch to last used workspace
+bindsym $mod+Tab workspace back_and_forth
+
+# change focus to next workspace
+bindsym $mod+n workspace next
+# bindsym $mod+Shift+n workspace previous
+
+# Session Control
 # reload the configuration file
 bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
@@ -111,6 +161,17 @@ bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
 bindsym $mod+Shift+e exec "i3-msg exit"
 
+# Increase inner gaps
+bindsym $mod+g gaps inner current plus 5
+
+# Decrease inner gaps
+bindsym $mod+Shift+g gaps inner current minus 5
+
+# resize windows to a custom size
+bindsym $mod+Shift+m resize set width 35 ppt
+bindsym $mod+Shift+n resize set width 50 ppt
+
+# Modes
 # resize window (you can also use the mouse for that)
 mode "resize" {
         bindsym h resize shrink width 10 px or 10 ppt
@@ -128,6 +189,7 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
+# Bar
 bar {
     i3bar_command i3bar -t
     status_command i3status
@@ -151,17 +213,10 @@ bar {
     }
 }
 
-#Custom Config
+# hide bar
+bindsym $mod+m bar mode toggle
 
-bindsym $mod+p exec sioyek
-
-# Startup commands
-exec --no-startup-id sleep 3 && /home/dracuxan/.local/bin/setup_monitors; /home/dracuxan/.local/bin/set_wallpaper
-exec --no-startup-id fusuma
-
-# keybind for OBS
-bindsym $mod+o exec obs
-
+# Appearance
 # Colorscheme
 
 # Focused window (active)
@@ -181,62 +236,13 @@ default_floating_border pixel 1
 # Force all new windows into tabbed layout
 workspace_layout tabbed
 
-# Shutdown
-# bindsym $mod+Shift+d exec shutdown -h now
-
-# Screenshot
-bindsym $mod+Shift+s exec flameshot gui
-
-# switch to last used workspace
-bindsym $mod+Tab workspace back_and_forth
-# bindsym $mod+Tab focus left
-# toggle between last focused window
-bindsym Mod1+Tab focus left
-bindsym Mod1+Shift+Tab focus right
-
-# change focus between tiling / floating windows
-bindsym $mod+space focus mode_toggle
-
-bindsym $mod+c move position center
-
-# change focus to next workspace
-bindsym $mod+n workspace next
-# bindsym $mod+Shift+n workspace previous
-
-# hide bar
-bindsym $mod+m bar mode toggle
-
+# Gaps
 # Set space between windows and screen edges
 gaps outer 0
 
 # Set space between windows
 gaps inner 0
 
-# Increase inner gaps
-bindsym $mod+g gaps inner current plus 5
-
-# Decrease inner gaps
-bindsym $mod+Shift+g gaps inner current minus 5
-
-# resize windows to a custom size
-bindsym $mod+Shift+m resize set width 35 ppt
-bindsym $mod+Shift+n resize set width 50 ppt
-
-# Move to scratchpad
-bindsym $mod+Shift+minus move scratchpad
-
-# Show scratchpad
-bindsym $mod+minus scratchpad show
-
-# Brightness
-bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl set +10%
-bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl set 10%-
-
-# floating windows by default
-for_window [class="^.*"] floating enable
-
-for_window [workspace="1"] floating disable
-for_window [workspace="3"] floating disable
-assign [class="sioyek"]  workspace 1
-assign [class="workfolio"]  workspace 5
-for_window [class="workfolio"]  workspace 5
+# Rules
+assign [class="workfolio"]  workspace 6
+for_window [class="gnuplot_qt"] floating enable

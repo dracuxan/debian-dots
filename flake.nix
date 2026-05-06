@@ -57,8 +57,6 @@
           uv
 
           # BEAM
-          elixir
-          erlang
           inotify-tools
           elixir-ls
           xdg-utils
