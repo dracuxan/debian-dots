@@ -13,10 +13,16 @@ vim.opt.rtp:prepend(lazypath)
 local custom_plugins = {
 	require("dracuxan.plugins.telescope"),
 	require("dracuxan.plugins.misic"),
-	require("dracuxan.plugins.oil"),
 	require("dracuxan.plugins.lsp"),
 	require("dracuxan.plugins.langages"),
 	require("dracuxan.plugins.textobjects"),
+
+	{
+		"tiagovla/scope.nvim",
+		config = function()
+			require("scope").setup({})
+		end,
+	},
 
 	{
 		"folke/snacks.nvim",
@@ -104,8 +110,6 @@ local custom_plugins = {
 		lazy = false,
 	},
 
-	{ "wakatime/vim-wakatime", lazy = false },
-
 	{
 		"datsfilipe/vesper.nvim",
 		version = false,
@@ -177,25 +181,6 @@ local custom_plugins = {
 		end,
 	},
 
-	-- {
-	-- 	"folke/which-key.nvim",
-	-- 	lazy = false,
-	-- 	config = function()
-	-- 		require("which-key").setup({
-	-- 			plugins = {
-	-- 				spelling = {
-	-- 					enabled = true,
-	-- 				},
-	-- 			},
-	-- 			win = {
-	-- 				border = "single",
-	-- 			},
-	-- 			timeout = true,
-	-- 			timeoutlen = 1000,
-	-- 		})
-	-- 	end,
-	-- },
-
 	{
 		"lewis6991/gitsigns.nvim",
 		opts = {
@@ -230,11 +215,6 @@ local custom_plugins = {
 			)
 		end,
 	},
-
-	-- {
-	-- 	"github/copilot.vim",
-	-- 	-- lazy = true,
-	-- },
 }
 
 require("lazy").setup(custom_plugins)
