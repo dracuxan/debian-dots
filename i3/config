@@ -38,7 +38,7 @@ bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl set 10%-
 bindsym $mod+Return exec --no-startup-id alacritty 
 
 # start dmenu (a program launcher)
-bindsym $mod+d exec --no-startup-id rofi -show run -display-run '>' -m 2
+bindsym $mod+d exec --no-startup-id rofi -show run -display-run '>' -m 0
 bindsym $mod+b exec --no-startup-id helium
 bindsym $mod+x exec --no-startup-id helium x.com/xandrom_app
 

@@ -139,7 +139,7 @@ select_wallpaper() {
             \( -iname "*.jpg" -o -iname "*.jpeg" -o -iname "*.png" -o -iname "*.webp" -o -iname "*.bmp" \) |
             sed "s|$WALLPAPER_DIR/||" |
             sort |
-            rofi -dmenu -i -p "Wallpaper"
+            rofi -dmenu -m 0 -i -p "Wallpaper"
     )
 
     [[ -z "$selected" ]] && exit 0
