@@ -1,0 +1,38 @@
+[font]
+size = 10
+
+[font.bold]
+family = "JetBrainsMono Nerd Font"
+style = "Bold"
+
+[font.italic]
+family = "JetBrainsMono Nerd Font"
+style = "Regular"
+
+[font.normal]
+family = "JetBrainsMono Nerd Font"
+style = "Regular"
+
+[font.offset]
+x = 0
+y = 0
+
+[scrolling]
+history = 10000
+multiplier = 3
+
+[selection]
+save_to_clipboard = true
+
+[window.padding]
+x = 10
+y = 10
+
+[keyboard]
+bindings = [
+  # Alt + hjkl navigation
+  { key = "H", mods = "Alt", chars = "\u001b[D" }, # Left
+  { key = "J", mods = "Alt", chars = "\u001b[B" }, # Down
+  { key = "K", mods = "Alt", chars = "\u001b[A" }, # Up
+  { key = "L", mods = "Alt", chars = "\u001b[C" }, # Right
+]

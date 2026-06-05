@@ -1,0 +1,58 @@
+[![wakatime](https://wakatime.com/badge/user/0d75cfc5-da70-41b7-b8c8-661ef9d8338b/project/9358976a-67c2-4357-8140-bd4a4c743b96.svg)](https://wakatime.com/badge/user/0d75cfc5-da70-41b7-b8c8-661ef9d8338b/project/9358976a-67c2-4357-8140-bd4a4c743b96)
+
+# Dotfiles
+
+Personal configuration for Neovim, i3, tmux, zsh, and other tools, managed with GNU stow (may or may not work for you).
+
+![preview](./screenshots/new_rice.png)
+
+## Installation
+
+> [!WARNING]
+> These dotfiles are under **active development**. Existing configurations will be overwritten.
+
+### 1. Clone & Dependencies
+
+Install packages using Nix (recommended) or your system package manager.
+**Requirements:** `stow`, `git`, `zsh`, `Neovim`, `tmux`, `i3`, `picom`.
+
+```bash
+git clone https://github.com/dracuxan/debian-dots.git ~/dotfiles && cd ~/dotfiles
+# Optional: Install tools via Nix
+nix profile install .#default
+```
+
+### 2. Apply Configs
+
+```bash
+./install.sh
+```
+
+### Uninstall
+
+```bash
+./uninstall.sh
+```
+
+## Screenshots
+
+<div align="center">
+  <img src="./screenshots/rice-1.png" alt="i3 WM" width="49%"/>
+  <img src="./screenshots/alacritty.png" alt="Fastfetch" width="49%"/>
+</div>
+
+<div align="center">
+  <img src="./screenshots/nvim_plus_tmux.png" alt="Neovim+Tmux" width="49%"/>
+  <img src="./screenshots/blank.png" alt="Clean Desktop" width="49%"/>
+</div>
+
+## Scripts
+
+> [!WARNING]
+> Scripts in `scripts/` are experimental.
+
+- `run.sh`: Universal runner for C, Go, Rust, Elixir, JS, and more.
+- `start_tmux.sh`: Smart session manager (auto-attach/create) with logging.
+- `set_wallpaper.sh`: Manages background images.
+- `setup_monitors.sh`: Configures multi-monitor layouts.
+- `steam`, `obs`, `zen`, etc.: Wrappers for Flatpak applications.

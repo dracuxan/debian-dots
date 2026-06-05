@@ -1,0 +1,4 @@
+#!/bin/sh
+WEBSITE="$@"
+
+flatpak run app.zen_browser.zen $WEBSITE
