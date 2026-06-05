@@ -1,5 +1,3 @@
-[![wakatime](https://wakatime.com/badge/user/0d75cfc5-da70-41b7-b8c8-661ef9d8338b/project/9358976a-67c2-4357-8140-bd4a4c743b96.svg)](https://wakatime.com/badge/user/0d75cfc5-da70-41b7-b8c8-661ef9d8338b/project/9358976a-67c2-4357-8140-bd4a4c743b96)
-
 # Dotfiles
 
 Personal configuration for Neovim, i3, tmux, zsh, and other tools, managed with GNU stow (may or may not work for you).
