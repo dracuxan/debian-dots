@@ -93,11 +93,13 @@ go)
     fi
     ;;
 rs)
-    echo "Running ${FILE_NAME}.rs with rustc..."
-    echo ""
-    mkdir -p "target"
-    rustc "$FILE_PATH" -o ./target/$FILE_NAME
-    ./target/${FILE_NAME} $ARGS
+    if $TEST_PROJECT; then
+        cargo test
+    elif $BUILD_ONLY; then
+        cargo build
+    else
+        cargo run
+    fi
     ;;
 exs | ex)
     if $TEST_PROJECT; then
