@@ -64,7 +64,7 @@ alias gitnew='git add .; git commit -m "new"; git push'
 alias gitadd='git add .; git commit -m "add"; git push'
 alias gitfix='git add .; git commit -m "fix"; git push'
 alias gitrebase='git pull --rebase'
-alias gitbat='git add .; git commit -m "Batman"; git push'
+alias gitbat='git add .; git commit -m "batman"; git push'
 alias ga="git add .;"
 alias gc="git commit -m"
 alias gp="git push"
@@ -89,13 +89,6 @@ alias ff='firefox'
 
 # codex alias
 alias cr='codex resume'
-
-# alacrity configurations
-alias alacritty_conf='nv /mnt/c/Users/Nisarg/AppData/Roaming/alacritty/alacritty.toml'
-
-# Solana environment Variables
-alias anchor="LD_LIBRARY_PATH=$HOME/glibc-2.39/local/lib:$LD_LIBRARY_PATH anchor"
-PATH="/home/dracuxan/.local/share/solana/install/active_release/bin:$PATH"
 
 # Metasploit variables
 export PATH="$PATH:/opt/metasploit-framework/bin"
@@ -144,3 +137,5 @@ precmd() {
   fi
   LAST_CMD=""
 }
+
+eval $(opam env --switch=ocaml-gp)

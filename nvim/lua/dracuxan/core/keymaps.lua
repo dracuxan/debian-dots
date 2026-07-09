@@ -9,7 +9,7 @@ vim.g.maplocalleader = " "
 local opts = { noremap = true, silent = true }
 
 -- Insert
-vk("i", "jj", "<Esc>", opts)
+vk("i", "nn", "<Esc>", opts)
 vk("i", "<C-b>", "<C-o>^", opts)
 vk("i", "<C-e>", "<C-o>$", opts)
 

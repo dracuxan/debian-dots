@@ -133,9 +133,9 @@ function _LAZYGIT_TOGGLE()
 end
 
 -- Set keymaps
-vim.keymap.set("n", "<leader>mr", _RUN_SCRIPT, { noremap = true, silent = true, desc = "run script" })
-vim.keymap.set("n", "<leader>mt", _RUN_TEST, { noremap = true, silent = true, desc = "run test(s)" })
-vim.keymap.set("n", "<leader>mi", _RUN_REPL, { noremap = true, silent = true, desc = "run REPL" })
+vim.keymap.set("n", "<leader>r", _RUN_SCRIPT, { noremap = true, silent = true, desc = "run script" })
+vim.keymap.set("n", "<leader>t", _RUN_TEST, { noremap = true, silent = true, desc = "run test(s)" })
+vim.keymap.set("n", "<leader>i", _RUN_REPL, { noremap = true, silent = true, desc = "run REPL" })
 vim.keymap.set("n", "<leader>mm", _RUN_MIX, { noremap = true, silent = true, desc = "run with MIX" })
 vim.keymap.set("n", "<leader>mb", _RUN_BUILD, { noremap = true, silent = true, desc = "build project" })
 vim.keymap.set("n", "<leader>ms", _SEND_BIN, { noremap = true, silent = true, desc = "send binaries to server" })

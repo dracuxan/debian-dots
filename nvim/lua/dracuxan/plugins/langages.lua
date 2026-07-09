@@ -1,12 +1,5 @@
 return {
 	{
-		"tarides/ocaml.nvim",
-		config = function()
-			require("ocaml").setup()
-		end,
-	},
-
-	{
 		"windwp/nvim-ts-autotag",
 		ft = { "javascript", "javascriptreact", "typescript", "typescriptreact" },
 		config = function()
@@ -80,13 +73,47 @@ return {
 	},
 
 	{
-		"nvimtools/none-ls.nvim",
-		dependencies = {
-			"nvimtools/none-ls-extras.nvim",
-			"jayp0521/mason-null-ls.nvim", -- ensures dependencies are installed
+		"stevearc/conform.nvim",
+		event = { "BufWritePre" },
+		opts = {
+			formatters_by_ft = {
+				lua = { "stylua" },
+				python = { "black" },
+				javascript = { "prettierd", "prettier", stop_after_first = true },
+				javascriptreact = { "prettierd", "prettier", stop_after_first = true },
+				typescript = { "prettierd", "prettier", stop_after_first = true },
+				typescriptreact = { "prettierd", "prettier", stop_after_first = true },
+				json = { "prettierd", "prettier", stop_after_first = true },
+				jsonc = { "prettierd", "prettier", stop_after_first = true },
+				html = { "prettierd", "prettier", stop_after_first = true },
+				css = { "prettierd", "prettier", stop_after_first = true },
+				rust = { "rustfmt" },
+				ocaml = { "ocamlformat" },
+				ocamlinterface = { "ocamlformat" },
+				go = { "goimports" },
+				sh = { "shfmt" },
+				bash = { "shfmt" },
+				nix = { "nixfmt" },
+			},
+			formatters = {
+				ocamlformat = {
+					command = "opam",
+					args = {
+						"exec",
+						"--",
+						"ocamlformat",
+						"--enable-outside-detected-project",
+						"--name",
+						"$FILENAME",
+						"-",
+					},
+				},
+			},
+
+			format_on_save = {
+				timeout_ms = 500,
+				lsp_format = "fallback",
+			},
 		},
-		config = function()
-			require("dracuxan.plugins.none-ls")
-		end,
 	},
 }

@@ -1,18 +1,13 @@
 local vim = vim
 
 return {
-	"neovim/nvim-lspconfig",
+	"williamboman/mason.nvim",
 	dependencies = {
-		{ "williamboman/mason.nvim", config = true }, -- NOTE: Must be loaded before dependants
-		"williamboman/mason-lspconfig.nvim",
 		"WhoIsSethDaniel/mason-tool-installer.nvim",
 		{ "j-hui/fidget.nvim", opts = {} },
-
 		"hrsh7th/cmp-nvim-lsp",
 	},
 	config = function()
-		local lspconfig = require("lspconfig")
-		local util = lspconfig.util
 		vim.api.nvim_create_autocmd("LspAttach", {
 			group = vim.api.nvim_create_augroup("kickstart-lsp-attach", { clear = true }),
 			callback = function(event)
@@ -22,29 +17,13 @@ return {
 				end
 
 				local telescope = require("telescope.builtin")
-				-- Jump to the definition of the word under your cursor
 				map("gd", telescope.lsp_definitions, "[G]oto [D]efinition")
-
-				-- Find references for the word under your cursor
 				map("gr", telescope.lsp_references, "[G]oto [R]eferences")
-
-				-- Jump to the implementation of the word under your cursor
 				map("gI", telescope.lsp_implementations, "[G]oto [I]mplementation")
-
-				-- Jump to the type of the word under your cursor
 				map("<leader>D", telescope.lsp_type_definitions, "Type [D]efinition")
-
-				-- Fuzzy find all the symbols in your current document
 				map("<leader>ds", telescope.lsp_document_symbols, "[D]ocument [S]ymbols")
-
-				-- Fuzzy find all the symbols in your current workspace
 				map("<leader>ws", telescope.lsp_dynamic_workspace_symbols, "[W]orkspace [S]ymbols")
-				-- Rename the variable under your cursor.
-				--  Most Language Servers support renaming across files, etc.
 				map("<leader>rn", vim.lsp.buf.rename, "[R]e[n]ame")
-
-				-- Execute a code action, usually your cursor needs to be on top of an error
-				-- or a suggestion from your LSP for this to activate.
 				map("<leader>ca", vim.lsp.buf.code_action, "[C]ode [A]ction", { "n", "x" })
 
 				local client = vim.lsp.get_client_by_id(event.data.client_id)
@@ -70,54 +49,21 @@ return {
 						end,
 					})
 				end
-
-				if client.supports_method("textDocument/formatting") then
-					local format_augroup = vim.api.nvim_create_augroup("lsp-format-" .. event.buf, { clear = true })
-
-					vim.api.nvim_create_autocmd("BufWritePre", {
-						group = format_augroup,
-						buffer = event.buf,
-						callback = function()
-							if vim.bo.filetype == "oil" then
-								return
-							end
-							vim.lsp.buf.format({ bufnr = event.buf })
-						end,
-					})
-
-					vim.diagnostic.config({
-						update_in_insert = false, -- Show errors while typing
-						virtual_text = true, -- Show inline errors
-						signs = true, -- Show signs in the gutter
-						underline = true, -- Underline errors
-					})
-				end
-
-				vim.api.nvim_create_autocmd("BufWritePre", {
-					pattern = "*.go",
-					callback = function()
-						if vim.bo.filetype == "oil" then
-							return
-						end
-						local params = vim.lsp.util.make_range_params(0, "utf-16")
-						params.context = { only = { "source.organizeImports" } }
-						local result = vim.lsp.buf_request_sync(0, "textDocument/codeAction", params)
-						for cid, res in pairs(result or {}) do
-							for _, r in pairs(res.result or {}) do
-								if r.edit then
-									local enc = (vim.lsp.get_client_by_id(cid) or {}).offset_encoding or "utf-16"
-									vim.lsp.util.apply_workspace_edit(r.edit, enc)
-								end
-							end
-						end
-						vim.lsp.buf.format({ async = false })
-					end,
-				})
 			end,
+		})
+
+		vim.diagnostic.config({
+			update_in_insert = false,
+			virtual_text = true,
+			signs = true,
+			underline = true,
 		})
 
 		local servers = {
 			lua_ls = {
+				cmd = { "lua-language-server" },
+				filetypes = { "lua" },
+				root_markers = { { ".luarc.json", ".luarc.jsonc" }, ".git" },
 				settings = {
 					Lua = {
 						completion = {
@@ -131,18 +77,102 @@ return {
 					},
 				},
 			},
-			html = {},
-			cssls = {},
-			gopls = {},
-			rust_analyzer = {},
-			nil_ls = {},
-			bashls = {},
-			pyright = {},
-			zls = {},
-			ts_ls = {},
-			eslint = {},
+			html = {
+				cmd = { "vscode-html-language-server", "--stdio" },
+				filetypes = { "html" },
+				root_markers = { "package.json", ".git" },
+			},
+			cssls = {
+				cmd = { "vscode-css-language-server", "--stdio" },
+				filetypes = { "css", "scss", "less" },
+				root_markers = { "package.json", ".git" },
+			},
+			gopls = {
+				cmd = { "gopls" },
+				filetypes = { "go", "gomod", "gowork", "gotmpl" },
+				root_markers = { "go.work", "go.mod", ".git" },
+			},
+			rust_analyzer = {
+				cmd = { "rust-analyzer" },
+				filetypes = { "rust" },
+				root_markers = { "Cargo.toml", "rust-project.json", ".git" },
+			},
+			nil_ls = {
+				cmd = { "nil" },
+				filetypes = { "nix" },
+				root_markers = { "flake.nix", "shell.nix", ".git" },
+			},
+			bashls = {
+				cmd = { "bash-language-server", "start" },
+				filetypes = { "bash", "sh" },
+				root_markers = { ".git" },
+			},
+			pyright = {
+				cmd = { "pyright-langserver", "--stdio" },
+				filetypes = { "python" },
+				root_markers = {
+					"pyproject.toml",
+					"setup.py",
+					"setup.cfg",
+					"requirements.txt",
+					"Pipfile",
+					"pyrightconfig.json",
+					".git",
+				},
+			},
+			zls = {
+				cmd = { "zls" },
+				filetypes = { "zig", "zir" },
+				root_markers = { "build.zig", "zls.json", ".git" },
+			},
+			ts_ls = {
+				cmd = { "typescript-language-server", "--stdio" },
+				filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact" },
+				root_markers = { "tsconfig.json", "jsconfig.json", "package.json", ".git" },
+			},
+			eslint = {
+				cmd = { "vscode-eslint-language-server", "--stdio" },
+				filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact" },
+				root_markers = {
+					".eslintrc",
+					".eslintrc.js",
+					".eslintrc.cjs",
+					".eslintrc.json",
+					"eslint.config.js",
+					"eslint.config.mjs",
+					"eslint.config.cjs",
+					"package.json",
+					".git",
+				},
+			},
+			ocamllsp = {
+				cmd = { "opam", "exec", "--", "ocamllsp" },
+				filetypes = { "ocaml", "menhir", "ocamlinterface", "ocamllex", "reason", "dune" },
+				root_dir = function(bufnr, on_dir)
+					local file = vim.api.nvim_buf_get_name(bufnr)
+					local root =
+						vim.fs.root(file, { "dune-project", "dune-workspace", "esy.json", "package.json", ".git" })
+
+					if root then
+						on_dir(root)
+						return
+					end
+
+					for dir in vim.fs.parents(file) do
+						local opam_files = vim.fn.glob(dir .. "/*.opam", false, true)
+						if #opam_files > 0 then
+							on_dir(dir)
+							return
+						end
+					end
+
+					on_dir(vim.fs.dirname(file))
+				end,
+			},
 			elixirls = {
 				cmd = { "elixir-ls" },
+				filetypes = { "elixir", "eelixir", "heex", "surface" },
+				root_markers = { "mix.exs", ".git" },
 				settings = {
 					elixirLS = {
 						dialyzerEnabled = false,
@@ -154,28 +184,37 @@ return {
 
 		require("mason").setup()
 
-		local ensure_installed = vim.tbl_keys(servers or {})
-		vim.list_extend(ensure_installed, {
-			"stylua",
-			"shfmt",
-			"checkmake",
-			"prettierd",
-			"nixfmt",
-			"black",
+		require("mason-tool-installer").setup({
+			ensure_installed = {
+				"lua-language-server",
+				"html-lsp",
+				"css-lsp",
+				"gopls",
+				"rust-analyzer",
+				"nil",
+				"bash-language-server",
+				"pyright",
+				"zls",
+				"typescript-language-server",
+				"eslint-lsp",
+				"elixir-ls",
+				"stylua",
+				"shfmt",
+				"checkmake",
+				"prettierd",
+				"nixfmt",
+				"black",
+				"goimports",
+			},
 		})
-		require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
 
 		local capabilities = vim.lsp.protocol.make_client_capabilities()
 		capabilities = vim.tbl_deep_extend("force", capabilities, require("cmp_nvim_lsp").default_capabilities())
+		vim.lsp.config("*", { capabilities = capabilities })
 
-		require("mason-lspconfig").setup({
-			handlers = {
-				function(server_name)
-					local server = servers[server_name] or {}
-					server.capabilities = vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {})
-					require("lspconfig")[server_name].setup(server)
-				end,
-			},
-		})
+		for server_name, server in pairs(servers) do
+			vim.lsp.config(server_name, server)
+			vim.lsp.enable(server_name)
+		end
 	end,
 }

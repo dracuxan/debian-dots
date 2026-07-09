@@ -4,6 +4,10 @@
 # Usage:
 #   set_wallpaper.sh              # Set wallpaper from config file
 #   set_wallpaper.sh filename.jpg # Set new wallpaper and update config
+#   set_wallpaper.sh --all same.jpg
+#                                  # Set one wallpaper on every screen
+#   set_wallpaper.sh --screen 0 left.jpg --screen 1 right.jpg
+#                                  # Set different wallpapers by feh screen order
 #   set_wallpaper.sh --select     # Select wallpaper using rofi
 
 set -e
@@ -25,7 +29,7 @@ log_info() {
 }
 
 log_warn() {
-    echo -e "${YELLOW}[WARN]${NC} $1"
+    echo -e "${YELLOW}[WARN]${NC} $1" >&2
 }
 
 log_error() {
@@ -44,7 +48,12 @@ ensure_wallpaper_dir() {
 read_wallpaper_config() {
     if [[ -f "$CONFIG_FILE" ]]; then
         source "$CONFIG_FILE"
-        echo "${WALLPAPER_PATH:-$DEFAULT_WALLPAPER}"
+
+        if declare -p WALLPAPER_PATHS &>/dev/null; then
+            printf "%s\n" "${WALLPAPER_PATHS[@]}"
+        else
+            echo "${WALLPAPER_PATH:-$DEFAULT_WALLPAPER}"
+        fi
     else
         log_warn "Config file not found, using default wallpaper"
         echo "$DEFAULT_WALLPAPER"
@@ -68,6 +77,39 @@ write_wallpaper_config() {
     log_info "Wallpaper config updated: $wallpaper_path"
 }
 
+# Write multiple wallpapers to config in feh screen order
+write_wallpapers_config() {
+    local config_dir
+    config_dir="$(dirname "$CONFIG_FILE")"
+
+    mkdir -p "$config_dir"
+
+    echo "# Wallpaper Configuration" >"$CONFIG_FILE"
+    echo "# Format: WALLPAPER_PATHS=(~/Wallpapers/screen0.jpg ~/Wallpapers/screen1.jpg)" >>"$CONFIG_FILE"
+    echo "# The wallpaper script will read this file and apply wallpapers in feh screen order" >>"$CONFIG_FILE"
+    echo "" >>"$CONFIG_FILE"
+    echo "WALLPAPER_PATH=${1:-$DEFAULT_WALLPAPER}" >>"$CONFIG_FILE"
+
+    printf "WALLPAPER_PATHS=(" >>"$CONFIG_FILE"
+    for wallpaper_path in "$@"; do
+        printf " %q" "$wallpaper_path" >>"$CONFIG_FILE"
+    done
+    echo " )" >>"$CONFIG_FILE"
+
+    log_info "Wallpaper config updated for $# screens"
+}
+
+# Resolve wallpaper file argument to a path used by this script
+resolve_wallpaper_path() {
+    local wallpaper_path="$1"
+
+    if [[ "$wallpaper_path" != *"/"* ]]; then
+        wallpaper_path="$WALLPAPER_DIR/$wallpaper_path"
+    fi
+
+    echo "${wallpaper_path/#$HOME/\~}"
+}
+
 # Validate wallpaper file exists
 validate_wallpaper() {
     local wallpaper_path="$1"
@@ -82,21 +124,26 @@ validate_wallpaper() {
     return 0
 }
 
-# Apply wallpaper using feh
-apply_wallpaper() {
-    local wallpaper_path="$1"
+# Apply wallpapers using feh in screen order
+apply_wallpapers() {
+    local wallpaper_paths=()
+    local wallpaper_path
 
-    wallpaper_path="${wallpaper_path/#\~/$HOME}"
+    for wallpaper_path in "$@"; do
+        wallpaper_path="${wallpaper_path/#\~/$HOME}"
 
-    if ! validate_wallpaper "$wallpaper_path"; then
-        return 1
-    fi
+        if ! validate_wallpaper "$wallpaper_path"; then
+            return 1
+        fi
 
-    if feh --bg-fill "$wallpaper_path"; then
-        log_info "Wallpaper applied successfully: $(basename "$wallpaper_path")"
+        wallpaper_paths+=("$wallpaper_path")
+    done
+
+    if feh --bg-fill "${wallpaper_paths[@]}"; then
+        log_info "Wallpapers applied successfully for ${#wallpaper_paths[@]} screen(s)"
         return 0
     else
-        log_error "Failed to apply wallpaper: $wallpaper_path"
+        log_error "Failed to apply wallpapers"
         return 1
     fi
 }
@@ -122,19 +169,26 @@ select_wallpaper() {
 
 # Show usage
 show_usage() {
+    local cmd="set_wallpaper"
+
     echo "Wallpaper Management Script"
     echo ""
     echo "Usage:"
-    echo "  $0                    # Set wallpaper from config file"
-    echo "  $0 filename.jpg       # Set new wallpaper and update config"
-    echo "  $0 --select           # Select wallpaper using rofi"
-    echo "  $0 --list             # List available wallpapers"
-    echo "  $0 --help             # Show this help"
+    echo "  $cmd                    # Set wallpaper from config file"
+    echo "  $cmd filename.jpg       # Set new wallpaper and update config"
+    echo "  $cmd --all same.jpg     # Set one wallpaper on every screen"
+    echo "  $cmd --screen 0 left.jpg --screen 1 right.jpg"
+    echo "                        # Set/update wallpapers by feh screen order"
+    echo "  $cmd --select           # Select wallpaper using rofi"
+    echo "  $cmd --list             # List available wallpapers"
+    echo "  $cmd --help             # Show this help"
     echo ""
     echo "Examples:"
-    echo "  $0 gruvbox_spac.jpg"
-    echo "  $0 ~/Wallpapers/joyboy.png"
-    echo "  $0 --select"
+    echo "  $cmd gruvbox_spac.jpg"
+    echo "  $cmd --all gruvbox_spac.jpg"
+    echo "  $cmd ~/Wallpapers/joyboy.png"
+    echo "  $cmd --screen 0 gruvbox_spac.jpg --screen 1 joyboy.png"
+    echo "  $cmd --select"
 }
 
 # List available wallpapers
@@ -163,6 +217,9 @@ list_wallpapers() {
 # Main function
 main() {
     local wallpaper_path
+    local wallpaper_paths=()
+    local screen_wallpapers=()
+    local max_screen=-1
     local action="from_config"
 
     case "${1:-}" in
@@ -180,52 +237,133 @@ main() {
         exit 0
         ;;
 
+    --all)
+        if [[ $# -ne 2 ]]; then
+            log_error "Usage: $0 --all <wallpaper>"
+            exit 1
+        fi
+
+        wallpaper_path="$(resolve_wallpaper_path "$2")"
+        action="specific"
+        ;;
+
+    --screen)
+        action="screens"
+
+        while [[ $# -gt 0 ]]; do
+            local screen_index
+
+            case "$1" in
+            --screen)
+                if [[ $# -lt 3 ]]; then
+                    log_error "Usage: $0 --screen <number> <wallpaper> [--screen <number> <wallpaper> ...]"
+                    exit 1
+                fi
+
+                screen_index="$2"
+                wallpaper_path="$3"
+                shift 3
+                ;;
+
+            *)
+                log_error "Unexpected argument for screen wallpapers: $1"
+                exit 1
+                ;;
+            esac
+
+            if ! [[ "$screen_index" =~ ^[0-9]+$ ]]; then
+                log_error "Screen must be a zero-based number: $screen_index"
+                exit 1
+            fi
+
+            screen_wallpapers[$screen_index]="$(resolve_wallpaper_path "$wallpaper_path")"
+
+            if ((screen_index > max_screen)); then
+                max_screen=$screen_index
+            fi
+        done
+
+        local saved_wallpaper_paths=()
+        while IFS= read -r wallpaper_path; do
+            saved_wallpaper_paths+=("$wallpaper_path")
+        done < <(read_wallpaper_config)
+
+        local wallpaper_count="${#saved_wallpaper_paths[@]}"
+        if ((max_screen + 1 > wallpaper_count)); then
+            wallpaper_count=$((max_screen + 1))
+        fi
+
+        for ((screen_index = 0; screen_index < wallpaper_count; screen_index++)); do
+            if [[ -n "${screen_wallpapers[$screen_index]+set}" ]]; then
+                wallpaper_paths+=("${screen_wallpapers[$screen_index]}")
+            elif [[ -n "${saved_wallpaper_paths[$screen_index]+set}" ]]; then
+                wallpaper_paths+=("${saved_wallpaper_paths[$screen_index]}")
+            elif [[ -n "${saved_wallpaper_paths[0]+set}" ]]; then
+                wallpaper_paths+=("${saved_wallpaper_paths[0]}")
+            else
+                wallpaper_paths+=("$DEFAULT_WALLPAPER")
+            fi
+        done
+        ;;
+
     "")
         action="from_config"
         ;;
 
+    --*)
+        log_error "Unknown option: $1"
+        show_usage
+        exit 1
+        ;;
+
     *)
-        wallpaper_path="$1"
-
-        if [[ "$wallpaper_path" != *"/"* ]]; then
-            wallpaper_path="$WALLPAPER_DIR/$wallpaper_path"
-        fi
-
-        wallpaper_path="${wallpaper_path/#$HOME/\~}"
+        wallpaper_path="$(resolve_wallpaper_path "$1")"
         action="specific"
         ;;
     esac
 
     case "$action" in
     "from_config")
-        wallpaper_path=$(read_wallpaper_config)
-        log_info "Setting wallpaper from config: $(basename "$wallpaper_path")"
+        while IFS= read -r wallpaper_path; do
+            wallpaper_paths+=("$wallpaper_path")
+        done < <(read_wallpaper_config)
+        log_info "Setting wallpaper from config"
         ;;
 
     "select")
         wallpaper_path=$(select_wallpaper)
+        wallpaper_paths=("$wallpaper_path")
         log_info "Selected wallpaper: $(basename "$wallpaper_path")"
         ;;
 
     "specific")
+        wallpaper_paths=("$wallpaper_path")
         log_info "Setting specific wallpaper: $(basename "$wallpaper_path")"
+        ;;
+
+    "screens")
+        log_info "Setting wallpapers for ${#wallpaper_paths[@]} screen(s)"
         ;;
     esac
 
-    if validate_wallpaper "$wallpaper_path"; then
-        if apply_wallpaper "$wallpaper_path"; then
+    if [[ "${#wallpaper_paths[@]}" -eq 0 ]]; then
+        log_error "No wallpapers specified"
+        exit 1
+    fi
 
-            if [[ "$action" != "from_config" ]]; then
+    if apply_wallpapers "${wallpaper_paths[@]}"; then
+
+        if [[ "$action" != "from_config" ]]; then
+            if [[ "$action" == "screens" ]]; then
+                write_wallpapers_config "${wallpaper_paths[@]}"
+            else
                 write_wallpaper_config "$wallpaper_path"
             fi
-
-            log_info "Wallpaper set successfully!"
-        else
-            log_error "Failed to set wallpaper"
-            exit 1
         fi
+
+        log_info "Wallpaper set successfully!"
     else
-        log_error "Invalid wallpaper file: $wallpaper_path"
+        log_error "Failed to set wallpaper"
         exit 1
     fi
 }

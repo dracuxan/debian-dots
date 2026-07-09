@@ -73,7 +73,21 @@ go)
     if $TEST_PROJECT; then
         echo "Running tests..."
         echo ""
-        go test $FILE_PATH
+        GO_TEST_DIR=$(dirname "$FILE_PATH")
+        GO_MODULE_ROOT="$GO_TEST_DIR"
+
+        if [[ -f "$GO_MODULE_ROOT/go.mod" ]]; then
+            (
+                cd "$GO_MODULE_ROOT" || exit 1
+                go test ./...
+            )
+        else
+            (
+                cd "$GO_TEST_DIR" || exit 1
+                go test .
+            )
+        fi
+        exit $?
     else
         echo "Compiling ${FILE_NAME}.go..."
         echo ""

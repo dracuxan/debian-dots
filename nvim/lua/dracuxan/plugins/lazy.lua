@@ -18,6 +18,28 @@ local custom_plugins = {
 	require("dracuxan.plugins.textobjects"),
 
 	{
+		"xero/evangelion.nvim",
+		lazy = false,
+		priority = 1000,
+		opts = {
+			overrides = {
+				keyword = { fg = "#00ff00", bg = "#222222", undercurl = true },
+				["@boolean"] = { link = "Special" },
+			},
+		},
+	},
+
+	{
+		"pyratebeard/goblinmode.nvim",
+		name = "goblinmode.nvim",
+		lazy = false,
+		dev = { true },
+		priority = 1000,
+		config = function() end,
+		dependencies = { "rktjmp/lush.nvim" },
+	},
+
+	{
 		"tiagovla/scope.nvim",
 		config = function()
 			require("scope").setup({})
