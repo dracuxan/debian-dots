@@ -1,4 +1,3 @@
-local vim = vim
 local vk = vim.keymap.set
 
 -- Leader
@@ -72,7 +71,7 @@ vk("n", "<leader>l", "<cmd>Lazy<CR>", opts)
 
 -- Snacks
 vk("n", "<M-\\>", function()
-	Snacks.explorer()
+	require("snacks").explorer()
 end, { desc = "Toggle Snacks Explorer" })
 
 -- Quit

@@ -99,7 +99,6 @@ ins_left({
 			n = colors.red,
 			i = colors.green,
 			v = colors.blue,
-			[""] = colors.blue,
 			V = colors.blue,
 			c = colors.magenta,
 			no = colors.red,
